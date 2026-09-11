@@ -1,36 +1,59 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ForgeGTM
 
-## Getting Started
+Marketing site for ForgeGTM, a B2B go-to-market agency.
 
-First, run the development server:
+Built with Next.js (App Router), TypeScript and Tailwind CSS v4.
+
+## Getting started
+
+This project uses **pnpm** — the version is pinned via the `packageManager`
+field, so [corepack](https://nodejs.org/api/corepack.html) will select it
+automatically.
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+pnpm install
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then open http://localhost:3000.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Note that pnpm forwards arguments directly, so it is `pnpm dev -p 4000` —
+not `pnpm dev -- -p 4000`.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+pnpm build   # production build
+pnpm lint    # eslint
+```
 
-## Learn More
+## Structure
 
-To learn more about Next.js, take a look at the following resources:
+```
+app/                 routes, metadata, global styles
+  privacy/           legal pages
+  imprint/
+components/          section components (one per page section)
+  ui/                shared primitives (Section, Button, Reveal, …)
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Presentation is driven by a single design system rather than per-section
+styling. `app/globals.css` owns the type scale (`text-display`, `text-h2`,
+`text-body`, …), colour tokens, radius scale and the shared easing curve;
+`components/ui/Section.tsx` and `SectionHeader.tsx` keep every section on the
+same vertical rhythm and grid. Prefer extending those over introducing
+one-off values.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Scroll animations run through `components/ui/Reveal.tsx` and are disabled
+under `prefers-reduced-motion`.
 
-## Deploy on Vercel
+## Before launch
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- [ ] Fill in the legal pages. Outstanding details render as visible dashed
+      markers (`Fill` in `components/LegalPage.tsx`) so nothing ships
+      half-complete. Both pages need review by a qualified lawyer.
+- [ ] Replace the contact address (`hello@forgegtm.com`) and the LinkedIn URL
+      in `components/Footer.tsx` and `components/FinalCTA.tsx`.
+- [ ] Set the production domain in `metadataBase` (`app/layout.tsx`).
+- [ ] Add real client logos and verified case-study results. The current
+      "Built for" strip (`MarketsStrip.tsx`) and engagement models
+      (`Engagements.tsx`) deliberately make no unverified claims — see the
+      comments in those files before changing them.

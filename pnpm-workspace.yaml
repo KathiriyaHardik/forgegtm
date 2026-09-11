@@ -1,0 +1,5 @@
+# unrs-resolver is a native (napi) resolver pulled in by eslint-config-next via
+# eslint-import-resolver-typescript. Its postinstall selects the correct
+# platform binary, so its build script has to be allowed for linting to work.
+allowBuilds:
+  unrs-resolver: true
