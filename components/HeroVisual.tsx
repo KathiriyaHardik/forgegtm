@@ -101,16 +101,6 @@ export function HeroVisual({ className = "" }: { className?: string }) {
         Strategy &rarr; Systems &rarr; Compounding revenue
       </figcaption>
 
-      {/* Replace with a verified headline result before launch. */}
-      <div className="rounded-card absolute right-6 bottom-6 border border-white/60 bg-white/90 px-5 py-3.5 shadow-[0_20px_40px_-22px_rgba(10,10,13,0.4)] backdrop-blur-sm md:right-8 md:bottom-8">
-        <div className="flex items-baseline gap-2">
-          <span className="h-1.5 w-1.5 rounded-full bg-accent" />
-          <span className="text-numeric text-[19px] font-semibold text-ink">
-            +214%
-          </span>
-        </div>
-        <div className="text-meta mt-1 text-muted">Pipeline growth</div>
-      </div>
     </figure>
   );
 }

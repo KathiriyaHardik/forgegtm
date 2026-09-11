@@ -6,12 +6,13 @@ import { Menu, X } from "lucide-react";
 import { Container } from "./ui/Container";
 import { Wordmark } from "./ui/Wordmark";
 
+// Absolute hrefs so the nav also works from /privacy and /imprint.
 const NAV_LINKS = [
-  { label: "Services", href: "#services" },
-  { label: "Process", href: "#process" },
-  { label: "Case Studies", href: "#case-studies" },
-  { label: "Approach", href: "#approach" },
-  { label: "FAQ", href: "#faq" },
+  { label: "Services", href: "/#services" },
+  { label: "Process", href: "/#process" },
+  { label: "Engagements", href: "/#engagements" },
+  { label: "Approach", href: "/#approach" },
+  { label: "FAQ", href: "/#faq" },
 ];
 
 export function Navbar() {
@@ -41,7 +42,7 @@ export function Navbar() {
       }`}
     >
       <Container className="flex h-[68px] items-center justify-between">
-        <Link href="#" aria-label="ForgeGTM home" className="shrink-0">
+        <Link href="/" aria-label="ForgeGTM home" className="shrink-0">
           <Wordmark />
         </Link>
 
@@ -58,7 +59,7 @@ export function Navbar() {
         </nav>
 
         <Link
-          href="#contact"
+          href="/#contact"
           className="hidden rounded-full bg-ink px-5 py-2.5 text-[13px] font-medium text-white transition-all duration-300 ease-premium hover:bg-ink-soft hover:shadow-[0_12px_24px_-14px_rgba(10,10,13,0.55)] md:inline-flex"
         >
           Let&rsquo;s Talk
@@ -93,7 +94,7 @@ export function Navbar() {
               </Link>
             ))}
             <Link
-              href="#contact"
+              href="/#contact"
               onClick={() => setOpen(false)}
               className="mt-4 mb-2 inline-flex items-center justify-center rounded-full bg-ink px-5 py-3.5 text-[14px] font-medium text-white"
             >

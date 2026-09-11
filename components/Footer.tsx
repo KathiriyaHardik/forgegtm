@@ -7,10 +7,10 @@ const COLUMNS = [
   {
     title: "Explore",
     links: [
-      { label: "Services", href: "#services" },
-      { label: "Process", href: "#process" },
-      { label: "Case Studies", href: "#case-studies" },
-      { label: "Approach", href: "#approach" },
+      { label: "Services", href: "/#services" },
+      { label: "Process", href: "/#process" },
+      { label: "Engagements", href: "/#engagements" },
+      { label: "Approach", href: "/#approach" },
     ],
   },
   {
@@ -23,8 +23,8 @@ const COLUMNS = [
   {
     title: "Legal",
     links: [
-      { label: "Privacy", href: "#" },
-      { label: "Imprint", href: "#" },
+      { label: "Privacy", href: "/privacy" },
+      { label: "Imprint", href: "/imprint" },
     ],
   },
 ];
