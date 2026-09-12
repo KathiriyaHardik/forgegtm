@@ -1,35 +1,40 @@
 import Link from "next/link";
 import { Container } from "./ui/Container";
 import { Wordmark } from "./ui/Wordmark";
+import type { Dictionary } from "@/lib/i18n/en";
+import { localePath, type Locale } from "@/lib/i18n/config";
 
-// Replace hrefs with real destinations before launch.
-const COLUMNS = [
-  {
-    title: "Explore",
-    links: [
-      { label: "Services", href: "/#services" },
-      { label: "How it works", href: "/#process" },
-      { label: "Case studies", href: "/#case-studies" },
-      { label: "Book a strategy call", href: "/#contact" },
-    ],
-  },
-  {
-    title: "Connect",
-    links: [
-      { label: "LinkedIn", href: "https://www.linkedin.com" },
-      { label: "hello@forgegtm.com", href: "mailto:hello@forgegtm.com" },
-    ],
-  },
-  {
-    title: "Legal",
-    links: [
-      { label: "Privacy", href: "/privacy" },
-      { label: "Imprint", href: "/imprint" },
-    ],
-  },
-];
+// Replace the LinkedIn URL and contact address with real destinations.
+export function Footer({ t, lang }: { t: Dictionary; lang: Locale }) {
+  const base = localePath(lang);
 
-export function Footer() {
+  const columns = [
+    {
+      title: t.footer.explore,
+      links: [
+        { label: t.nav.services, href: `${base}/#services` },
+        { label: t.nav.caseStudies, href: `${base}/case-studies` },
+        { label: t.nav.insights, href: `${base}/insights` },
+        { label: t.nav.about, href: `${base}/about` },
+      ],
+    },
+    {
+      title: t.footer.connect,
+      links: [
+        { label: "LinkedIn", href: "https://www.linkedin.com" },
+        { label: "hello@forgegtm.com", href: "mailto:hello@forgegtm.com" },
+        { label: t.cta.bookCall, href: `${base}/#contact` },
+      ],
+    },
+    {
+      title: t.footer.legal,
+      links: [
+        { label: t.footer.privacy, href: `${base}/privacy` },
+        { label: t.footer.imprint, href: `${base}/imprint` },
+      ],
+    },
+  ];
+
   return (
     <footer className="border-t border-dark-border bg-dark py-16 md:py-20">
       <Container>
@@ -37,11 +42,11 @@ export function Footer() {
           <div>
             <Wordmark tone="dark" />
             <p className="text-body mt-5 max-w-[30ch] text-white/45">
-              Outbound systems that generate qualified pipeline for ambitious B2B companies.
+              {t.footer.description}
             </p>
           </div>
 
-          {COLUMNS.map((column) => (
+          {columns.map((column) => (
             <nav key={column.title} aria-label={column.title}>
               <h2 className="text-eyebrow text-white/35">{column.title}</h2>
               <ul className="mt-5 flex flex-col gap-3.5">
@@ -62,7 +67,7 @@ export function Footer() {
 
         <div className="mt-16 border-t border-dark-border pt-8">
           <p className="text-[12.5px] text-white/35">
-            &copy; {new Date().getFullYear()} ForgeGTM. All rights reserved.
+            &copy; {new Date().getFullYear()} ForgeGTM. {t.footer.rights}
           </p>
         </div>
       </Container>

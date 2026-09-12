@@ -4,7 +4,13 @@
  * Drawn as one SVG so the composition holds at every aspect ratio.
  * Replace this component with an <Image> when brand artwork exists.
  */
-export function HeroVisual({ className = "" }: { className?: string }) {
+export function HeroVisual({
+  caption,
+  className = "",
+}: {
+  caption: string;
+  className?: string;
+}) {
   return (
     <figure
       className={`relative aspect-[3/2] w-full overflow-hidden rounded-panel border border-border bg-[linear-gradient(140deg,#f5f6f8_0%,#e7e9ee_50%,#cdd2db_100%)] shadow-[0_50px_100px_-50px_rgba(10,10,13,0.45)] sm:aspect-[16/9] lg:aspect-[16/7.5] ${className}`}
@@ -98,7 +104,7 @@ export function HeroVisual({ className = "" }: { className?: string }) {
       />
 
       <figcaption className="text-meta absolute bottom-6 left-6 font-medium tracking-tight text-white/90 md:bottom-8 md:left-8">
-        Strategy &rarr; Systems &rarr; Compounding revenue
+        {caption}
       </figcaption>
 
     </figure>

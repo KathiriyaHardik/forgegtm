@@ -1,4 +1,6 @@
 import { ImageResponse } from "next/og";
+import { getDictionary } from "@/lib/i18n";
+import { DEFAULT_LOCALE, LOCALES, isLocale } from "@/lib/i18n/config";
 
 export const alt =
   "ForgeGTM — qualified pipeline, built on outbound systems";
@@ -9,7 +11,18 @@ export const contentType = "image/png";
  * Social share card, generated at build time by next/og — no design asset to
  * keep in sync and no extra dependency. Mirrors the site's palette.
  */
-export default function OpengraphImage() {
+export function generateStaticParams() {
+  return LOCALES.map((lang) => ({ lang }));
+}
+
+export default async function OpengraphImage({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}) {
+  const { lang } = await params;
+  const t = getDictionary(isLocale(lang) ? lang : DEFAULT_LOCALE);
+
   return new ImageResponse(
     (
       <div
@@ -80,8 +93,8 @@ export default function OpengraphImage() {
               maxWidth: 900,
             }}
           >
-            <span>Qualified pipeline, built on&nbsp;</span>
-            <span style={{ color: "#4f79ff" }}>outbound systems.</span>
+            <span>{t.hero.headlineLead}&nbsp;</span>
+            <span style={{ color: "#4f79ff" }}>{t.hero.headlineAccent}</span>
           </div>
           <div
             style={{
@@ -92,8 +105,7 @@ export default function OpengraphImage() {
               lineHeight: 1.4,
             }}
           >
-            Targeting, email infrastructure, messaging and campaigns — built
-            and run by one accountable team.
+            {t.meta.description}
           </div>
         </div>
 
@@ -105,11 +117,11 @@ export default function OpengraphImage() {
             color: "rgba(255,255,255,0.4)",
           }}
         >
-          <div style={{ display: "flex" }}>B2B SaaS &amp; technology</div>
-          <div style={{ display: "flex" }}>·</div>
-          <div style={{ display: "flex" }}>Series A–C</div>
-          <div style={{ display: "flex" }}>·</div>
-          <div style={{ display: "flex" }}>DACH, UK &amp; Nordics</div>
+          {t.hero.qualifiers.map((qualifier) => (
+            <div key={qualifier} style={{ display: "flex" }}>
+              {qualifier}
+            </div>
+          ))}
         </div>
       </div>
     ),

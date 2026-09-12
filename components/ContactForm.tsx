@@ -1,35 +1,38 @@
 "use client";
 
-import { useActionState, useId, useRef, useState } from "react";
+import { useActionState, useId, useState } from "react";
 import { ArrowRight, Check, Loader2 } from "lucide-react";
 import { submitStrategyCall } from "@/app/actions/strategy-call";
 import {
-  BUDGET_OPTIONS,
-  FieldErrors,
+  type FieldErrors,
   initialStrategyCallState,
-  GOAL_OPTIONS,
   isFreeEmailDomain,
   readStrategyCallFields,
   validateStrategyCall,
 } from "@/lib/strategy-call";
+import type { Dictionary } from "@/lib/i18n/en";
+import type { Locale } from "@/lib/i18n/config";
 
 const FIELD_BASE =
   "w-full rounded-inset border bg-white px-4 py-3 text-[14px] text-ink transition-colors duration-200 placeholder:text-muted-soft focus:border-accent focus:outline-none";
+
+const SELECT_CHEVRON =
+  "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='8' viewBox='0 0 14 8' fill='none'%3E%3Cpath d='M1 1l6 6 6-6' stroke='%236b6f76' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E\")";
 
 function fieldClass(hasError: boolean) {
   return `${FIELD_BASE} ${hasError ? "border-red-400" : "border-border"}`;
 }
 
-function ErrorText({ id, children }: { id: string; children?: string }) {
-  if (!children) return null;
+function ErrorText({ id, text }: { id: string; text?: string }) {
+  if (!text) return null;
   return (
     <p id={id} className="mt-1.5 text-[12.5px] text-red-600">
-      {children}
+      {text}
     </p>
   );
 }
 
-export function ContactForm() {
+export function ContactForm({ t, lang }: { t: Dictionary; lang: Locale }) {
   const [state, formAction, pending] = useActionState(
     submitStrategyCall,
     initialStrategyCallState
@@ -38,11 +41,15 @@ export function ContactForm() {
   // Client-side copy of the same rules, for feedback before a round trip.
   const [clientErrors, setClientErrors] = useState<FieldErrors>({});
   const [freeEmailNotice, setFreeEmailNotice] = useState(false);
-  const formRef = useRef<HTMLFormElement>(null);
   const uid = useId();
 
+  const f = t.contact.form;
   const errors: FieldErrors = { ...state.errors, ...clientErrors };
   const errorId = (field: string) => `${uid}-${field}-error`;
+  const messageFor = (field: keyof FieldErrors) => {
+    const key = errors[field];
+    return key ? f.errors[key] : undefined;
+  };
 
   if (state.status === "success") {
     return (
@@ -50,13 +57,10 @@ export function ContactForm() {
         <span className="flex h-11 w-11 items-center justify-center rounded-full bg-accent-soft text-accent">
           <Check size={20} />
         </span>
-        <h3 className="text-h3 mt-6 text-ink">Request received.</h3>
-        <p className="text-body mt-3 text-muted">
-          Thanks — we&rsquo;ve got your details. A member of the ForgeGTM team
-          will reply within one business day to arrange your strategy call.
-        </p>
+        <h3 className="text-h3 mt-6 text-ink">{f.successTitle}</h3>
+        <p className="text-body mt-3 text-muted">{f.successBody}</p>
         <p className="text-meta mt-6 text-muted-soft">
-          Nothing in your inbox? Check spam, or email us directly at{" "}
+          {f.successFallback}{" "}
           <a
             href="mailto:hello@forgegtm.com"
             className="text-accent underline underline-offset-2"
@@ -71,13 +75,13 @@ export function ContactForm() {
 
   return (
     <form
-      ref={formRef}
       action={formAction}
       noValidate
       onSubmit={(event) => {
         const form = event.currentTarget;
         const found = validateStrategyCall(
-          readStrategyCallFields(new FormData(form))
+          readStrategyCallFields(new FormData(form)),
+          { budgetOptions: f.budgetOptions, goalOptions: f.goalOptions }
         );
         setClientErrors(found);
         if (Object.keys(found).length > 0) {
@@ -100,25 +104,27 @@ export function ContactForm() {
         />
       </div>
 
+      <input type="hidden" name="locale" value={lang} readOnly />
+
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
           <label
             htmlFor={`${uid}-name`}
             className="text-meta mb-2 block font-medium text-ink-soft"
           >
-            Name <span className="text-accent">*</span>
+            {f.name} <span className="text-accent">*</span>
           </label>
           <input
             id={`${uid}-name`}
             name="name"
             type="text"
             autoComplete="name"
-            placeholder="Jane Doe"
+            placeholder={f.namePlaceholder}
             aria-invalid={!!errors.name}
             aria-describedby={errors.name ? errorId("name") : undefined}
             className={fieldClass(!!errors.name)}
           />
-          <ErrorText id={errorId("name")}>{errors.name}</ErrorText>
+          <ErrorText id={errorId("name")} text={messageFor("name")} />
         </div>
 
         <div>
@@ -126,14 +132,14 @@ export function ContactForm() {
             htmlFor={`${uid}-email`}
             className="text-meta mb-2 block font-medium text-ink-soft"
           >
-            Work email <span className="text-accent">*</span>
+            {f.email} <span className="text-accent">*</span>
           </label>
           <input
             id={`${uid}-email`}
             name="email"
             type="email"
             autoComplete="email"
-            placeholder="jane@company.com"
+            placeholder={f.emailPlaceholder}
             aria-invalid={!!errors.email}
             aria-describedby={errors.email ? errorId("email") : undefined}
             className={fieldClass(!!errors.email)}
@@ -143,11 +149,10 @@ export function ContactForm() {
               )
             }
           />
-          <ErrorText id={errorId("email")}>{errors.email}</ErrorText>
+          <ErrorText id={errorId("email")} text={messageFor("email")} />
           {!errors.email && freeEmailNotice && (
             <p className="mt-1.5 text-[12.5px] text-muted-soft">
-              A work address helps us prepare properly — personal ones are fine
-              too.
+              {f.freeEmailNotice}
             </p>
           )}
         </div>
@@ -157,19 +162,19 @@ export function ContactForm() {
             htmlFor={`${uid}-company`}
             className="text-meta mb-2 block font-medium text-ink-soft"
           >
-            Company <span className="text-accent">*</span>
+            {f.company} <span className="text-accent">*</span>
           </label>
           <input
             id={`${uid}-company`}
             name="company"
             type="text"
             autoComplete="organization"
-            placeholder="Acme GmbH"
+            placeholder={f.companyPlaceholder}
             aria-invalid={!!errors.company}
             aria-describedby={errors.company ? errorId("company") : undefined}
             className={fieldClass(!!errors.company)}
           />
-          <ErrorText id={errorId("company")}>{errors.company}</ErrorText>
+          <ErrorText id={errorId("company")} text={messageFor("company")} />
         </div>
 
         <div>
@@ -177,7 +182,7 @@ export function ContactForm() {
             htmlFor={`${uid}-website`}
             className="text-meta mb-2 block font-medium text-ink-soft"
           >
-            Website
+            {f.website}
           </label>
           <input
             id={`${uid}-website`}
@@ -185,12 +190,12 @@ export function ContactForm() {
             type="text"
             inputMode="url"
             autoComplete="url"
-            placeholder="acme.com"
+            placeholder={f.websitePlaceholder}
             aria-invalid={!!errors.website}
             aria-describedby={errors.website ? errorId("website") : undefined}
             className={fieldClass(!!errors.website)}
           />
-          <ErrorText id={errorId("website")}>{errors.website}</ErrorText>
+          <ErrorText id={errorId("website")} text={messageFor("website")} />
         </div>
 
         <div>
@@ -198,19 +203,19 @@ export function ContactForm() {
             htmlFor={`${uid}-jobTitle`}
             className="text-meta mb-2 block font-medium text-ink-soft"
           >
-            Job title
+            {f.jobTitle}
           </label>
           <input
             id={`${uid}-jobTitle`}
             name="jobTitle"
             type="text"
             autoComplete="organization-title"
-            placeholder="Head of Growth"
+            placeholder={f.jobTitlePlaceholder}
             aria-invalid={!!errors.jobTitle}
             aria-describedby={errors.jobTitle ? errorId("jobTitle") : undefined}
             className={fieldClass(!!errors.jobTitle)}
           />
-          <ErrorText id={errorId("jobTitle")}>{errors.jobTitle}</ErrorText>
+          <ErrorText id={errorId("jobTitle")} text={messageFor("jobTitle")} />
         </div>
 
         <div>
@@ -218,8 +223,8 @@ export function ContactForm() {
             htmlFor={`${uid}-budget`}
             className="text-meta mb-2 block font-medium text-ink-soft"
           >
-            Monthly outbound budget
-            <span className="ml-1 font-normal text-muted-soft">(optional)</span>
+            {f.budget}
+            <span className="ml-1 font-normal text-muted-soft">{f.optional}</span>
           </label>
           <select
             id={`${uid}-budget`}
@@ -227,19 +232,16 @@ export function ContactForm() {
             defaultValue=""
             aria-invalid={!!errors.budget}
             className={`${fieldClass(!!errors.budget)} appearance-none bg-[length:14px] bg-[right_1rem_center] bg-no-repeat pr-10`}
-            style={{
-              backgroundImage:
-                "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='8' viewBox='0 0 14 8' fill='none'%3E%3Cpath d='M1 1l6 6 6-6' stroke='%236b6f76' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E\")",
-            }}
+            style={{ backgroundImage: SELECT_CHEVRON }}
           >
-            <option value="">Select a range</option>
-            {BUDGET_OPTIONS.map((option) => (
+            <option value="">{f.budgetPlaceholder}</option>
+            {f.budgetOptions.map((option) => (
               <option key={option} value={option}>
                 {option}
               </option>
             ))}
           </select>
-          <ErrorText id={errorId("budget")}>{errors.budget}</ErrorText>
+          <ErrorText id={errorId("budget")} text={messageFor("budget")} />
         </div>
       </div>
 
@@ -248,7 +250,7 @@ export function ContactForm() {
           htmlFor={`${uid}-goal`}
           className="text-meta mb-2 block font-medium text-ink-soft"
         >
-          What are you looking to improve? <span className="text-accent">*</span>
+          {f.goal} <span className="text-accent">*</span>
         </label>
         <select
           id={`${uid}-goal`}
@@ -257,19 +259,16 @@ export function ContactForm() {
           aria-invalid={!!errors.goal}
           aria-describedby={errors.goal ? errorId("goal") : undefined}
           className={`${fieldClass(!!errors.goal)} appearance-none bg-[length:14px] bg-[right_1rem_center] bg-no-repeat pr-10`}
-          style={{
-            backgroundImage:
-              "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='8' viewBox='0 0 14 8' fill='none'%3E%3Cpath d='M1 1l6 6 6-6' stroke='%236b6f76' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E\")",
-          }}
+          style={{ backgroundImage: SELECT_CHEVRON }}
         >
-          <option value="">Select what matters most</option>
-          {GOAL_OPTIONS.map((option) => (
+          <option value="">{f.goalPlaceholder}</option>
+          {f.goalOptions.map((option) => (
             <option key={option} value={option}>
               {option}
             </option>
           ))}
         </select>
-        <ErrorText id={errorId("goal")}>{errors.goal}</ErrorText>
+        <ErrorText id={errorId("goal")} text={messageFor("goal")} />
       </div>
 
       <div className="mt-5">
@@ -277,26 +276,26 @@ export function ContactForm() {
           htmlFor={`${uid}-message`}
           className="text-meta mb-2 block font-medium text-ink-soft"
         >
-          Anything else we should know?
+          {f.message}
         </label>
         <textarea
           id={`${uid}-message`}
           name="message"
           rows={4}
-          placeholder="Current outbound setup, target markets, what you've already tried…"
+          placeholder={f.messagePlaceholder}
           aria-invalid={!!errors.message}
           aria-describedby={errors.message ? errorId("message") : undefined}
           className={`${fieldClass(!!errors.message)} resize-y`}
         />
-        <ErrorText id={errorId("message")}>{errors.message}</ErrorText>
+        <ErrorText id={errorId("message")} text={messageFor("message")} />
       </div>
 
-      {state.status === "error" && state.message && (
+      {state.status === "error" && state.messageKey && (
         <p
           role="alert"
-          className="mt-5 rounded-inset border border-red-200 bg-red-50 px-4 py-3 text-[13px] text-red-700"
+          className="rounded-inset mt-5 border border-red-200 bg-red-50 px-4 py-3 text-[13px] text-red-700"
         >
-          {state.message}
+          {f.errors[state.messageKey]}
         </p>
       )}
 
@@ -309,11 +308,11 @@ export function ContactForm() {
           {pending ? (
             <>
               <Loader2 size={15} className="animate-spin" />
-              Sending&hellip;
+              {f.submitting}
             </>
           ) : (
             <>
-              Book a Strategy Call
+              {f.submit}
               <ArrowRight
                 size={15}
                 className="ease-premium transition-transform duration-300 group-hover:translate-x-1"
@@ -322,9 +321,7 @@ export function ContactForm() {
           )}
         </button>
 
-        <p className="text-[12.5px] text-muted-soft">
-          No obligation. We reply within one business day.
-        </p>
+        <p className="text-[12.5px] text-muted-soft">{f.reassurance}</p>
       </div>
     </form>
   );

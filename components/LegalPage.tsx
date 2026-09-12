@@ -3,38 +3,39 @@ import { Navbar } from "./Navbar";
 import { Footer } from "./Footer";
 import { Container } from "./ui/Container";
 import { Eyebrow } from "./ui/Eyebrow";
+import type { Dictionary } from "@/lib/i18n/en";
+import type { Locale } from "@/lib/i18n/config";
 
 /**
  * Shared shell for legal pages. Keeps /privacy and /imprint on the same
  * typographic scale and container grid as the marketing site.
  */
 export function LegalPage({
-  eyebrow,
+  t,
+  lang,
   title,
   lastUpdated,
   children,
 }: {
-  eyebrow: string;
+  t: Dictionary;
+  lang: Locale;
   title: string;
   lastUpdated: ReactNode;
   children: ReactNode;
 }) {
   return (
     <>
-      <Navbar />
+      <Navbar t={t} lang={lang} />
       <main id="main">
         <article className="relative overflow-hidden py-20 md:py-28">
-          <div
-            aria-hidden
-            className="grid-lines pointer-events-none absolute inset-0"
-          />
+          <div aria-hidden className="grid-lines pointer-events-none absolute inset-0" />
           <Container className="relative">
-            <Eyebrow>{eyebrow}</Eyebrow>
+            <Eyebrow>{t.legal.eyebrow}</Eyebrow>
             <h1 className="text-h2 mt-5 max-w-[20ch] text-balance text-ink">
               {title}
             </h1>
             <p className="text-meta mt-5 text-muted-soft">
-              Last updated {lastUpdated}
+              {t.legal.lastUpdated} {lastUpdated}
             </p>
 
             <div className="mt-14 max-w-[68ch] border-t border-border pt-12">
@@ -43,7 +44,7 @@ export function LegalPage({
           </Container>
         </article>
       </main>
-      <Footer />
+      <Footer t={t} lang={lang} />
     </>
   );
 }

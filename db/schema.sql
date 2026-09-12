@@ -21,6 +21,9 @@ create table if not exists strategy_call_requests (
   -- Which page the request came from, for attribution.
   source_path   varchar(200),
 
+  -- Site language the form was submitted in.
+  locale        varchar(8)   not null default 'en',
+
   -- Simple pipeline state for whoever works the inbound queue.
   status        varchar(32)  not null default 'new'
 );
@@ -32,3 +35,7 @@ create index if not exists strategy_call_requests_created_at_idx
 -- Spotting repeat enquiries from the same person.
 create index if not exists strategy_call_requests_email_idx
   on strategy_call_requests (lower(email));
+
+-- Added after initial release; safe on an existing table.
+alter table strategy_call_requests
+  add column if not exists locale varchar(8) not null default 'en';

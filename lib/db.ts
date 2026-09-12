@@ -49,6 +49,7 @@ export type StrategyCallRecord = {
   goal: string;
   message: string | null;
   sourcePath: string | null;
+  locale: string;
 };
 
 export async function insertStrategyCall(record: StrategyCallRecord) {
@@ -56,11 +57,12 @@ export async function insertStrategyCall(record: StrategyCallRecord) {
 
   const [row] = await sql<{ id: string }[]>`
     insert into strategy_call_requests
-      (name, email, company, website, job_title, budget, goal, message, source_path)
+      (name, email, company, website, job_title, budget, goal, message,
+       source_path, locale)
     values
       (${record.name}, ${record.email}, ${record.company}, ${record.website},
        ${record.jobTitle}, ${record.budget}, ${record.goal}, ${record.message},
-       ${record.sourcePath})
+       ${record.sourcePath}, ${record.locale})
     returning id
   `;
 

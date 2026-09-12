@@ -1,8 +1,9 @@
 import { Container } from "./ui/Container";
 import { Marquee } from "./ui/Marquee";
 import { Reveal } from "./ui/Reveal";
+import type { Dictionary } from "@/lib/i18n/en";
 
-// Add or remove tools here — both rows are driven by these arrays.
+// Tool names are product names — identical in every locale.
 const ROW_ONE = [
   "HubSpot",
   "Salesforce",
@@ -12,14 +13,7 @@ const ROW_ONE = [
   "Instantly",
 ];
 
-const ROW_TWO = [
-  "Smartlead",
-  "n8n",
-  "Slack",
-  "Notion",
-  "Jira",
-  "Google Analytics",
-];
+const ROW_TWO = ["Smartlead", "n8n", "Slack", "Notion", "Jira", "Google Analytics"];
 
 function Pill({ label }: { label: string }) {
   return (
@@ -29,7 +23,7 @@ function Pill({ label }: { label: string }) {
   );
 }
 
-export function Integrations() {
+export function Integrations({ t }: { t: Dictionary }) {
   return (
     <section className="relative overflow-hidden bg-surface-2 py-24 md:py-28">
       <div aria-hidden className="grid-lines pointer-events-none absolute inset-0" />
@@ -37,13 +31,12 @@ export function Integrations() {
       <Container className="relative">
         <Reveal>
           <h2 className="text-h2 mx-auto max-w-[18ch] text-center text-balance text-ink">
-            We orchestrate the tools you already trust.
+            {t.integrations.title}
           </h2>
         </Reveal>
         <Reveal delay={80}>
           <p className="text-body mx-auto mt-5 max-w-md text-center text-muted">
-            No rip-and-replace. We build on the stack your team already knows,
-            and connect the parts that were never talking.
+            {t.integrations.body}
           </p>
         </Reveal>
       </Container>

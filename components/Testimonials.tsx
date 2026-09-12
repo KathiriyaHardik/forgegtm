@@ -2,50 +2,25 @@ import { Section } from "./ui/Section";
 import { SectionHeader } from "./ui/SectionHeader";
 import { Reveal } from "./ui/Reveal";
 import { PlaceholderBadge } from "./ui/PlaceholderBadge";
+import type { Dictionary } from "@/lib/i18n/en";
 
 /**
  * DEMO CONTENT — fictional people at fictional companies, written to show the
  * kind of feedback this work aims to produce. These are NOT real customers.
- *
- * The section renders a visible disclosure. Replace wholesale with approved
- * quotes (and delete the disclosure) once real ones exist — never edit a name
- * onto one of these.
+ * The section renders a visible disclosure; replace wholesale with approved
+ * quotes (and delete the disclosure) rather than editing a real name onto one.
  */
-const TESTIMONIALS = [
-  {
-    quote:
-      "The targeting work was the part we underestimated. We contact far fewer companies now and speak to more of the right ones.",
-    name: "Ana Weber",
-    role: "Head of Growth",
-    company: "Northfield Analytics",
-  },
-  {
-    quote:
-      "Deliverability was the silent problem. Once the infrastructure was rebuilt, the same messaging started getting replies.",
-    name: "Daniel Achterberg",
-    role: "Chief Revenue Officer",
-    company: "Vantix Industrial",
-  },
-  {
-    quote:
-      "Our reps stopped building lists and started having conversations. That alone changed what the week looks like.",
-    name: "Priya Nandakumar",
-    role: "VP Sales",
-    company: "Anthemik",
-  },
-];
-
-export function Testimonials() {
+export function Testimonials({ t }: { t: Dictionary }) {
   return (
     <Section tone="light">
       <SectionHeader
-        eyebrow="Testimonials"
-        title="What better outbound sounds like."
-        aside="The shift teams describe is rarely about volume — it is about talking to fewer, better-qualified companies, more often."
+        eyebrow={t.testimonials.eyebrow}
+        title={t.testimonials.title}
+        aside={t.testimonials.aside}
       />
 
       <div className="mt-16 grid gap-5 lg:grid-cols-3">
-        {TESTIMONIALS.map((testimonial, i) => (
+        {t.testimonials.items.map((testimonial, i) => (
           <Reveal key={testimonial.name} delay={i * 80} className="h-full">
             <figure className="rounded-card flex h-full flex-col border border-border bg-white p-8">
               <blockquote className="text-[17px] leading-[1.5] font-medium tracking-[-0.015em] text-ink">
@@ -78,11 +53,8 @@ export function Testimonials() {
 
       <Reveal>
         <div className="mt-10 flex flex-wrap items-center gap-3 border-t border-border pt-6">
-          <PlaceholderBadge>Placeholder testimonials</PlaceholderBadge>
-          <p className="text-meta text-muted-soft">
-            Written for demonstration using fictional names and companies — not
-            real customer quotes.
-          </p>
+          <PlaceholderBadge>{t.testimonials.placeholderBadge}</PlaceholderBadge>
+          <p className="text-meta text-muted-soft">{t.testimonials.disclosure}</p>
         </div>
       </Reveal>
     </Section>

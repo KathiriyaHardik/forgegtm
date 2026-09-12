@@ -1,10 +1,13 @@
 /**
  * Shape and validation for the "Book a Strategy Call" form.
  *
- * Kept free of server-only imports so the exact same rules run in the browser
+ * Free of server-only imports so the exact same rules run in the browser
  * (instant feedback) and on the server (the boundary that actually matters —
  * a Server Action is reachable by direct POST, so client validation is a
  * convenience, never a guarantee).
+ *
+ * Validation returns error *keys*, not sentences, so the same result can be
+ * rendered in any locale.
  */
 
 export type StrategyCallFields = {
@@ -18,24 +21,23 @@ export type StrategyCallFields = {
   message: string;
 };
 
-export type FieldErrors = Partial<Record<keyof StrategyCallFields, string>>;
+export type ErrorKey =
+  | "name"
+  | "nameLong"
+  | "emailRequired"
+  | "emailInvalid"
+  | "emailLong"
+  | "company"
+  | "companyLong"
+  | "websiteInvalid"
+  | "websiteDomain"
+  | "websiteLong"
+  | "jobTitleLong"
+  | "optionInvalid"
+  | "goalRequired"
+  | "messageLong";
 
-export const GOAL_OPTIONS = [
-  "Build an outbound system from scratch",
-  "Fix deliverability and email infrastructure",
-  "Sharpen ICP and targeting",
-  "Improve reply and conversion rates",
-  "Scale an existing outbound motion",
-  "Something else",
-] as const;
-
-export const BUDGET_OPTIONS = [
-  "Under €5k / month",
-  "€5k – €10k / month",
-  "€10k – €25k / month",
-  "€25k+ / month",
-  "Not sure yet",
-] as const;
+export type FieldErrors = Partial<Record<keyof StrategyCallFields, ErrorKey>>;
 
 /** Length caps mirror the column widths in db/schema.sql. */
 const MAX = {
@@ -44,8 +46,6 @@ const MAX = {
   company: 160,
   website: 200,
   jobTitle: 120,
-  budget: 60,
-  goal: 120,
   message: 4000,
 } as const;
 
@@ -82,60 +82,51 @@ export function normaliseWebsite(value: string) {
   return `https://${trimmed}`;
 }
 
-export function validateStrategyCall(fields: StrategyCallFields): FieldErrors {
+export function validateStrategyCall(
+  fields: StrategyCallFields,
+  options: { budgetOptions: readonly string[]; goalOptions: readonly string[] }
+): FieldErrors {
   const errors: FieldErrors = {};
 
   const name = fields.name.trim();
-  if (!name) errors.name = "Please tell us your name.";
-  else if (name.length > MAX.name) errors.name = "That name is too long.";
+  if (!name) errors.name = "name";
+  else if (name.length > MAX.name) errors.name = "nameLong";
 
   const email = fields.email.trim();
-  if (!email) {
-    errors.email = "A work email is required.";
-  } else if (!EMAIL_PATTERN.test(email)) {
-    errors.email = "That doesn't look like a valid email address.";
-  } else if (email.length > MAX.email) {
-    errors.email = "That email address is too long.";
-  }
+  if (!email) errors.email = "emailRequired";
+  else if (!EMAIL_PATTERN.test(email)) errors.email = "emailInvalid";
+  else if (email.length > MAX.email) errors.email = "emailLong";
 
   const company = fields.company.trim();
-  if (!company) errors.company = "Please add your company name.";
-  else if (company.length > MAX.company) errors.company = "That name is too long.";
+  if (!company) errors.company = "company";
+  else if (company.length > MAX.company) errors.company = "companyLong";
 
   const website = fields.website.trim();
   if (website) {
     if (website.length > MAX.website) {
-      errors.website = "That URL is too long.";
+      errors.website = "websiteLong";
     } else {
       try {
         const url = new URL(normaliseWebsite(website));
-        if (!url.hostname.includes(".")) {
-          errors.website = "Please enter a full domain, e.g. acme.com";
-        }
+        if (!url.hostname.includes(".")) errors.website = "websiteDomain";
       } catch {
-        errors.website = "Please enter a valid URL, e.g. acme.com";
+        errors.website = "websiteInvalid";
       }
     }
   }
 
   if (fields.jobTitle.trim().length > MAX.jobTitle) {
-    errors.jobTitle = "That job title is too long.";
+    errors.jobTitle = "jobTitleLong";
   }
 
-  if (fields.budget && !BUDGET_OPTIONS.includes(fields.budget as never)) {
-    errors.budget = "Please choose one of the listed options.";
+  if (fields.budget && !options.budgetOptions.includes(fields.budget)) {
+    errors.budget = "optionInvalid";
   }
 
-  if (!fields.goal.trim()) {
-    errors.goal = "Let us know what you'd like to improve.";
-  } else if (!GOAL_OPTIONS.includes(fields.goal as never)) {
-    errors.goal = "Please choose one of the listed options.";
-  }
+  if (!fields.goal.trim()) errors.goal = "goalRequired";
+  else if (!options.goalOptions.includes(fields.goal)) errors.goal = "optionInvalid";
 
-  const message = fields.message.trim();
-  if (message.length > MAX.message) {
-    errors.message = "Please keep this under 4,000 characters.";
-  }
+  if (fields.message.trim().length > MAX.message) errors.message = "messageLong";
 
   return errors;
 }
@@ -164,7 +155,8 @@ export function readStrategyCallFields(formData: FormData): StrategyCallFields {
  */
 export type StrategyCallState = {
   status: "idle" | "success" | "error";
-  message?: string;
+  /** Key into the dictionary's contact.form.errors, for a locale-safe message. */
+  messageKey?: "summary" | "notConfigured" | "unexpected";
   errors?: FieldErrors;
 };
 
