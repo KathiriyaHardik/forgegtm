@@ -31,7 +31,7 @@ function Pill({ label }: { label: string }) {
 
 export function Integrations() {
   return (
-    <section className="relative overflow-hidden bg-surface py-24 md:py-28">
+    <section className="relative overflow-hidden bg-surface-2 py-24 md:py-28">
       <div aria-hidden className="grid-lines pointer-events-none absolute inset-0" />
 
       <Container className="relative">

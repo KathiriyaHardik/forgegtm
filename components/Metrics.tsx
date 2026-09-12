@@ -7,10 +7,10 @@ import { Reveal } from "./ui/Reveal";
  * sections. Keep it that way: verified client outcomes belong in Engagements.
  */
 const COMMITMENTS = [
-  { value: "6 weeks", label: "Discovery to a live system" },
-  { value: "6", label: "Connected GTM layers" },
+  { value: "5 weeks", label: "Research to first booked meetings" },
+  { value: "9", label: "Services delivered under one roof" },
   { value: "1", label: "Accountable team, not four vendors" },
-  { value: "30 days", label: "To first outbound signal" },
+  { value: "Daily", label: "Campaign management and reply routing" },
 ];
 
 /**

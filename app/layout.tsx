@@ -8,11 +8,12 @@ const inter = Inter({
   display: "swap",
 });
 
-const title = "ForgeGTM — Revenue growth engineered for the modern market";
+const title = "ForgeGTM — Qualified pipeline, built on outbound systems";
 const description =
-  "ForgeGTM builds predictable revenue engines for ambitious B2B companies: GTM strategy, positioning, outbound execution and the sales systems that connect them.";
+  "ForgeGTM is a B2B go-to-market and outbound agency. We build and run targeting, email infrastructure, messaging and campaigns that generate qualified pipeline.";
 
-// Update metadataBase and the social handles once the production domain is live.
+// Point metadataBase at the production domain before launch — Open Graph and
+// canonical URLs are resolved against it.
 export const metadata: Metadata = {
   metadataBase: new URL("https://forgegtm.com"),
   title: {
@@ -22,15 +23,20 @@ export const metadata: Metadata = {
   description,
   applicationName: "ForgeGTM",
   keywords: [
+    "B2B outbound agency",
     "go-to-market agency",
-    "B2B outbound",
-    "GTM strategy",
-    "revenue operations",
-    "sales systems",
+    "lead generation",
+    "email deliverability",
+    "pipeline generation",
+    "ICP targeting",
+    "cold email infrastructure",
   ],
+  authors: [{ name: "ForgeGTM" }],
+  creator: "ForgeGTM",
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
+    locale: "en_GB",
     siteName: "ForgeGTM",
     url: "/",
     title,
@@ -41,7 +47,11 @@ export const metadata: Metadata = {
     title,
     description,
   },
-  robots: { index: true, follow: true },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, "max-image-preview": "large" },
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

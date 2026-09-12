@@ -8,9 +8,9 @@ const COLUMNS = [
     title: "Explore",
     links: [
       { label: "Services", href: "/#services" },
-      { label: "Process", href: "/#process" },
-      { label: "Engagements", href: "/#engagements" },
-      { label: "Approach", href: "/#approach" },
+      { label: "How it works", href: "/#process" },
+      { label: "Case studies", href: "/#case-studies" },
+      { label: "Book a strategy call", href: "/#contact" },
     ],
   },
   {
@@ -37,7 +37,7 @@ export function Footer() {
           <div>
             <Wordmark tone="dark" />
             <p className="text-body mt-5 max-w-[30ch] text-white/45">
-              Building predictable revenue engines for ambitious B2B companies.
+              Outbound systems that generate qualified pipeline for ambitious B2B companies.
             </p>
           </div>
 

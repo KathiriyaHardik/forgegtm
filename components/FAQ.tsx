@@ -10,17 +10,17 @@ const FAQS = [
   {
     question: "What does ForgeGTM do?",
     answer:
-      "We design and build the systems behind predictable B2B revenue — GTM strategy, positioning, outbound execution and the sales infrastructure that connects them — and then run them with you until they compound.",
+      "We build and run outbound for B2B companies: ICP and targeting, email infrastructure and deliverability, messaging, and the campaigns themselves — then manage them daily and report on qualified pipeline.",
   },
   {
     question: "Who do you work with?",
     answer:
-      "Ambitious B2B companies, typically Series A through growth stage, who already have product-market fit and are ready to move from ad-hoc tactics to a repeatable revenue engine.",
+      "B2B SaaS, technology and industrial companies, typically Series A through C, with a defined offer and someone in place to take the meetings we book.",
   },
   {
-    question: "Do you handle outbound execution?",
+    question: "Do you handle execution, or just strategy?",
     answer:
-      "Yes. We build and run multi-channel outbound — email, LinkedIn and calling — including the data infrastructure, deliverability and routing, not just the strategy deck behind it.",
+      "Execution. We build the infrastructure, write the copy, run the campaigns and route the replies. The strategy exists to direct that work, not to be handed over as a deck.",
   },
   {
     question: "What markets do you specialise in?",
@@ -28,14 +28,14 @@ const FAQS = [
       "Primarily European and North American B2B markets across SaaS, technology and industrial sectors, including multi-language expansion into DACH, the Nordics and the UK.",
   },
   {
-    question: "How long does it take to launch a GTM system?",
+    question: "How long does it take to launch?",
     answer:
-      "Most engagements move from discovery to a live system in about six weeks, with early signal on outbound performance inside the first 30 days of launch.",
+      "Research and build typically take four weeks, with campaigns live in week five. First booked meetings usually follow within two to three weeks of launch, depending on list size and market.",
   },
   {
     question: "How do you measure success?",
     answer:
-      "Against pipeline generated, qualified opportunities and cost per opportunity — agreed with you before we start, and reported through closed-loop attribution rather than activity metrics.",
+      "On qualified meetings, opportunities created and cost per qualified opportunity — agreed before we start. Reply rate and volume are diagnostics, not the goal.",
   },
   {
     question: "Do you work with startups?",
@@ -61,8 +61,8 @@ export function FAQ() {
           </Reveal>
           <Reveal delay={140}>
             <p className="text-body mt-5 max-w-sm text-muted">
-              Everything you need to know before we build your growth engine
-              together.
+              What teams usually want to know before starting an outbound
+              engagement.
             </p>
           </Reveal>
           <Reveal delay={200}>

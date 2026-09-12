@@ -1,14 +1,15 @@
 import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
-import { MarketsStrip } from "@/components/MarketsStrip";
+import { LogoStrip } from "@/components/LogoStrip";
 import { Metrics } from "@/components/Metrics";
 import { ProblemSection } from "@/components/ProblemSection";
 import { ServicesSection } from "@/components/ServicesSection";
 import { ProcessSection } from "@/components/ProcessSection";
+import { CaseStudies } from "@/components/CaseStudies";
+import { Testimonials } from "@/components/Testimonials";
 import { Integrations } from "@/components/Integrations";
-import { Engagements } from "@/components/Engagements";
 import { FAQ } from "@/components/FAQ";
-import { FinalCTA } from "@/components/FinalCTA";
+import { ContactSection } from "@/components/ContactSection";
 import { Footer } from "@/components/Footer";
 
 export default function Home() {
@@ -17,15 +18,16 @@ export default function Home() {
       <Navbar />
       <main id="main">
         <Hero />
-        <MarketsStrip />
+        <LogoStrip />
         <Metrics />
         <ProblemSection />
         <ServicesSection />
         <ProcessSection />
+        <CaseStudies />
+        <Testimonials />
         <Integrations />
-        <Engagements />
         <FAQ />
-        <FinalCTA />
+        <ContactSection />
       </main>
       <Footer />
     </>

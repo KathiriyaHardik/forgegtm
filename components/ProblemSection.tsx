@@ -5,24 +5,24 @@ import { Reveal } from "./ui/Reveal";
 const PROBLEMS = [
   {
     index: "01",
-    title: "Growth arrives at random",
+    title: "Volume without targeting",
     description:
-      "Revenue lands in spikes nobody can explain. Good quarters can't be reproduced and bad ones can't be diagnosed, because nothing underneath them is systematised.",
-    symptom: "Pipeline built campaign by campaign",
+      "A bought list of 40,000 contacts gets emailed because it exists. Reply rates collapse, the brand gets burned in exactly the accounts that mattered most.",
+    symptom: "Reach measured instead of relevance",
   },
   {
     index: "02",
-    title: "The story changes by rep",
+    title: "Messaging that reads like a template",
     description:
-      "Positioning drifts between the deck, the sequence and the call. Buyers meet a different company at every touchpoint, so the conversation defaults to price.",
-    symptom: "Messaging owned by nobody",
+      "A first name and a company name pasted into the same paragraph everyone else is sending. Buyers recognise the pattern in under a second and delete it.",
+    symptom: "Personalisation by merge tag",
   },
   {
     index: "03",
-    title: "The stack never closes the loop",
+    title: "Deliverability failing silently",
     description:
-      "CRM, outbound and analytics sit in separate tools. What sales learns in week one never reaches strategy in week six, so the same mistakes compound.",
-    symptom: "No source-to-revenue reporting",
+      "Campaigns look fine in the dashboard while the mail lands in spam. Nothing appears broken, because the metric that broke is the one nobody is watching.",
+    symptom: "Sent, but never seen",
   },
 ];
 
@@ -34,12 +34,12 @@ export function ProblemSection() {
         title={
           <>
             <span className="text-muted-soft">
-              Most companies don&rsquo;t have a growth problem.
+              Most outbound doesn&rsquo;t fail because of effort.
             </span>{" "}
-            They have a systems problem.
+            It fails because of the system behind it.
           </>
         }
-        aside="Fragmented outbound, drifting positioning and disconnected tooling don't just slow growth down — they make it impossible to predict, and impossible to repeat."
+        aside="Three problems account for most underperforming outbound. Each one is fixable, but only if it is treated as infrastructure rather than a copywriting problem."
       />
 
       <div className="mt-16 grid gap-5 lg:grid-cols-3">

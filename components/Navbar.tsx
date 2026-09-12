@@ -9,9 +9,8 @@ import { Wordmark } from "./ui/Wordmark";
 // Absolute hrefs so the nav also works from /privacy and /imprint.
 const NAV_LINKS = [
   { label: "Services", href: "/#services" },
-  { label: "Process", href: "/#process" },
-  { label: "Engagements", href: "/#engagements" },
-  { label: "Approach", href: "/#approach" },
+  { label: "How it works", href: "/#process" },
+  { label: "Case studies", href: "/#case-studies" },
   { label: "FAQ", href: "/#faq" },
 ];
 
@@ -62,7 +61,7 @@ export function Navbar() {
           href="/#contact"
           className="hidden rounded-full bg-ink px-5 py-2.5 text-[13px] font-medium text-white transition-all duration-300 ease-premium hover:bg-ink-soft hover:shadow-[0_12px_24px_-14px_rgba(10,10,13,0.55)] md:inline-flex"
         >
-          Let&rsquo;s Talk
+          Book a Strategy Call
         </Link>
 
         <button
@@ -98,7 +97,7 @@ export function Navbar() {
               onClick={() => setOpen(false)}
               className="mt-4 mb-2 inline-flex items-center justify-center rounded-full bg-ink px-5 py-3.5 text-[14px] font-medium text-white"
             >
-              Let&rsquo;s Talk
+              Book a Strategy Call
             </Link>
           </Container>
         </div>
