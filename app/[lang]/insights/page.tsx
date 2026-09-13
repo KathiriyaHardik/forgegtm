@@ -7,6 +7,7 @@ import { Container } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Reveal } from "@/components/ui/Reveal";
 import { PageCTA } from "@/components/PageCTA";
+import { ArticleVisual } from "@/components/ArticleVisual";
 import {
   CATEGORIES,
   getCategory,
@@ -113,8 +114,9 @@ export default async function InsightsIndex({
             <Reveal>
               <Link
                 href={`${localePath(lang)}/insights/${featured.slug}`}
-                className="rounded-panel ease-premium group block border border-border bg-white p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_28px_56px_-34px_rgba(10,10,13,0.35)] md:p-12"
+                className="rounded-panel ease-premium group grid items-center gap-8 border border-border bg-white p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_28px_56px_-34px_rgba(10,10,13,0.35)] md:p-12 lg:grid-cols-[1.25fr_1fr] lg:gap-12"
               >
+                <div>
                 <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
                   <span className="text-eyebrow text-accent">
                     {getCategory(featured.category)?.label[lang]}
@@ -138,6 +140,12 @@ export default async function InsightsIndex({
                 <span className="text-meta mt-7 inline-block font-medium text-ink">
                   {t.cta.readArticle} &rarr;
                 </span>
+                </div>
+
+                <ArticleVisual
+                  category={featured.category}
+                  className="aspect-[16/10] lg:aspect-[4/3]"
+                />
               </Link>
             </Reveal>
 

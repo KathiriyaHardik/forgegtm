@@ -17,6 +17,13 @@ export type CaseStudyMetric = {
   note: string;
 };
 
+/** One row of the before/after comparison shown on the detail page. */
+export type CaseStudyShift = {
+  label: string;
+  before: string;
+  after: string;
+};
+
 export type CaseStudyContent = {
   company: string;
   industry: string;
@@ -33,6 +40,7 @@ export type CaseStudyContent = {
   lessons: string[];
   outcome: string;
   metrics: CaseStudyMetric[];
+  beforeAfter: CaseStudyShift[];
   metaTitle: string;
   metaDescription: string;
 };
@@ -87,6 +95,12 @@ export const CASE_STUDIES: CaseStudy[] = [
           { value: "€1.2M", label: "Pipeline generated", note: "modelled" },
           { value: "−97%", label: "Contacts targeted", note: "40,000 → 1,200" },
         ],
+        beforeAfter: [
+          { label: "Contacts in the target list", before: "40,000 purchased rows", after: "1,200 signal-matched accounts" },
+          { label: "Reply rate", before: "0.8%", after: "4.1%" },
+          { label: "Sending infrastructure", before: "Primary company domain", after: "Three warmed secondary domains" },
+          { label: "Inbox placement", before: "Unmonitored, spam-foldered", after: "Seed-tested every week" },
+        ],
         metaTitle: "Case study: rebuilding targeted outbound for a data SaaS",
         metaDescription:
           "How a fictional Series B data company moved from a 40,000-row purchased list to 1,200 signal-matched accounts — and what changed in reply rate and pipeline.",
@@ -129,6 +143,12 @@ export const CASE_STUDIES: CaseStudy[] = [
           { value: "37", label: "Qualifizierte Termine", note: "in 90 Tagen" },
           { value: "1,2 Mio. €", label: "Erzeugte Pipeline", note: "modelliert" },
           { value: "−97 %", label: "Angesprochene Kontakte", note: "40.000 → 1.200" },
+        ],
+        beforeAfter: [
+          { label: "Kontakte in der Zielliste", before: "40.000 gekaufte Zeilen", after: "1.200 signalbasierte Accounts" },
+          { label: "Antwortrate", before: "0,8 %", after: "4,1 %" },
+          { label: "Versand-Infrastruktur", before: "Haupt-Domain des Unternehmens", after: "Drei aufgewärmte Zweit-Domains" },
+          { label: "Zustellung ins Postfach", before: "Nicht überwacht, im Spam", after: "Wöchentlich per Seed-Test geprüft" },
         ],
         metaTitle: "Case Study: Gezieltes Outbound für ein Data-SaaS neu aufgebaut",
         metaDescription:
@@ -179,6 +199,12 @@ export const CASE_STUDIES: CaseStudy[] = [
           { value: "4", label: "Markets live", note: "in 6 months" },
           { value: "2", label: "Reps running it", note: "neither a founder" },
         ],
+        beforeAfter: [
+          { label: "Meetings per month", before: "6", after: "24" },
+          { label: "Who can run a first call", before: "Both founders only", after: "Two reps, neither a founder" },
+          { label: "Markets running outbound", before: "1 (DACH)", after: "4 (DACH, NL, PL, UK)" },
+          { label: "Pipeline during travel season", before: "Close to zero", after: "Unchanged" },
+        ],
         metaTitle: "Case study: making founder-led outbound transferable",
         metaDescription:
           "How a fictional industrial technology company productised its founders' pitch into a repeatable outbound motion across four European markets.",
@@ -221,6 +247,12 @@ export const CASE_STUDIES: CaseStudy[] = [
           { value: "31 %", label: "Termin zu Opportunity", note: "modelliert" },
           { value: "4", label: "Aktive Märkte", note: "in 6 Monaten" },
           { value: "2", label: "Betreuende Mitarbeitende", note: "ohne Gründerrolle" },
+        ],
+        beforeAfter: [
+          { label: "Termine pro Monat", before: "6", after: "24" },
+          { label: "Wer ein Erstgespräch führen kann", before: "Nur die beiden Gründer", after: "Zwei Mitarbeitende, ohne Gründerrolle" },
+          { label: "Märkte mit aktivem Outbound", before: "1 (DACH)", after: "4 (DACH, NL, PL, UK)" },
+          { label: "Pipeline in der Reisesaison", before: "Nahezu null", after: "Unverändert" },
         ],
         metaTitle: "Case Study: Gründergetriebenes Outbound übertragbar machen",
         metaDescription:
@@ -271,6 +303,12 @@ export const CASE_STUDIES: CaseStudy[] = [
           { value: "19", label: "Qualified meetings", note: "per quarter" },
           { value: "5 mo", label: "Optimal outreach window", note: "before deadline" },
         ],
+        beforeAfter: [
+          { label: "Account targeting basis", before: "Sector, size, geography", after: "Obligation plus distance to deadline" },
+          { label: "Reply rate", before: "1.4%", after: "3.6%" },
+          { label: "'Not right now' replies", before: "Most common response", after: "Down 62%" },
+          { label: "Outreach timing", before: "Arbitrary", after: "4-5 months before deadline" },
+        ],
         metaTitle: "Case study: timing outbound to regulatory deadlines",
         metaDescription:
           "How a fictional compliance software company made deadline proximity part of its targeting model, and cut 'not right now' replies.",
@@ -313,6 +351,12 @@ export const CASE_STUDIES: CaseStudy[] = [
           { value: "−62 %", label: "„Nicht jetzt“-Antworten", note: "modelliert" },
           { value: "19", label: "Qualifizierte Termine", note: "pro Quartal" },
           { value: "5 Mon.", label: "Optimales Zeitfenster", note: "vor der Frist" },
+        ],
+        beforeAfter: [
+          { label: "Grundlage des Account-Targetings", before: "Branche, Größe, Region", after: "Pflicht plus Abstand zur Frist" },
+          { label: "Antwortrate", before: "1,4 %", after: "3,6 %" },
+          { label: "„Nicht jetzt“-Antworten", before: "Häufigste Reaktion", after: "62 % weniger" },
+          { label: "Zeitpunkt der Ansprache", before: "Beliebig", after: "4–5 Monate vor der Frist" },
         ],
         metaTitle: "Case Study: Outbound auf regulatorische Fristen takten",
         metaDescription:

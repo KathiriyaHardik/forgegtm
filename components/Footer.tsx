@@ -3,8 +3,9 @@ import { Container } from "./ui/Container";
 import { Wordmark } from "./ui/Wordmark";
 import type { Dictionary } from "@/lib/i18n/en";
 import { localePath, type Locale } from "@/lib/i18n/config";
+import { CONTACT_EMAIL } from "@/lib/site";
 
-// Replace the LinkedIn URL and contact address with real destinations.
+// The LinkedIn URL is still a placeholder; the contact address is real.
 export function Footer({ t, lang }: { t: Dictionary; lang: Locale }) {
   const base = localePath(lang);
 
@@ -22,7 +23,7 @@ export function Footer({ t, lang }: { t: Dictionary; lang: Locale }) {
       title: t.footer.connect,
       links: [
         { label: "LinkedIn", href: "https://www.linkedin.com" },
-        { label: "hello@forgegtm.com", href: "mailto:hello@forgegtm.com" },
+        { label: CONTACT_EMAIL, href: `mailto:${CONTACT_EMAIL}` },
         { label: t.cta.bookCall, href: `${base}/#contact` },
       ],
     },
