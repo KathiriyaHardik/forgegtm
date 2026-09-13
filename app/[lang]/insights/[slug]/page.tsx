@@ -7,6 +7,7 @@ import { Footer } from "@/components/Footer";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { PageCTA } from "@/components/PageCTA";
+import { ArticleVisual } from "@/components/ArticleVisual";
 import {
   ARTICLES,
   getArticle,
@@ -16,6 +17,7 @@ import {
 } from "@/content/insights";
 import { getDictionary } from "@/lib/i18n";
 import { LOCALES, isLocale, localePath, type Locale } from "@/lib/i18n/config";
+import { absoluteUrl } from "@/lib/site";
 
 export function generateStaticParams() {
   return LOCALES.flatMap((lang) =>
@@ -149,7 +151,7 @@ export default async function ArticlePage({
     publisher: { "@type": "Organization", name: "ForgeGTM" },
     mainEntityOfPage: {
       "@type": "WebPage",
-      "@id": `https://forgegtm.com${localePath(locale)}/insights/${slug}`,
+      "@id": absoluteUrl(`${localePath(locale)}/insights/${slug}`),
     },
   };
 
@@ -205,12 +207,19 @@ export default async function ArticlePage({
               <Reveal delay={160}>
                 <p className="text-lead mt-6 max-w-2xl text-muted">{c.excerpt}</p>
               </Reveal>
+
+              <Reveal delay={210}>
+                <ArticleVisual
+                  category={article.category}
+                  className="mt-12 aspect-[16/9] md:aspect-[21/9]"
+                />
+              </Reveal>
             </Container>
           </section>
 
           <section className="pb-20 md:pb-24">
             <Container>
-              <div className="max-w-[68ch] border-t border-border pt-12">
+              <div className="max-w-[68ch] pt-4">
                 <ArticleBody blocks={c.body} />
               </div>
             </Container>

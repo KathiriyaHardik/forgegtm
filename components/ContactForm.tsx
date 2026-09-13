@@ -12,6 +12,7 @@ import {
 } from "@/lib/strategy-call";
 import type { Dictionary } from "@/lib/i18n/en";
 import type { Locale } from "@/lib/i18n/config";
+import { CONTACT_EMAIL, withContactEmail } from "@/lib/site";
 
 const FIELD_BASE =
   "w-full rounded-inset border bg-white px-4 py-3 text-[14px] text-ink transition-colors duration-200 placeholder:text-muted-soft focus:border-accent focus:outline-none";
@@ -60,12 +61,15 @@ export function ContactForm({ t, lang }: { t: Dictionary; lang: Locale }) {
         <h3 className="text-h3 mt-6 text-ink">{f.successTitle}</h3>
         <p className="text-body mt-3 text-muted">{f.successBody}</p>
         <p className="text-meta mt-6 text-muted-soft">
-          {f.successFallback}{" "}
+          {/* Only promise a confirmation email when one actually went out. */}
+          {state.confirmationSent === false
+            ? f.successNoEmail
+            : f.successFallback}{" "}
           <a
-            href="mailto:hello@forgegtm.com"
+            href={`mailto:${CONTACT_EMAIL}`}
             className="text-accent underline underline-offset-2"
           >
-            hello@forgegtm.com
+            {CONTACT_EMAIL}
           </a>
           .
         </p>
@@ -295,7 +299,7 @@ export function ContactForm({ t, lang }: { t: Dictionary; lang: Locale }) {
           role="alert"
           className="rounded-inset mt-5 border border-red-200 bg-red-50 px-4 py-3 text-[13px] text-red-700"
         >
-          {f.errors[state.messageKey]}
+          {withContactEmail(f.errors[state.messageKey])}
         </p>
       )}
 

@@ -223,7 +223,7 @@ export const de: Dictionary = {
     eyebrow: "Case Studies",
     title: "So sieht ein funktionierendes Outbound-System aus.",
     aside:
-      "Zwei Szenarien, die zeigen, wie die Bausteine in der Praxis zusammenwirken — die Ausgangslage, die wir typischerweise vorfinden, was wir ändern und was sich dadurch bewegt.",
+      "Szenarien, die zeigen, wie die Bausteine in der Praxis zusammenwirken — die Ausgangslage, die wir typischerweise vorfinden, was wir ändern und was sich dadurch bewegt.",
     indexTitle: "Case Studies",
     indexHeadline: "Outbound-Systeme, von Anfang bis Ende.",
     indexAside:
@@ -243,6 +243,9 @@ export const de: Dictionary = {
       messaging: "Messaging-Ansatz",
       results: "Ergebnisse",
       metrics: "Zentrale Kennzahlen",
+      beforeAfter: "Vorher und nachher",
+      before: "Vorher",
+      after: "Nachher",
       lessons: "Erkenntnisse",
       outcome: "Fazit",
       readingTime: "Min. Lesezeit",
@@ -441,6 +444,8 @@ export const de: Dictionary = {
         "Vielen Dank — Ihre Angaben sind bei uns eingegangen. Ein Mitglied des ForgeGTM-Teams meldet sich innerhalb eines Werktags zur Terminabstimmung.",
       successFallback:
         "Nichts im Posteingang? Prüfen Sie den Spam-Ordner oder schreiben Sie uns direkt an",
+      successNoEmail:
+        "Die Bestätigungs-E-Mail konnte nicht versendet werden — Ihre Anfrage ist aber bei uns eingegangen und wir melden uns. Sie erreichen uns auch direkt unter",
       budgetOptions: [
         "Unter 5.000 € / Monat",
         "5.000 – 10.000 € / Monat",
@@ -473,9 +478,9 @@ export const de: Dictionary = {
         messageLong: "Bitte beschränken Sie sich auf 4.000 Zeichen.",
         summary: "Bitte prüfen Sie die markierten Felder und versuchen Sie es erneut.",
         notConfigured:
-          "Das Formular konnte gerade nicht übermittelt werden. Bitte schreiben Sie an hello@forgegtm.com — wir kümmern uns umgehend darum.",
+          "Das Formular konnte gerade nicht übermittelt werden. Bitte schreiben Sie an {email} — wir kümmern uns umgehend darum.",
         unexpected:
-          "Auf unserer Seite ist etwas schiefgelaufen. Bitte versuchen Sie es erneut oder schreiben Sie an hello@forgegtm.com.",
+          "Auf unserer Seite ist etwas schiefgelaufen. Bitte versuchen Sie es erneut oder schreiben Sie an {email}.",
       },
     },
   },

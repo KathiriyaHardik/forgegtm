@@ -217,7 +217,7 @@ export const en = {
     eyebrow: "Case studies",
     title: "What a working outbound system looks like.",
     aside:
-      "Two scenarios showing how the pieces come together in practice — the situation we typically walk into, what we change, and what moves as a result.",
+      "Scenarios showing how the pieces come together in practice — the situation we typically walk into, what we change, and what moves as a result.",
     indexTitle: "Case studies",
     indexHeadline: "Outbound systems, start to finish.",
     indexAside:
@@ -237,6 +237,9 @@ export const en = {
       messaging: "Messaging approach",
       results: "Results",
       metrics: "Key metrics",
+      beforeAfter: "Before and after",
+      before: "Before",
+      after: "After",
       lessons: "Lessons learned",
       outcome: "Final outcome",
       readingTime: "min read",
@@ -434,6 +437,10 @@ export const en = {
       successBody:
         "Thanks — we've got your details. A member of the ForgeGTM team will reply within one business day to arrange your strategy call.",
       successFallback: "Nothing in your inbox? Check spam, or email us directly at",
+      // Shown instead of successFallback when the confirmation email did not
+      // send. It must not imply one is on its way.
+      successNoEmail:
+        "We couldn't send your confirmation email, but your request did reach us and we'll be in touch. You can also reach us directly at",
       budgetOptions: [
         "Under €5k / month",
         "€5k – €10k / month",
@@ -466,9 +473,9 @@ export const en = {
         messageLong: "Please keep this under 4,000 characters.",
         summary: "Please check the highlighted fields and try again.",
         notConfigured:
-          "We couldn't submit the form right now. Please email hello@forgegtm.com and we'll pick it up straight away.",
+          "We couldn't submit the form right now. Please email {email} and we'll pick it up straight away.",
         unexpected:
-          "Something went wrong on our end. Please try again, or email hello@forgegtm.com.",
+          "Something went wrong on our end. Please try again, or email {email}.",
       },
     },
   },

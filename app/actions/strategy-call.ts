@@ -1,8 +1,12 @@
 "use server";
 
 import { headers } from "next/headers";
-import { DatabaseNotConfiguredError, insertStrategyCall } from "@/lib/db";
-import { sendLeadNotification } from "@/lib/email";
+import {
+  DatabaseNotConfiguredError,
+  insertStrategyCall,
+  markLeadEmailsSent,
+} from "@/lib/db";
+import { sendLeadNotification, sendProspectConfirmation } from "@/lib/email";
 import { getDictionary } from "@/lib/i18n";
 import { DEFAULT_LOCALE, isLocale } from "@/lib/i18n/config";
 import {
@@ -68,8 +72,9 @@ export async function submitStrategyCall(
     locale,
   };
 
+  let leadId: string;
   try {
-    await insertStrategyCall(record);
+    leadId = await insertStrategyCall(record);
   } catch (error) {
     if (error instanceof DatabaseNotConfiguredError) {
       console.error(
@@ -84,9 +89,41 @@ export async function submitStrategyCall(
     return { status: "error", messageKey: "unexpected" };
   }
 
-  // The lead is safely stored by this point. A failed notification is logged
-  // and swallowed — we do not ask the visitor to submit again over it.
-  await sendLeadNotification({ ...record, submittedAt: new Date() });
+  // The lead is safely stored by this point, so the visitor sees success
+  // regardless of what the email provider does next.
+  const lead = { ...record, submittedAt: new Date() };
 
-  return { status: "success" };
+  // Both emails are sent, and neither can take down the other: allSettled means
+  // a thrown error in one is still isolated from the other's result. They are
+  // independent deliveries to different recipients, so they run concurrently
+  // rather than making the visitor wait for two round trips in series.
+  const [notifiedResult, confirmedResult] = await Promise.allSettled([
+    sendLeadNotification(lead),
+    sendProspectConfirmation(lead),
+  ]);
+
+  const notified = notifiedResult.status === "fulfilled" && notifiedResult.value;
+  const confirmed =
+    confirmedResult.status === "fulfilled" && confirmedResult.value;
+
+  // Recorded per-email, so a partial failure is visible in the dashboard and
+  // recoverable by query rather than lost in the logs.
+  await markLeadEmailsSent(leadId, { notified, confirmed });
+
+  if (!notified) {
+    console.warn(
+      `[strategy-call] lead ${leadId} stored but internal alert NOT sent. ` +
+        "Recover with: select * from strategy_call_requests where notified_at is null;"
+    );
+  }
+  if (!confirmed) {
+    console.warn(
+      `[strategy-call] lead ${leadId} stored but prospect confirmation NOT sent ` +
+        `to ${record.email}. The success panel will not claim one was sent.`
+    );
+  }
+
+  // Reported back so the confirmation panel can tell the truth about whether
+  // an email is actually on its way. Never claim a delivery that did not happen.
+  return { status: "success", confirmationSent: confirmed };
 }

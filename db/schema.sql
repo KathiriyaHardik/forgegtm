@@ -39,3 +39,26 @@ create index if not exists strategy_call_requests_email_idx
 -- Added after initial release; safe on an existing table.
 alter table strategy_call_requests
   add column if not exists locale varchar(8) not null default 'en';
+
+-- When the lead-alert email actually went out. Null means the alert never
+-- sent (no transport configured, or the provider failed), so the lead is
+-- still recoverable by hand:
+--
+--   select created_at, name, email, company
+--   from strategy_call_requests
+--   where notified_at is null order by created_at desc;
+--
+-- A failed notification must never mean a lost lead.
+alter table strategy_call_requests
+  add column if not exists notified_at timestamptz;
+
+-- When the prospect's confirmation email went out. Null means it never sent.
+-- Tracked separately from notified_at because the two are independent: the
+-- internal alert can succeed while the confirmation fails, and each is worth
+-- chasing differently. Neither failing ever discards the lead.
+--
+--   select created_at, name, email
+--   from strategy_call_requests
+--   where confirmation_sent_at is null order by created_at desc;
+alter table strategy_call_requests
+  add column if not exists confirmation_sent_at timestamptz;

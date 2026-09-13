@@ -157,6 +157,12 @@ export type StrategyCallState = {
   status: "idle" | "success" | "error";
   /** Key into the dictionary's contact.form.errors, for a locale-safe message. */
   messageKey?: "summary" | "notConfigured" | "unexpected";
+  /**
+   * Whether the prospect's confirmation email was actually accepted by the
+   * provider. Undefined until a submission succeeds. The success panel uses
+   * it so it never promises an email that failed to send.
+   */
+  confirmationSent?: boolean;
   errors?: FieldErrors;
 };
 

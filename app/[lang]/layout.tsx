@@ -10,6 +10,7 @@ import {
   localePath,
 } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n";
+import { SITE_URL } from "@/lib/site";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -33,7 +34,7 @@ export async function generateMetadata({
   const t = getDictionary(lang);
 
   return {
-    metadataBase: new URL("https://forgegtm.com"),
+    metadataBase: new URL(SITE_URL),
     title: { default: t.meta.title, template: "%s | ForgeGTM" },
     description: t.meta.description,
     applicationName: "ForgeGTM",

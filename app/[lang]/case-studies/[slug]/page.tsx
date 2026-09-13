@@ -213,6 +213,54 @@ export default async function CaseStudyPage({
           </Container>
         </section>
 
+        {/* Before / after */}
+        <section className="py-20 md:py-24">
+          <Container>
+            <Reveal>
+              <h2 className="text-eyebrow text-muted-soft">{L.beforeAfter}</h2>
+            </Reveal>
+
+            <div className="mt-8 overflow-hidden rounded-card border border-border">
+              {/* Column headings, hidden on mobile where each row stacks. */}
+              <div className="hidden bg-surface-2 md:grid md:grid-cols-[1.4fr_1fr_1fr]">
+                <div className="text-meta px-6 py-3 font-medium text-muted-soft" />
+                <div className="text-meta px-6 py-3 font-medium text-muted-soft">
+                  {L.before}
+                </div>
+                <div className="text-meta px-6 py-3 font-medium text-accent">
+                  {L.after}
+                </div>
+              </div>
+
+              {c.beforeAfter.map((shift, i) => (
+                <Reveal key={shift.label} delay={i * 60}>
+                  <div
+                    className={`grid gap-x-6 gap-y-2 px-6 py-5 md:grid-cols-[1.4fr_1fr_1fr] md:items-baseline ${
+                      i > 0 ? "border-t border-border" : ""
+                    }`}
+                  >
+                    <div className="text-body font-medium text-ink">
+                      {shift.label}
+                    </div>
+                    <div className="text-body text-muted">
+                      <span className="text-meta mr-2 text-muted-soft md:hidden">
+                        {L.before}:
+                      </span>
+                      {shift.before}
+                    </div>
+                    <div className="text-body font-medium text-ink">
+                      <span className="text-meta mr-2 text-muted-soft md:hidden">
+                        {L.after}:
+                      </span>
+                      {shift.after}
+                    </div>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+          </Container>
+        </section>
+
         {/* Outcome */}
         <section className="bg-surface-2 py-20 md:py-24">
           <Container>

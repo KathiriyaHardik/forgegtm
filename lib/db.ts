@@ -68,3 +68,107 @@ export async function insertStrategyCall(record: StrategyCallRecord) {
 
   return row.id;
 }
+
+/**
+ * Stamps which of the two emails actually went out.
+ *
+ * Never throws: this is bookkeeping that runs after the lead is already safely
+ * stored, so a failure here must not surface to the visitor. A lead left with
+ * a null timestamp is one to chase manually — which is the whole point of
+ * recording it rather than only logging.
+ */
+export async function markLeadEmailsSent(
+  id: string,
+  sent: { notified: boolean; confirmed: boolean }
+) {
+  if (!sent.notified && !sent.confirmed) return;
+
+  try {
+    const sql = getSql();
+    // Each column is only set when that specific email succeeded, so a partial
+    // success records exactly which half worked.
+    await sql`
+      update strategy_call_requests
+      set notified_at = case when ${sent.notified} then now() else notified_at end,
+          confirmation_sent_at = case when ${sent.confirmed} then now() else confirmation_sent_at end
+      where id = ${id}
+    `;
+  } catch (error) {
+    console.error("[strategy-call] could not record email status:", error);
+  }
+}
+
+export type StoredLead = {
+  id: string;
+  createdAt: Date;
+  name: string;
+  email: string;
+  company: string;
+  website: string | null;
+  jobTitle: string | null;
+  budget: string | null;
+  goal: string;
+  message: string | null;
+  sourcePath: string | null;
+  locale: string;
+  status: string;
+  notifiedAt: Date | null;
+  confirmationSentAt: Date | null;
+};
+
+/**
+ * Reads the lead queue, newest first, for the admin dashboard.
+ *
+ * Throws `DatabaseNotConfiguredError` when DATABASE_URL is unset so the page
+ * can say so plainly instead of rendering an empty table that looks like
+ * "no leads yet" — a far worse failure, because it is indistinguishable from
+ * the healthy empty state.
+ */
+export async function listStrategyCalls(limit = 200): Promise<StoredLead[]> {
+  const sql = getSql();
+
+  const rows = await sql<
+    {
+      id: string;
+      created_at: Date;
+      name: string;
+      email: string;
+      company: string;
+      website: string | null;
+      job_title: string | null;
+      budget: string | null;
+      goal: string;
+      message: string | null;
+      source_path: string | null;
+      locale: string;
+      status: string;
+      notified_at: Date | null;
+      confirmation_sent_at: Date | null;
+    }[]
+  >`
+    select id, created_at, name, email, company, website, job_title, budget,
+           goal, message, source_path, locale, status, notified_at,
+           confirmation_sent_at
+    from strategy_call_requests
+    order by created_at desc
+    limit ${limit}
+  `;
+
+  return rows.map((r) => ({
+    id: r.id,
+    createdAt: r.created_at,
+    name: r.name,
+    email: r.email,
+    company: r.company,
+    website: r.website,
+    jobTitle: r.job_title,
+    budget: r.budget,
+    goal: r.goal,
+    message: r.message,
+    sourcePath: r.source_path,
+    locale: r.locale,
+    status: r.status,
+    notifiedAt: r.notified_at,
+    confirmationSentAt: r.confirmation_sent_at,
+  }));
+}

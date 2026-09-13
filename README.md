@@ -26,20 +26,30 @@ pnpm lint    # eslint
 
 ## Environment variables
 
-| Variable             | Required | Purpose                                                      |
-| -------------------- | -------- | ------------------------------------------------------------ |
-| `DATABASE_URL`       | Yes\*    | Postgres connection string. Stores strategy-call submissions. |
-| `RESEND_API_KEY`     | No\*\*   | Resend API key for lead notification emails.                  |
-| `LEADS_EMAIL_FROM`   | No\*\*   | Sender address, on a domain verified with Resend.             |
-| `LEADS_EMAIL_TO`     | No       | Recipient. Defaults to `leads@forgegtm.com`.                  |
-| `RESEND_API_URL`     | No       | Override the provider endpoint. Local testing only.           |
+| Variable               | Required | Purpose                                                       |
+| ---------------------- | -------- | ------------------------------------------------------------- |
+| `DATABASE_URL`         | Yes\*    | Postgres connection string. Stores strategy-call submissions.  |
+| `SMTP_USER`            | No\*\*   | Gmail address used to send alerts (Option 1).                  |
+| `SMTP_PASSWORD`        | No\*\*   | Google **App Password** — not the account password.            |
+| `SMTP_HOST`            | No       | Defaults to `smtp.gmail.com`.                                  |
+| `SMTP_PORT`            | No       | Defaults to `465` (implicit TLS). `587` uses STARTTLS.         |
+| `RESEND_API_KEY`       | No\*\*   | Resend API key (Option 2, needs a domain).                     |
+| `LEADS_EMAIL_FROM`     | No\*\*   | Resend sender, on a domain verified with Resend.               |
+| `LEADS_EMAIL_TO`       | No       | Recipient. Defaults to `CONTACT_EMAIL` in `lib/site.ts`.       |
+| `ADMIN_USER`           | No       | Dashboard username. Defaults to `forgegtm`.                    |
+| `ADMIN_PASSWORD`       | Yes†     | Dashboard password. Unset ⇒ `/admin` returns 503.              |
+| `RESEND_API_URL`       | No       | Override the provider endpoint. Local testing only.            |
+| `NEXT_PUBLIC_SITE_URL` | No       | Site origin for canonical URLs, sitemap and robots.            |
 
 \* The site builds and runs without it, but the form cannot store anything. It
 does **not** fake success — it shows an error asking the visitor to email, and
 logs a clear message server-side.
 
-\*\* Without these, leads are still stored; only the alert email is skipped
-(and a warning is logged). Email failure never fails a submission.
+\*\* Without these, leads are still stored; only the emails are skipped (and a
+warning is logged). Email failure never fails a submission.
+
+† Only required to use `/admin`. Without it the dashboard is unreachable rather
+than public — it fails closed.
 
 ### Database setup
 
@@ -57,14 +67,105 @@ psql "$DATABASE_URL" -f db/schema.sql
 
 ### Email setup
 
-1. Create a [Resend](https://resend.com) account and verify your sending domain.
-2. Create an API key → `RESEND_API_KEY`.
-3. Set `LEADS_EMAIL_FROM` to an address on the verified domain.
-4. Ensure `leads@forgegtm.com` exists and can receive mail.
+`lib/email.ts` supports two transports and picks whichever is configured,
+checking SMTP first:
 
-Alerts go to `leads@forgegtm.com`, never to the prospect. `Reply-To` is set to
-the prospect's address, so replying in the alert writes to them directly.
-Swapping provider means editing `sendLeadNotification` in `lib/email.ts` only.
+| | Transport | Needs a domain? | Use when |
+| - | --------- | --------------- | -------- |
+| 1 | **Gmail SMTP** | No | Now — this is the working path today |
+| 2 | **Resend** | Yes | Once you own and verify a domain |
+
+With neither configured the lead is still stored; only the alert is skipped,
+and a warning naming the missing variables is logged.
+
+### Option 1 — Gmail SMTP (no domain needed)
+
+Gmail will not accept your normal password from an application. You need an
+**App Password**, which is a separate 16-character credential:
+
+1. Enable 2-Step Verification on the Google account (App Passwords are not
+   offered without it).
+2. Go to <https://myaccount.google.com/apppasswords> and create one for "Mail".
+3. Put it in `.env.local`:
+
+   ```bash
+   SMTP_USER=contact.forgegtm@gmail.com
+   SMTP_PASSWORD=<the 16 characters>
+   ```
+
+4. Restart the dev server and submit the form.
+
+Gmail's limit is roughly 500 messages a day, far above lead-alert volume. The
+envelope sender is the authenticated mailbox — Gmail rewrites a mismatched
+`From` regardless, and forging one is what gets mail rejected — so the alert
+arrives as `ForgeGTM Website <contact.forgegtm@gmail.com>`.
+
+### Option 2 — Resend (once you own a domain)
+
+Preferred long term: a sender on your own verified domain authenticates
+properly and is far less likely to be spam-foldered. It **cannot** use a Gmail
+address — Resend will not verify a domain you do not control, and `gmail.com`
+publishes a DMARC policy telling inboxes to reject mail a third party sends on
+its behalf.
+
+1. Create a [Resend](https://resend.com) account and verify your domain.
+2. Create an API key → `RESEND_API_KEY`.
+3. Set `LEADS_EMAIL_FROM` to an address on that verified domain.
+
+Leave `SMTP_USER`/`SMTP_PASSWORD` unset once you switch, or SMTP keeps winning.
+
+### The two emails
+
+One submission sends two messages, to different people:
+
+| | Goes to | `Reply-To` | Subject |
+| - | ------- | ---------- | ------- |
+| **Internal alert** | `LEADS_EMAIL_TO` | the prospect | `New Strategy Call Request — [Name]` |
+| **Prospect confirmation** | the prospect | `LEADS_EMAIL_TO` | localised, branded |
+
+`Reply-To` is inverted between them on purpose: replying to the alert writes to
+the prospect, replying to the confirmation reaches the team.
+
+The confirmation is sent in the language the visitor submitted in. Its copy
+lives in `CONFIRMATION_COPY` in `lib/email.ts`, **not** in `lib/i18n` — the
+site dictionaries are serialised into the page payload for the browser, and
+email copy no visitor renders on-page has no business being shipped there.
+
+### Guarantees
+
+The two sends run concurrently under `Promise.allSettled`, so neither can take
+down the other, and each is recorded in its own column. The lead always wins:
+
+| Database | Alert | Confirmation | Visitor sees | Stored |
+| -------- | ----- | ------------ | ------------ | ------ |
+| ok | ok | ok | Success | Yes, both columns stamped |
+| ok | ok | fails | Success, **without** claiming an email was sent | Yes, `confirmation_sent_at` null |
+| ok | fails | fails | Success, same honest copy | Yes, both columns null |
+| fails | — | — | Error, asked to email instead | No |
+| validation fails | — | — | Field-level errors | No |
+
+The success panel reads `confirmationSent` off the action result, so it never
+promises an email the provider rejected. Recover anything that did not send:
+
+```sql
+select created_at, name, email, company
+from strategy_call_requests
+where notified_at is null or confirmation_sent_at is null
+order by created_at desc;
+```
+
+## The contact address
+
+`CONTACT_EMAIL` in `lib/site.ts` is the single source for the public contact
+address. It appears in the footer, in the form's success panel as a fallback,
+and inside two error messages.
+
+Those two messages live in the dictionaries and use an `{email}` placeholder
+rather than a literal copy, since a hardcoded address per language means
+editing every translation to change it. `withContactEmail()` substitutes it at
+render. **Any new dictionary string mentioning the address must use `{email}`.**
+
+Changing the address is therefore a one-line edit in `lib/site.ts`.
 
 ## The strategy-call form
 
@@ -92,6 +193,9 @@ from strategy_call_requests order by created_at desc;
 4. Enter a malformed email → rejected before any request is sent.
 5. Submit valid details → spinner, then a "Request received" confirmation.
 6. Confirm the row landed with the query above.
+7. Check `/admin` — the lead is listed with two green email badges.
+8. Check the prospect address received the branded confirmation, and
+   `contact.forgegtm@gmail.com` received the alert.
 
 Switch to DE first to confirm validation messages come back in German.
 
@@ -100,26 +204,113 @@ an error and point at email — never a success message.
 
 ### Testing the lead alert without sending real mail
 
-Run a throwaway endpoint and point the app at it:
+The quickest real test is to send yourself one: set `SMTP_USER` and
+`SMTP_PASSWORD`, submit the form, and check the inbox. The alert arrives from
+the same address it is sent to, which is expected.
+
+To exercise the path without sending anything, point the app at a local SMTP
+sink. `db/schema.sql` must already be applied and `DATABASE_URL` set.
 
 ```bash
-# capture.mjs
-import { createServer } from "node:http";
-createServer((req, res) => {
-  let body = ""; req.on("data", c => body += c);
-  req.on("end", () => { console.log(JSON.parse(body)); res.end("{}"); });
-}).listen(5599);
+SMTP_HOST=127.0.0.1 SMTP_PORT=1025 \
+SMTP_USER=contact.forgegtm@gmail.com SMTP_PASSWORD=anything \
+DATABASE_URL=... pnpm dev
 ```
+
+Any SMTP sink listening on 1025 works. Submit the form, then confirm:
+
+- the row is in `strategy_call_requests`,
+- `notified_at` is set,
+- the captured message has `To: contact.forgegtm@gmail.com` and `Reply-To:`
+  the prospect's address.
+
+To check the failure path, stop the sink and submit again. The visitor must
+still see success, the row must still be written, and `notified_at` must be
+null — a failed alert never costs a lead.
+
+## Admin dashboard
+
+`/admin` lists every strategy-call request, newest first, with each prospect's
+email as a `mailto:` link and a badge per email showing whether it actually
+sent. Anything that did not send is called out at the top — the lead is safe,
+it just needs a manual follow-up.
+
+Access is HTTP Basic auth, enforced in `proxy.ts` **before** the route is
+reached, so no unauthenticated request ever touches the page:
 
 ```bash
-node capture.mjs &
-RESEND_API_KEY=test RESEND_API_URL=http://127.0.0.1:5599/emails \
-LEADS_EMAIL_FROM="ForgeGTM <notifications@forgegtm.com>" pnpm dev
+ADMIN_USER=forgegtm            # optional, this is the default
+ADMIN_PASSWORD=<long random>   # required
 ```
 
-Submit the form and the captured payload prints `to`, `reply_to`, `subject`
-and both HTML and text bodies. Kill the capture server and submit again to
-confirm the lead is still stored and the visitor still sees success.
+Three details worth knowing:
+
+- **It fails closed.** With no `ADMIN_PASSWORD` set, `/admin` returns 503. An
+  unconfigured secret must never mean an open door.
+- **Comparison is constant-time.** `===` on a secret leaks its length and
+  prefix through timing, so both the username and password are compared by
+  walking their full width without an early exit.
+- **Never cached.** The page is `force-dynamic` and sends `no-store`, since the
+  response is tied to an authenticated session and a cached lead list would be
+  both stale and a disclosure risk.
+
+It is also `noindex` and disallowed in `robots.txt` — belt and braces, since
+Basic auth already blocks it.
+
+Serve it over HTTPS. Basic auth sends credentials base64-encoded, which is
+encoding, not encryption; on plain HTTP they travel in the clear.
+
+## SEO routes
+
+`app/sitemap.ts` and `app/robots.ts` are Next.js metadata routes, served at
+`/sitemap.xml` and `/robots.txt`. Both are prerendered at build time.
+
+The sitemap derives its routes from `content/case-studies.ts` and
+`content/insights.ts`, so **adding a case study or an article adds it to the
+sitemap automatically** — there is no second list to maintain.
+
+Every language version gets its own `<url>` entry carrying the complete set of
+`hreflang` alternates, itself plus `x-default` included. Google only trusts an
+alternate set when every page in it points back at every other one.
+
+`lastmod` is emitted only where a real date exists (articles, and the insights
+index). Stamping every page with the build time would tell crawlers the whole
+site changed on every deploy, which is exactly the signal Google discards.
+
+`robots.txt` matters more than it looks here: it is how a crawler arriving at
+the bare domain finds the locale-prefixed routes, since `/` only ever answers
+with a redirect.
+
+Note that `proxy.ts` skips any path with a file extension, which is why these
+two are not redirected into `/en`.
+
+### The site origin
+
+`lib/site.ts` owns the canonical origin for everything needing an absolute URL:
+`metadataBase`, the sitemap, robots and JSON-LD `@id`s. Set
+`NEXT_PUBLIC_SITE_URL` to override it — on a staging deployment, for instance,
+so the build does not advertise itself under the production domain. It is read
+at build time, so a change needs a rebuild.
+
+## Adding content
+
+Both content types are plain typed data — no CMS, no MDX toolchain. Routes,
+static params, sitemap entries and related-article links are all derived from
+these arrays, so adding an entry is the only step.
+
+**An article** — append to `ARTICLES` in `content/insights.ts` with a unique
+`slug`, a `category` from `CATEGORIES`, `publishedAt`, and `content` for every
+locale. Bodies use a small block model (`p`, `h2`, `ul`, `quote`) that is
+type-checked, so a malformed article fails the build rather than the page.
+Reading time is computed from the body, and the visual is derived from the
+category, so neither needs authoring.
+
+**A case study** — append to `CASE_STUDIES` in `content/case-studies.ts`. Each
+locale needs the full narrative, `metrics`, and `beforeAfter` rows.
+
+Because `Dictionary` types both locales, a missing German field **fails the
+build**. That is deliberate: it is the guardrail against shipping a
+half-translated release.
 
 ## Internationalisation
 
@@ -144,9 +335,12 @@ content files in `content/`.
 app/[lang]/          all routes, per locale
   about/  case-studies/[slug]/  insights/[slug]/  privacy/  imprint/
 app/actions/         server actions (form submission)
+app/admin/           protected lead dashboard (Basic auth in proxy.ts)
 components/          sections and UI primitives
 content/             case studies, articles, legal copy (localised data)
 lib/i18n/            locales and dictionaries
+lib/site.ts          canonical site origin
+app/sitemap.ts       /sitemap.xml        app/robots.ts  /robots.txt
 lib/db.ts            database access     lib/email.ts   lead notifications
 db/schema.sql        database schema
 ```
@@ -175,10 +369,15 @@ the disclosure along with the data — see the comments at the top of
 - [ ] Fill in the legal pages. Outstanding details render as visible dashed
       markers (`Fill` in `components/LegalPage.tsx`), in both languages. Both
       pages need review by a qualified lawyer.
-- [ ] Replace `hello@forgegtm.com` and the LinkedIn URL in `Footer.tsx` and
-      `ContactForm.tsx`.
-- [ ] Set the production domain in `metadataBase` (`app/[lang]/layout.tsx`).
+- [ ] Replace the placeholder LinkedIn URL in `Footer.tsx` — it still points at
+      `linkedin.com`. (The contact address is real: see "The contact address".)
+- [ ] Configure an email transport — see "Email setup". Without one, leads are
+      stored but neither email is sent.
+- [ ] Set `ADMIN_PASSWORD` to something long and random, and confirm `/admin`
+      is served over HTTPS.
+- [ ] Confirm the production domain in `lib/site.ts` (or set
+      `NEXT_PUBLIC_SITE_URL`). It drives canonical URLs, the sitemap and robots.
 - [ ] Provision Postgres, set `DATABASE_URL`, apply `db/schema.sql`.
 - [ ] Configure Resend and verify the sending domain.
-- [ ] Add a `sitemap.ts` if you want search engines to discover every locale
-      route explicitly (hreflang alternates are already emitted).
+- [ ] Submit `https://<domain>/sitemap.xml` in Google Search Console. The
+      sitemap itself is already generated — see "SEO routes" above.
