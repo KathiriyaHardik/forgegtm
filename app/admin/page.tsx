@@ -14,6 +14,13 @@ import {
  *
  * Rendered per request, never cached: a cached lead list is both stale and a
  * disclosure risk, since the response is tied to an authenticated session.
+ *
+ * There is deliberately no summary banner counting leads whose email failed.
+ * It read as a standing alarm for history that had already been dealt with,
+ * which is how a warning stops being read at all. The per-lead Alert and
+ * Confirmation badges still show exactly the same fact, on the row it applies
+ * to, and the CSV carries both timestamps — so nothing is hidden, it just no
+ * longer nags.
  */
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -142,10 +149,6 @@ export default async function AdminLeadsPage() {
     );
   }
 
-  const awaitingEmail = leads.filter(
-    (l) => l.notifiedAt === null || l.confirmationSentAt === null
-  ).length;
-
   return (
     <main className="mx-auto max-w-5xl px-6 py-12 md:py-16">
       <header className="flex flex-wrap items-end justify-between gap-x-6 gap-y-4 border-b border-border pb-6">
@@ -176,13 +179,6 @@ export default async function AdminLeadsPage() {
             <Download size={15} />
             <span>Export CSV</span>
           </a>
-        )}
-
-        {awaitingEmail > 0 && (
-          <p className="rounded-inset bg-amber-50 px-3.5 py-2 text-[12.5px] text-amber-800">
-            {awaitingEmail} with an email that did not send — the lead is safe,
-            follow up by hand.
-          </p>
         )}
       </header>
 
