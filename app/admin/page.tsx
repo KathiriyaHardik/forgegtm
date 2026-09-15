@@ -1,4 +1,6 @@
+import { Download } from "lucide-react";
 import {
+  countStrategyCalls,
   DatabaseNotConfiguredError,
   listStrategyCalls,
   type StoredLead,
@@ -113,9 +115,13 @@ function LeadCard({ lead }: { lead: StoredLead }) {
 
 export default async function AdminLeadsPage() {
   let leads: StoredLead[];
+  let total: number;
 
   try {
-    leads = await listStrategyCalls();
+    [leads, total] = await Promise.all([
+      listStrategyCalls(),
+      countStrategyCalls(),
+    ]);
   } catch (error) {
     // An unconfigured database must not render as "no leads yet" — that is
     // indistinguishable from the healthy empty state and hides a real fault.
@@ -142,17 +148,35 @@ export default async function AdminLeadsPage() {
 
   return (
     <main className="mx-auto max-w-5xl px-6 py-12 md:py-16">
-      <header className="flex flex-wrap items-end justify-between gap-4 border-b border-border pb-6">
+      <header className="flex flex-wrap items-end justify-between gap-x-6 gap-y-4 border-b border-border pb-6">
         <div>
           <h1 className="text-[24px] font-semibold tracking-[-0.03em] text-ink">
             Strategy call requests
           </h1>
           <p className="mt-1.5 text-[13.5px] text-muted">
-            {leads.length === 0
+            {total === 0
               ? "No requests yet."
-              : `${leads.length} request${leads.length === 1 ? "" : "s"}, newest first.`}
+              : leads.length < total
+                ? // Say so rather than quietly showing a page as if it were
+                  // everything. The export is not capped the same way.
+                  `Showing the ${leads.length} most recent of ${total} requests. Export for all of them.`
+                : `${total} request${total === 1 ? "" : "s"}, newest first.`}
           </p>
         </div>
+
+        {total > 0 && (
+          // A real navigation, not a client-side route change: <Link> would
+          // have the router fetch the CSV as if it were a page. The browser
+          // needs to see the response and act on Content-Disposition.
+          // eslint-disable-next-line @next/next/no-html-link-for-pages
+          <a
+            href="/admin/export"
+            className="ease-premium inline-flex items-center gap-2 rounded-full bg-ink px-5 py-2.5 text-[13px] font-medium whitespace-nowrap text-white transition-all duration-300 hover:bg-ink-soft hover:shadow-[0_14px_30px_-14px_rgba(10,10,13,0.5)]"
+          >
+            <Download size={15} />
+            <span>Export CSV</span>
+          </a>
+        )}
 
         {awaitingEmail > 0 && (
           <p className="rounded-inset bg-amber-50 px-3.5 py-2 text-[12.5px] text-amber-800">

@@ -361,6 +361,11 @@ export const en = {
       "Your stack, not ours — we build on the CRM and tooling your team already uses.",
       "Written documentation for every system we put live, handed over as we go.",
     ],
+    teamTitle: "Who you would be working with.",
+    teamLead:
+      "Outbound is a hands-on engagement, so it is worth knowing who is actually doing the work.",
+    teamPlaceholder: "Profile not yet written",
+    teamLinkedin: "Connect on LinkedIn",
     ctaTitle: "Want to see what this would look like for your team?",
   },
 
