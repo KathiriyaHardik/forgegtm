@@ -61,17 +61,21 @@ export function ContactForm({ t, lang }: { t: Dictionary; lang: Locale }) {
         <h3 className="text-h3 mt-6 text-ink">{f.successTitle}</h3>
         <p className="text-body mt-3 text-muted">{f.successBody}</p>
         <p className="text-meta mt-6 text-muted-soft">
-          {/* Only promise a confirmation email when one actually went out. */}
-          {state.confirmationSent === false
-            ? f.successNoEmail
-            : f.successFallback}{" "}
+          {/* Same reasoning as the button: text wrapped so it is never a bare
+              sibling of the link. Only promise a confirmation email when one
+              actually went out. */}
+          <span>
+            {state.confirmationSent === false
+              ? f.successNoEmail
+              : f.successFallback}{" "}
+          </span>
           <a
             href={`mailto:${CONTACT_EMAIL}`}
             className="text-accent underline underline-offset-2"
           >
             {CONTACT_EMAIL}
           </a>
-          .
+          <span>.</span>
         </p>
       </div>
     );
@@ -309,19 +313,21 @@ export function ContactForm({ t, lang }: { t: Dictionary; lang: Locale }) {
           disabled={pending}
           className="group ease-premium inline-flex items-center justify-center gap-2 rounded-full bg-ink px-6 py-3.5 text-[13.5px] font-medium whitespace-nowrap text-white transition-all duration-300 hover:bg-ink-soft hover:shadow-[0_14px_30px_-14px_rgba(10,10,13,0.5)] disabled:cursor-not-allowed disabled:opacity-70"
         >
-          {pending ? (
-            <>
-              <Loader2 size={15} className="animate-spin" />
-              {f.submitting}
-            </>
-          ) : (
-            <>
-              {f.submit}
-              <ArrowRight
-                size={15}
-                className="ease-premium transition-transform duration-300 group-hover:translate-x-1"
-              />
-            </>
+          {/*
+            Every child here is an element, and the label keeps the same
+            position in both states. Bare text nodes swapped between branches
+            are what break when a translator or extension re-parents them into
+            an injected wrapper: React still holds the original text node, so
+            removing it throws "node is not a child of this node". Elements
+            survive that, because React removes the element it owns.
+          */}
+          {pending && <Loader2 size={15} className="animate-spin" />}
+          <span>{pending ? f.submitting : f.submit}</span>
+          {!pending && (
+            <ArrowRight
+              size={15}
+              className="ease-premium transition-transform duration-300 group-hover:translate-x-1"
+            />
           )}
         </button>
 
