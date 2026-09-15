@@ -6,6 +6,7 @@ import { Container } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Reveal } from "@/components/ui/Reveal";
 import { PageCTA } from "@/components/PageCTA";
+import { TeamSection } from "@/components/TeamSection";
 import { getDictionary } from "@/lib/i18n";
 import { LOCALES, isLocale, localePath } from "@/lib/i18n/config";
 
@@ -113,6 +114,8 @@ export default async function AboutPage({
             </div>
           </Container>
         </section>
+
+        <TeamSection t={t} lang={lang} />
 
         <PageCTA t={t} lang={lang} title={t.about.ctaTitle} />
       </main>

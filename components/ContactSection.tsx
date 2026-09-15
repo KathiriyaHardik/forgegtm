@@ -1,7 +1,8 @@
+import { ArrowRight } from "lucide-react";
 import { Container } from "./ui/Container";
 import { Marquee } from "./ui/Marquee";
 import { Reveal } from "./ui/Reveal";
-import { ContactForm } from "./ContactForm";
+import { StrategyCallModal } from "./StrategyCallModal";
 import type { Dictionary } from "@/lib/i18n/en";
 import type { Locale } from "@/lib/i18n/config";
 
@@ -61,11 +62,39 @@ export function ContactSection({ t, lang }: { t: Dictionary; lang: Locale }) {
             </Reveal>
           </div>
 
+          {/*
+            The form itself lives in the modal. This panel is the trigger, and
+            it is a plain #contact link so it behaves exactly like every other
+            "Book a Strategy Call" call to action on the site — the modal keys
+            off the hash, so nothing here needs to know it exists.
+          */}
           <Reveal delay={120}>
-            <ContactForm t={t} lang={lang} />
+            <div className="rounded-panel border border-dark-border bg-dark-2 p-8 md:p-10">
+              {/* Deliberately does not repeat the modal's headline — the panel
+                  is a door, not a second version of the page's message. */}
+              <p className="text-eyebrow text-accent">{t.contact.form.modalEyebrow}</p>
+              <p className="text-lead mt-4 max-w-sm text-white/70">
+                {t.contact.form.triggerLead}
+              </p>
+
+              <a
+                href="#contact"
+                className="group ease-premium mt-8 inline-flex items-center justify-center gap-2 rounded-full bg-white px-7 py-4 text-[14.5px] font-semibold whitespace-nowrap text-ink transition-all duration-300 hover:-translate-y-px hover:shadow-[0_16px_34px_-16px_rgba(255,255,255,0.45)] focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-dark focus-visible:outline-none"
+              >
+                <span>{t.cta.bookCall}</span>
+                <ArrowRight
+                  size={16}
+                  className="ease-premium transition-transform duration-300 group-hover:translate-x-1"
+                />
+              </a>
+
+              <p className="text-meta mt-5 text-white/35">{t.contact.form.reassurance}</p>
+            </div>
           </Reveal>
         </div>
       </Container>
+
+      <StrategyCallModal t={t} lang={lang} />
 
       <div className="relative border-t border-dark-border py-6">
         <Marquee durationSeconds={40} repeat={5}>

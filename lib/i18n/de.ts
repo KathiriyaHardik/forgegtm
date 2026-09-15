@@ -367,6 +367,11 @@ export const de: Dictionary = {
       "Ihr Stack, nicht unserer — wir bauen auf dem CRM und den Tools auf, die Ihr Team bereits nutzt.",
       "Schriftliche Dokumentation für jedes System, das wir live stellen, laufend übergeben.",
     ],
+    teamTitle: "Mit wem Sie zusammenarbeiten würden.",
+    teamLead:
+      "Outbound ist eine Zusammenarbeit im Tagesgeschäft — da lohnt es sich zu wissen, wer die Arbeit tatsächlich macht.",
+    teamPlaceholder: "Profil noch nicht verfasst",
+    teamLinkedin: "Auf LinkedIn vernetzen",
     ctaTitle: "Möchten Sie sehen, wie das für Ihr Team aussehen würde?",
   },
 
@@ -421,24 +426,29 @@ export const de: Dictionary = {
       company: "Unternehmen",
       website: "Website",
       jobTitle: "Position",
-      budget: "Monatliches Outbound-Budget",
+      budget: "Budget",
       optional: "(optional)",
       budgetPlaceholder: "Bitte wählen",
-      goal: "Was möchten Sie verbessern?",
-      goalPlaceholder: "Bitte wählen, was am wichtigsten ist",
+      goal: "Was möchten Sie wachsen lassen?",
+      goalPlaceholder: "Ein paar Zeilen zu Ihren Zielen …",
       message: "Gibt es noch etwas, das wir wissen sollten?",
       namePlaceholder: "Max Mustermann",
       emailPlaceholder: "max@unternehmen.de",
-      companyPlaceholder: "Acme GmbH",
+      companyPlaceholder: "Firma GmbH",
       websitePlaceholder: "acme.de",
       jobTitlePlaceholder: "Head of Growth",
       messagePlaceholder:
         "Aktuelles Outbound-Setup, Zielmärkte, was Sie bereits versucht haben …",
-      submit: "Strategiegespräch buchen",
+      submit: "Anfrage senden",
       submitting: "Wird gesendet …",
       reassurance: "Unverbindlich. Wir antworten innerhalb eines Werktags.",
       freeEmailNotice:
         "Mit einer geschäftlichen Adresse können wir uns besser vorbereiten — private Adressen sind aber ebenfalls in Ordnung.",
+      modalEyebrow: "Strategiegespräch buchen",
+      triggerLead:
+        "Sagen Sie uns, was Sie wachsen lassen möchten. Wir melden uns innerhalb eines Werktags.",
+      modalTitle: "Lassen Sie uns Ihr Wachstum aufbauen.",
+      close: "Schließen",
       successTitle: "Anfrage erhalten.",
       successBody:
         "Vielen Dank — Ihre Angaben sind bei uns eingegangen. Ein Mitglied des ForgeGTM-Teams meldet sich innerhalb eines Werktags zur Terminabstimmung.",
@@ -446,13 +456,7 @@ export const de: Dictionary = {
         "Nichts im Posteingang? Prüfen Sie den Spam-Ordner oder schreiben Sie uns direkt an",
       successNoEmail:
         "Die Bestätigungs-E-Mail konnte nicht versendet werden — Ihre Anfrage ist aber bei uns eingegangen und wir melden uns. Sie erreichen uns auch direkt unter",
-      budgetOptions: [
-        "Unter 5.000 € / Monat",
-        "5.000 – 10.000 € / Monat",
-        "10.000 – 25.000 € / Monat",
-        "Über 25.000 € / Monat",
-        "Noch unklar",
-      ],
+      budgetOptions: ["< 10.000 €", "10.000 – 30.000 €", "30.000 – 75.000 €", "75.000 €+"],
       goalOptions: [
         "Outbound-System von Grund auf aufbauen",
         "Zustellbarkeit und E-Mail-Infrastruktur in Ordnung bringen",
@@ -474,7 +478,8 @@ export const de: Dictionary = {
         websiteLong: "Diese URL ist zu lang.",
         jobTitleLong: "Diese Positionsbezeichnung ist zu lang.",
         optionInvalid: "Bitte wählen Sie eine der angebotenen Optionen.",
-        goalRequired: "Bitte teilen Sie uns mit, was Sie verbessern möchten.",
+        goalRequired: "Sagen Sie uns, was Sie wachsen lassen möchten.",
+        goalLong: "Bitte beschränken Sie sich auf 4.000 Zeichen.",
         messageLong: "Bitte beschränken Sie sich auf 4.000 Zeichen.",
         summary: "Bitte prüfen Sie die markierten Felder und versuchen Sie es erneut.",
         notConfigured:

@@ -35,6 +35,7 @@ export type ErrorKey =
   | "jobTitleLong"
   | "optionInvalid"
   | "goalRequired"
+  | "goalLong"
   | "messageLong";
 
 export type FieldErrors = Partial<Record<keyof StrategyCallFields, ErrorKey>>;
@@ -46,6 +47,7 @@ const MAX = {
   company: 160,
   website: 200,
   jobTitle: 120,
+  goal: 4000,
   message: 4000,
 } as const;
 
@@ -84,7 +86,7 @@ export function normaliseWebsite(value: string) {
 
 export function validateStrategyCall(
   fields: StrategyCallFields,
-  options: { budgetOptions: readonly string[]; goalOptions: readonly string[] }
+  options: { budgetOptions: readonly string[] }
 ): FieldErrors {
   const errors: FieldErrors = {};
 
@@ -97,9 +99,10 @@ export function validateStrategyCall(
   else if (!EMAIL_PATTERN.test(email)) errors.email = "emailInvalid";
   else if (email.length > MAX.email) errors.email = "emailLong";
 
+  // Optional on the modal form. Still length-checked, because a direct POST
+  // can send anything and the column is varchar(160).
   const company = fields.company.trim();
-  if (!company) errors.company = "company";
-  else if (company.length > MAX.company) errors.company = "companyLong";
+  if (company.length > MAX.company) errors.company = "companyLong";
 
   const website = fields.website.trim();
   if (website) {
@@ -123,8 +126,11 @@ export function validateStrategyCall(
     errors.budget = "optionInvalid";
   }
 
-  if (!fields.goal.trim()) errors.goal = "goalRequired";
-  else if (!options.goalOptions.includes(fields.goal)) errors.goal = "optionInvalid";
+  // Free prose now, not one of a fixed set: the form asks what the visitor is
+  // trying to grow, and the useful answers do not fit a dropdown.
+  const goal = fields.goal.trim();
+  if (!goal) errors.goal = "goalRequired";
+  else if (goal.length > MAX.goal) errors.goal = "goalLong";
 
   if (fields.message.trim().length > MAX.message) errors.message = "messageLong";
 
