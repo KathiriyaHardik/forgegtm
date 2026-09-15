@@ -89,7 +89,7 @@ Gmail will not accept your normal password from an application. You need an
 3. Put it in `.env.local`:
 
    ```bash
-   SMTP_USER=contact.forgegtm@gmail.com
+   SMTP_USER=connect.forgegtm@gmail.com
    SMTP_PASSWORD=<the 16 characters>
    ```
 
@@ -98,7 +98,7 @@ Gmail will not accept your normal password from an application. You need an
 Gmail's limit is roughly 500 messages a day, far above lead-alert volume. The
 envelope sender is the authenticated mailbox — Gmail rewrites a mismatched
 `From` regardless, and forging one is what gets mail rejected — so the alert
-arrives as `ForgeGTM Website <contact.forgegtm@gmail.com>`.
+arrives as `ForgeGTM Website <connect.forgegtm@gmail.com>`.
 
 ### Option 2 — Resend (once you own a domain)
 
@@ -195,12 +195,26 @@ from strategy_call_requests order by created_at desc;
 6. Confirm the row landed with the query above.
 7. Check `/admin` — the lead is listed with two green email badges.
 8. Check the prospect address received the branded confirmation, and
-   `contact.forgegtm@gmail.com` received the alert.
+   `connect.forgegtm@gmail.com` received the alert.
 
 Switch to DE first to confirm validation messages come back in German.
 
 To check the failure path, unset `DATABASE_URL` and restart: the form must show
 an error and point at email — never a success message.
+
+### Checking the Gmail credentials
+
+`scripts/check-email.mjs` does a real SMTP login and sends one test message,
+so a broken App Password is caught before a lead depends on it:
+
+```bash
+node scripts/check-email.mjs
+```
+
+It reads `SMTP_PASSWORD` from `.env.local` and never prints it. A wrong-length
+value or a rejected login is reported with the likely cause — most often the
+account password rather than an App Password, or an App Password generated on
+a different Google account than `SMTP_USER`.
 
 ### Testing the lead alert without sending real mail
 
@@ -213,7 +227,7 @@ sink. `db/schema.sql` must already be applied and `DATABASE_URL` set.
 
 ```bash
 SMTP_HOST=127.0.0.1 SMTP_PORT=1025 \
-SMTP_USER=contact.forgegtm@gmail.com SMTP_PASSWORD=anything \
+SMTP_USER=connect.forgegtm@gmail.com SMTP_PASSWORD=anything \
 DATABASE_URL=... pnpm dev
 ```
 
@@ -221,7 +235,7 @@ Any SMTP sink listening on 1025 works. Submit the form, then confirm:
 
 - the row is in `strategy_call_requests`,
 - `notified_at` is set,
-- the captured message has `To: contact.forgegtm@gmail.com` and `Reply-To:`
+- the captured message has `To: connect.forgegtm@gmail.com` and `Reply-To:`
   the prospect's address.
 
 To check the failure path, stop the sink and submit again. The visitor must

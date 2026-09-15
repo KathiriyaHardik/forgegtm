@@ -29,7 +29,7 @@ export function absoluteUrl(path = "") {
  * reference it with an `{email}` placeholder instead of embedding a copy per
  * language — otherwise changing it means editing every translation.
  */
-export const CONTACT_EMAIL = "contact.forgegtm@gmail.com";
+export const CONTACT_EMAIL = "connect.forgegtm@gmail.com";
 
 /** Substitutes `{email}` in a dictionary string with the contact address. */
 export function withContactEmail(text: string) {
