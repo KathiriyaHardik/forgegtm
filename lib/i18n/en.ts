@@ -415,24 +415,27 @@ export const en = {
       company: "Company",
       website: "Website",
       jobTitle: "Job title",
-      budget: "Monthly outbound budget",
+      budget: "Budget",
       optional: "(optional)",
       budgetPlaceholder: "Select a range",
-      goal: "What are you looking to improve?",
-      goalPlaceholder: "Select what matters most",
+      goal: "What are you trying to grow?",
+      goalPlaceholder: "A few lines about your goals...",
       message: "Anything else we should know?",
       namePlaceholder: "Jane Doe",
       emailPlaceholder: "jane@company.com",
-      companyPlaceholder: "Acme GmbH",
+      companyPlaceholder: "Company GmbH",
       websitePlaceholder: "acme.com",
       jobTitlePlaceholder: "Head of Growth",
       messagePlaceholder:
         "Current outbound setup, target markets, what you've already tried…",
-      submit: "Book a Strategy Call",
+      submit: "Send request",
       submitting: "Sending…",
       reassurance: "No obligation. We reply within one business day.",
       freeEmailNotice:
         "A work address helps us prepare properly — personal ones are fine too.",
+      modalEyebrow: "Book a strategy call",
+      modalTitle: "Let's engineer your growth.",
+      close: "Close",
       successTitle: "Request received.",
       successBody:
         "Thanks — we've got your details. A member of the ForgeGTM team will reply within one business day to arrange your strategy call.",
@@ -441,13 +444,10 @@ export const en = {
       // send. It must not imply one is on its way.
       successNoEmail:
         "We couldn't send your confirmation email, but your request did reach us and we'll be in touch. You can also reach us directly at",
-      budgetOptions: [
-        "Under €5k / month",
-        "€5k – €10k / month",
-        "€10k – €25k / month",
-        "€25k+ / month",
-        "Not sure yet",
-      ],
+      // Shown as selectable pills in the modal. The stored value is this
+      // exact string, and the server checks membership, so editing an entry
+      // here changes what is accepted — old rows keep their old wording.
+      budgetOptions: ["< €10k", "€10k – €30k", "€30k – €75k", "€75k+"],
       goalOptions: [
         "Build an outbound system from scratch",
         "Fix deliverability and email infrastructure",
@@ -469,7 +469,8 @@ export const en = {
         websiteLong: "That URL is too long.",
         jobTitleLong: "That job title is too long.",
         optionInvalid: "Please choose one of the listed options.",
-        goalRequired: "Let us know what you'd like to improve.",
+        goalRequired: "Tell us what you're trying to grow.",
+        goalLong: "Please keep this under 4,000 characters.",
         messageLong: "Please keep this under 4,000 characters.",
         summary: "Please check the highlighted fields and try again.",
         notConfigured:

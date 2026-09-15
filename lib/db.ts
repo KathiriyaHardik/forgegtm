@@ -42,7 +42,8 @@ function getSql(): postgres.Sql {
 export type StrategyCallRecord = {
   name: string;
   email: string;
-  company: string;
+  /** Optional on the form, so nullable here and in the column. */
+  company: string | null;
   website: string | null;
   jobTitle: string | null;
   budget: string | null;
@@ -103,7 +104,7 @@ export type StoredLead = {
   createdAt: Date;
   name: string;
   email: string;
-  company: string;
+  company: string | null;
   website: string | null;
   jobTitle: string | null;
   budget: string | null;

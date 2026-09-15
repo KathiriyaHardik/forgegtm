@@ -64,7 +64,10 @@ function LeadCard({ lead }: { lead: StoredLead }) {
         <div>
           <h2 className="text-[17px] font-semibold tracking-[-0.02em] text-ink">
             {lead.name}
-            <span className="font-normal text-muted"> · {lead.company}</span>
+            {/* Company is optional on the form, so the separator goes with it. */}
+            {lead.company && (
+              <span className="font-normal text-muted"> · {lead.company}</span>
+            )}
           </h2>
           {/* Clickable so a reply is one action away. */}
           <a

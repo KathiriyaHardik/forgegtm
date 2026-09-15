@@ -52,7 +52,6 @@ export async function submitStrategyCall(
   const fields = readStrategyCallFields(formData);
   const errors = validateStrategyCall(fields, {
     budgetOptions: t.contact.form.budgetOptions,
-    goalOptions: t.contact.form.goalOptions,
   });
 
   if (Object.keys(errors).length > 0) {
@@ -62,7 +61,7 @@ export async function submitStrategyCall(
   const record = {
     name: fields.name.trim(),
     email: fields.email.trim().toLowerCase(),
-    company: fields.company.trim(),
+    company: fields.company.trim() || null,
     website: fields.website.trim() ? normaliseWebsite(fields.website) : null,
     jobTitle: fields.jobTitle.trim() || null,
     budget: fields.budget || null,

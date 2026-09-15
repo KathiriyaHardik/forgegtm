@@ -34,7 +34,7 @@ const RESEND_ENDPOINT =
 export type LeadNotification = {
   name: string;
   email: string;
-  company: string;
+  company: string | null;
   website: string | null;
   jobTitle: string | null;
   budget: string | null;
@@ -87,7 +87,7 @@ function buildHtml(lead: LeadNotification) {
       <tr>
         <td style="padding:28px">
           <div style="font-size:19px;font-weight:600;color:#0a0a0c;letter-spacing:-0.3px">
-            ${escapeHtml(lead.company)} &middot; ${escapeHtml(lead.name)}
+            ${lead.company ? `${escapeHtml(lead.company)} &middot; ` : ""}${escapeHtml(lead.name)}
           </div>
           <div style="font-size:13px;color:#62666e;margin-top:6px">${escapeHtml(timestamp)}</div>
 
@@ -132,7 +132,7 @@ function buildText(lead: LeadNotification) {
     ``,
     `Name:        ${lead.name}`,
     `Work email:  ${lead.email}`,
-    `Company:     ${lead.company}`,
+    `Company:     ${lead.company ?? "—"}`,
     `Website:     ${lead.website ?? "—"}`,
     `Job title:   ${lead.jobTitle ?? "—"}`,
     `Budget:      ${lead.budget ?? "—"}`,

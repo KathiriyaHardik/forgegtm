@@ -62,3 +62,16 @@ alter table strategy_call_requests
 --   where confirmation_sent_at is null order by created_at desc;
 alter table strategy_call_requests
   add column if not exists confirmation_sent_at timestamptz;
+
+-- The strategy-call form moved to a modal that asks one open question —
+-- "what are you trying to grow?" — instead of a fixed dropdown, so `goal`
+-- holds a few sentences rather than one of six preset strings. varchar(120)
+-- was sized for the dropdown and truncates real answers.
+alter table strategy_call_requests
+  alter column goal type text;
+
+-- Company is optional on the new form: asking for it is useful, requiring it
+-- costs completions from founders and independents who do not think of
+-- themselves as one. Existing rows are unaffected.
+alter table strategy_call_requests
+  alter column company drop not null;
