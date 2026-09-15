@@ -434,6 +434,8 @@ export const en = {
       freeEmailNotice:
         "A work address helps us prepare properly — personal ones are fine too.",
       modalEyebrow: "Book a strategy call",
+      triggerLead:
+        "Tell us what you're trying to grow. We'll come back within one business day.",
       modalTitle: "Let's engineer your growth.",
       close: "Close",
       successTitle: "Request received.",

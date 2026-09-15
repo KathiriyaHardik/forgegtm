@@ -70,12 +70,11 @@ export function ContactSection({ t, lang }: { t: Dictionary; lang: Locale }) {
           */}
           <Reveal delay={120}>
             <div className="rounded-panel border border-dark-border bg-dark-2 p-8 md:p-10">
+              {/* Deliberately does not repeat the modal's headline — the panel
+                  is a door, not a second version of the page's message. */}
               <p className="text-eyebrow text-accent">{t.contact.form.modalEyebrow}</p>
-              <h3 className="mt-4 max-w-[16ch] text-[26px] leading-[1.12] font-semibold tracking-[-0.03em] text-balance text-white md:text-[32px]">
-                {t.contact.form.modalTitle}
-              </h3>
-              <p className="text-body mt-4 max-w-sm text-white/55">
-                {t.contact.body}
+              <p className="text-lead mt-4 max-w-sm text-white/70">
+                {t.contact.form.triggerLead}
               </p>
 
               <a

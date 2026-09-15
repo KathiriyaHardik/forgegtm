@@ -440,6 +440,8 @@ export const de: Dictionary = {
       freeEmailNotice:
         "Mit einer geschäftlichen Adresse können wir uns besser vorbereiten — private Adressen sind aber ebenfalls in Ordnung.",
       modalEyebrow: "Strategiegespräch buchen",
+      triggerLead:
+        "Sagen Sie uns, was Sie wachsen lassen möchten. Wir melden uns innerhalb eines Werktags.",
       modalTitle: "Lassen Sie uns Ihr Wachstum aufbauen.",
       close: "Schließen",
       successTitle: "Anfrage erhalten.",

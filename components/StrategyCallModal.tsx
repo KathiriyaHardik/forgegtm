@@ -83,9 +83,58 @@ export function StrategyCallModal({ t, lang }: { t: Dictionary; lang: Locale }) 
     dialogRef.current?.close();
   }, []);
 
-  // Hash in, modal open. Cleared again on close so the same link re-opens it.
+  /**
+   * Opening is driven by clicks on any link to #contact, intercepted in the
+   * capture phase before Next's router sees them.
+   *
+   * Listening for `hashchange` alone is not enough: the navbar, hero, footer
+   * and page CTAs are next/link, which navigates with pushState, and pushState
+   * does not fire a hashchange event. Only the plain <a> in the FAQ would ever
+   * have triggered it. Intercepting the click covers both kinds of link and
+   * still leaves every call to action untouched.
+   */
   useEffect(() => {
-    const sync = () => setOpen(window.location.hash === HASH);
+    const onClick = (event: MouseEvent) => {
+      // Leave modified clicks alone — they mean "open in a new tab/window".
+      if (
+        event.defaultPrevented ||
+        event.button !== 0 ||
+        event.metaKey ||
+        event.ctrlKey ||
+        event.shiftKey ||
+        event.altKey
+      ) {
+        return;
+      }
+
+      const anchor = (event.target as HTMLElement | null)?.closest?.("a");
+      if (!anchor) return;
+
+      // Resolve against the current URL so "#contact" and "/en/#contact" both
+      // match, and anything off-site or pointing elsewhere is ignored.
+      let url: URL;
+      try {
+        url = new URL(anchor.href, window.location.href);
+      } catch {
+        return;
+      }
+      if (url.origin !== window.location.origin || url.hash !== HASH) return;
+
+      event.preventDefault();
+      setOpen(true);
+    };
+
+    // Capture phase: this has to run before next/link's own click handler.
+    document.addEventListener("click", onClick, true);
+    return () => document.removeEventListener("click", onClick, true);
+  }, []);
+
+  // A direct link to /en#contact should still open it on arrival, and manual
+  // hash edits should still work.
+  useEffect(() => {
+    const sync = () => {
+      if (window.location.hash === HASH) setOpen(true);
+    };
     sync();
     window.addEventListener("hashchange", sync);
     return () => window.removeEventListener("hashchange", sync);
@@ -145,7 +194,7 @@ export function StrategyCallModal({ t, lang }: { t: Dictionary; lang: Locale }) 
           </p>
           <h2
             id={`${uid}-title`}
-            className="mt-3 max-w-[16ch] text-[30px] leading-[1.06] font-bold tracking-[-0.035em] text-balance text-ink sm:text-[38px] md:text-[48px]"
+            className="mt-2.5 pr-12 text-[28px] leading-[1.08] font-bold tracking-[-0.035em] text-ink sm:text-[36px] md:text-[46px]"
           >
             {f.modalTitle}
           </h2>
