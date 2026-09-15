@@ -51,6 +51,24 @@ export const TEAM: TeamMember[] = [
     linkedin: null,
     placeholder: true,
   },
+  {
+    id: "second",
+    // Intentionally not a real-sounding name. A placeholder that reads like a
+    // person is the kind that survives to production unnoticed; this one
+    // cannot be mistaken for a claim about anybody.
+    name: "Second team member",
+    role: {
+      en: "Role",
+      de: "Position",
+    },
+    bio: {
+      en: "Placeholder text for a second profile. Replace it with a real background, or delete this entry from TEAM if ForgeGTM is a one-person agency for now — the section renders any number of people, including one.",
+      de: "Platzhaltertext für ein zweites Profil. Ersetzen Sie ihn durch einen echten Werdegang — oder löschen Sie diesen Eintrag aus TEAM, falls ForgeGTM vorerst aus einer Person besteht. Der Abschnitt funktioniert mit beliebig vielen Personen, auch mit einer.",
+    },
+    photo: null,
+    linkedin: null,
+    placeholder: true,
+  },
 ];
 
 /** Initials for the avatar fallback, e.g. "Hardik Kathiriya" -> "HK". */

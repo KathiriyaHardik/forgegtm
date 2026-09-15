@@ -43,7 +43,10 @@ function Avatar({ name, photo }: { name: string; photo: string | null }) {
             "radial-gradient(circle at 28% 24%, rgba(255,255,255,0.16), transparent 58%)",
         }}
       />
-      <span className="text-numeric relative text-[15%] leading-none font-medium tracking-[0.08em] text-white/70">
+      {/* A percentage font-size resolves against the inherited size, not the
+          box, so it rendered a few pixels tall. Fixed sizes, stepped with the
+          avatar. */}
+      <span className="text-numeric relative text-[34px] leading-none font-medium tracking-[0.08em] text-white/70 sm:text-[40px]">
         {initials(name)}
       </span>
     </div>
