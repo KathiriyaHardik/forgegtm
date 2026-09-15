@@ -367,6 +367,11 @@ export const de: Dictionary = {
       "Ihr Stack, nicht unserer — wir bauen auf dem CRM und den Tools auf, die Ihr Team bereits nutzt.",
       "Schriftliche Dokumentation für jedes System, das wir live stellen, laufend übergeben.",
     ],
+    teamTitle: "Mit wem Sie zusammenarbeiten würden.",
+    teamLead:
+      "Outbound ist eine Zusammenarbeit im Tagesgeschäft — da lohnt es sich zu wissen, wer die Arbeit tatsächlich macht.",
+    teamPlaceholder: "Profil noch nicht verfasst",
+    teamLinkedin: "Auf LinkedIn vernetzen",
     ctaTitle: "Möchten Sie sehen, wie das für Ihr Team aussehen würde?",
   },
 

@@ -116,8 +116,23 @@ export type StoredLead = {
   confirmationSentAt: Date | null;
 };
 
+/** Total rows, so the dashboard can say when it is showing only a page. */
+export async function countStrategyCalls(): Promise<number> {
+  const sql = getSql();
+  const [row] = await sql<{ count: string }[]>`
+    select count(*)::text as count from strategy_call_requests
+  `;
+  return Number(row.count);
+}
+
 /**
- * Reads the lead queue, newest first, for the admin dashboard.
+ * Reads the lead queue, newest first.
+ *
+ * `limit` is capped rather than unbounded so the dashboard cannot be made to
+ * render tens of thousands of rows, but the caller can raise it — the CSV
+ * export passes a much larger value, since a truncated export is worse than a
+ * slow one. Pair it with `countStrategyCalls()` to tell the difference between
+ * "that is everything" and "that is the first page".
  *
  * Throws `DatabaseNotConfiguredError` when DATABASE_URL is unset so the page
  * can say so plainly instead of rendering an empty table that looks like
