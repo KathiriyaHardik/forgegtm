@@ -33,6 +33,7 @@ export const de: Dictionary = {
     buildPipeline: "Gemeinsam Ihre Pipeline aufbauen",
     startConversation: "Gespräch beginnen",
     seeHowItWorks: "So arbeiten wir",
+    exploreWork: "Unsere Arbeit ansehen",
     readCaseStudy: "Case Study lesen",
     readArticle: "Artikel lesen",
     allCaseStudies: "Alle Case Studies",
@@ -42,10 +43,10 @@ export const de: Dictionary = {
   },
 
   hero: {
-    eyebrow: "B2B-Outbound & Go-to-Market",
-    headlineLead: "Qualifizierte Pipeline durch",
-    headlineAccent: "Outbound-Systeme.",
-    body: "ForgeGTM baut und betreibt Outbound für B2B-Unternehmen — Targeting, Infrastruktur, Messaging und Kampagnen. Damit Ihr Vertrieb Zeit in qualifizierten Gesprächen verbringt statt im Listenaufbau.",
+    eyebrow: "B2B GO-TO-MARKET & RevOps",
+    headlineLead: "Umsatzwachstum, entwickelt für den modernen",
+    headlineAccent: "Markt.",
+    body: "Wir unterstützen ambitionierte Unternehmen dabei, intelligente Growth-Systeme aufzubauen — mit Strategie, Automatisierung, Outbound-Execution und skalierbarer Infrastruktur.",
     qualifiers: [
       "B2B-SaaS & Technologie",
       "Series A–C",
@@ -56,7 +57,6 @@ export const de: Dictionary = {
 
   logos: {
     label: "Entwickelt für Teams wie diese",
-    placeholder: "Platzhalter-Marken",
   },
 
   commitments: {
@@ -71,31 +71,32 @@ export const de: Dictionary = {
 
   problem: {
     eyebrow: "Das Problem",
-    titleMuted: "Outbound scheitert selten am Aufwand.",
-    titleRest: "Es scheitert am System dahinter.",
-    aside:
-      "Drei Ursachen erklären die meisten schwachen Outbound-Ergebnisse. Jede lässt sich beheben — aber nur, wenn man sie als Infrastrukturthema behandelt und nicht als Textproblem.",
+    titleLead: "Die meisten Unternehmen haben kein Wachstumsproblem.",
+    titleTrail: "Sie haben ein Systemproblem.",
     items: [
       {
         index: "01",
-        title: "Reichweite ohne Targeting",
+        title: "Wachstum wirkt zufällig",
         description:
-          "Eine gekaufte Liste mit 40.000 Kontakten wird angeschrieben, weil sie vorhanden ist. Die Antwortraten brechen ein, und die Marke verbrennt genau in den Accounts, auf die es ankam.",
-        symptom: "Reichweite gemessen statt Relevanz",
+          "Umsatz kommt in unvorhersehbaren Ausschlägen. Ohne System beginnt jedes Quartal bei null, und Skalierung wird zum Ratespiel.",
       },
       {
         index: "02",
-        title: "Messaging, das nach Vorlage klingt",
+        title: "Tools sprechen nicht miteinander",
         description:
-          "Vorname und Firmenname in denselben Absatz eingefügt, den alle anderen ebenfalls versenden. Einkäufer erkennen das Muster in Sekundenbruchteilen und löschen die Mail.",
-        symptom: "Personalisierung per Platzhalter",
+          "Ein Dutzend unverbundener Anwendungen, manuelle Übergaben und Daten in Silos. Teams verbringen mehr Zeit mit Abläufen als mit Kunden.",
       },
       {
         index: "03",
-        title: "Zustellbarkeit versagt unbemerkt",
+        title: "Outbound kommt nicht an",
         description:
-          "Im Dashboard sieht alles sauber aus, während die Mails im Spam landen. Nichts wirkt defekt, weil genau die Kennzahl ausfällt, die niemand beobachtet.",
-        symptom: "Versendet, aber nie gesehen",
+          "Generische Sequenzen, niedrige Antwortraten und verbrannte Domains. Der Markt ist lauter denn je, und ungezielter Aufwand verpufft.",
+      },
+      {
+        index: "04",
+        title: "KI bleibt ein Schlagwort",
+        description:
+          "Alle sprechen über Automatisierung und KI, aber kaum jemand übersetzt sie in messbare, sich verstärkende Umsatz-Infrastruktur.",
       },
     ],
   },

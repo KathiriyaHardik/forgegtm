@@ -8,51 +8,46 @@ import { localePath, type Locale } from "@/lib/i18n/config";
 
 export function Hero({ t, lang }: { t: Dictionary; lang: Locale }) {
   return (
-    <section className="relative overflow-hidden pt-20 pb-20 md:pt-28 md:pb-28">
-      <div aria-hidden className="grid-lines pointer-events-none absolute inset-0" />
+    <section className="relative overflow-hidden pt-16 pb-20 md:pt-24 md:pb-28">
+      {/* Two background layers: the wash lights the fold, the cells give it
+          structure. Both are decorative and sit behind the content. */}
+      <div aria-hidden className="hero-wash pointer-events-none absolute inset-0" />
+      <div aria-hidden className="grid-cells pointer-events-none absolute inset-0" />
 
       <Container className="relative">
         <Reveal>
-          <Eyebrow>{t.hero.eyebrow}</Eyebrow>
+          <Eyebrow variant="pill">{t.hero.eyebrow}</Eyebrow>
         </Reveal>
 
         <Reveal delay={70}>
-          <h1 className="text-display mt-6 max-w-[16ch] text-balance text-ink">
+          <h1 className="text-display mt-8 max-w-[15ch] text-balance text-ink">
             {t.hero.headlineLead}{" "}
             <span className="text-accent">{t.hero.headlineAccent}</span>
           </h1>
         </Reveal>
 
         <Reveal delay={140}>
-          <p className="text-lead mt-7 max-w-[54ch] text-muted">{t.hero.body}</p>
+          <p className="text-lead mt-7 max-w-[56ch] text-muted">{t.hero.body}</p>
         </Reveal>
 
         <Reveal delay={210}>
-          <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4">
+          <div className="mt-10 flex flex-wrap items-center gap-3">
             <Button href={`${localePath(lang)}/#contact`} variant="primary">
               {t.cta.bookCall}
             </Button>
-            <Button href={`${localePath(lang)}/#process`} variant="link">
-              {t.cta.seeHowItWorks}
+            {/* Goes to the case studies rather than further down this page, so
+                it takes the up-right arrow instead of the forward one. */}
+            <Button
+              href={localePath(lang, "/case-studies")}
+              variant="secondary"
+              icon="up-right"
+            >
+              {t.cta.exploreWork}
             </Button>
           </div>
         </Reveal>
 
-        <Reveal delay={260}>
-          <ul className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-2">
-            {t.hero.qualifiers.map((qualifier) => (
-              <li
-                key={qualifier}
-                className="text-meta flex items-center gap-2.5 text-muted-soft"
-              >
-                <span aria-hidden className="h-1 w-1 rounded-full bg-muted-soft" />
-                {qualifier}
-              </li>
-            ))}
-          </ul>
-        </Reveal>
-
-        <Reveal delay={320}>
+        <Reveal delay={270}>
           <HeroVisual caption={t.hero.visualCaption} className="mt-16 md:mt-20" />
         </Reveal>
       </Container>

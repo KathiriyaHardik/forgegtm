@@ -1,6 +1,6 @@
 import { Container } from "./ui/Container";
+import { Marquee } from "./ui/Marquee";
 import { Reveal } from "./ui/Reveal";
-import { PlaceholderBadge } from "./ui/PlaceholderBadge";
 import type { Dictionary } from "@/lib/i18n/en";
 
 /**
@@ -8,8 +8,14 @@ import type { Dictionary } from "@/lib/i18n/en";
  * company's marks are used without permission and nothing implies a client
  * relationship that does not exist.
  *
+ * The heading — "Built for teams like these" — is what keeps this honest now
+ * that the strip scrolls like a client list: it describes the kind of company
+ * ForgeGTM serves, and claims nothing about who has hired it. Rewording it to
+ * "Trusted by..." would turn these invented names into a false claim, so real
+ * logos have to arrive in the same commit as that change.
+ *
  * To use real logos: replace `glyph` + `name` with an <Image> of the supplied
- * SVG, change the heading to a genuine trust line, and delete the badge.
+ * SVG, and only then change the heading to a genuine trust line.
  */
 const BRANDS = [
   {
@@ -73,30 +79,33 @@ export function LogoStrip({ t }: { t: Dictionary }) {
           <p className="text-eyebrow text-center text-muted-soft">{t.logos.label}</p>
         </Reveal>
 
-        <Reveal delay={70}>
-          <ul className="mt-7 flex flex-wrap items-center justify-center gap-x-10 gap-y-5">
+      </Container>
+
+      {/*
+        Full-bleed, so names travel the whole viewport rather than stopping at
+        the container gutter — a strip that visibly starts and ends mid-air
+        reads as broken rather than continuous. Marquee handles the seamless
+        loop, the hover pause and prefers-reduced-motion already.
+      */}
+      <Reveal delay={70}>
+        <Marquee className="mt-7" durationSeconds={38} repeat={3}>
+          <ul className="flex shrink-0 items-center gap-x-14 pr-14">
             {BRANDS.map((brand) => (
               <li
                 key={brand.name}
-                className="flex items-center gap-2.5 text-ink/30 transition-colors duration-300 hover:text-ink/55"
+                className="flex items-center gap-3 text-ink/30 transition-colors duration-300 hover:text-ink/55"
               >
-                <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden>
+                <svg width="20" height="20" viewBox="0 0 18 18" aria-hidden>
                   {brand.glyph}
                 </svg>
-                <span className="text-[15px] font-semibold tracking-[-0.02em]">
+                <span className="text-[17px] font-semibold tracking-[-0.02em] whitespace-nowrap md:text-[19px]">
                   {brand.name}
                 </span>
               </li>
             ))}
           </ul>
-        </Reveal>
-
-        <Reveal delay={140}>
-          <div className="mt-7 flex justify-center">
-            <PlaceholderBadge>{t.logos.placeholder}</PlaceholderBadge>
-          </div>
-        </Reveal>
-      </Container>
+        </Marquee>
+      </Reveal>
     </section>
   );
 }

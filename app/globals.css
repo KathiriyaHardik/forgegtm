@@ -104,10 +104,10 @@ body {
    ========================================================================== */
 @layer components {
   .text-display {
-    font-size: clamp(2.75rem, 6vw, 4.5rem);
-    line-height: 1.02;
-    letter-spacing: -0.035em;
-    font-weight: 600;
+    font-size: clamp(2.875rem, 6.6vw, 5.25rem);
+    line-height: 1.04;
+    letter-spacing: -0.042em;
+    font-weight: 700;
   }
 
   .text-h2 {
@@ -195,6 +195,31 @@ body {
   );
 }
 
+/* --------------------------------------------------------------------------
+   Hero-only background.
+
+   `.grid-cells` draws both axes, unlike the site-wide `.grid-lines`, and fades
+   out towards the bottom so the grid never collides with the content beneath
+   the fold. `.hero-wash` lifts the right-hand side with a faint accent bloom
+   so the fold reads as lit rather than flat white.
+   -------------------------------------------------------------------------- */
+.hero-wash {
+  background:
+    radial-gradient(74% 86% at 86% 26%, rgba(45, 94, 245, 0.11), transparent 68%),
+    radial-gradient(56% 70% at 12% 4%, rgba(255, 255, 255, 0.95), transparent 62%),
+    linear-gradient(180deg, #ffffff 0%, #f6f7fc 100%);
+}
+
+.grid-cells {
+  background-image:
+    linear-gradient(to right, rgba(10, 10, 13, 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(10, 10, 13, 0.045) 1px, transparent 1px);
+  background-size: 88px 88px;
+  background-position: center top;
+  -webkit-mask-image: linear-gradient(to bottom, #000 58%, transparent 95%);
+  mask-image: linear-gradient(to bottom, #000 58%, transparent 95%);
+}
+
 /* ==========================================================================
    Motion
    ========================================================================== */
@@ -209,6 +234,19 @@ body {
 
 .animate-marquee {
   animation: marquee 45s linear infinite;
+}
+
+/*
+ * Pause on hover.
+ *
+ * This has to live here rather than as a `group-hover:` utility on the
+ * element. Tailwind emits its utilities inside a cascade layer, and the rule
+ * above is unlayered — unlayered styles win over layered ones whatever the
+ * specificity — so the `animation` shorthand kept resetting play-state to
+ * running and the utility never took effect.
+ */
+.marquee-group:hover .animate-marquee {
+  animation-play-state: paused;
 }
 
 @media (prefers-reduced-motion: reduce) {

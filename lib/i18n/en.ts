@@ -28,6 +28,7 @@ export const en = {
     buildPipeline: "Let's Build Your Pipeline",
     startConversation: "Start a Conversation",
     seeHowItWorks: "See how it works",
+    exploreWork: "Explore Our Work",
     readCaseStudy: "Read the case study",
     readArticle: "Read article",
     allCaseStudies: "All case studies",
@@ -37,10 +38,10 @@ export const en = {
   },
 
   hero: {
-    eyebrow: "B2B outbound & go-to-market",
-    headlineLead: "Qualified pipeline, built on",
-    headlineAccent: "outbound systems.",
-    body: "ForgeGTM builds and runs outbound for B2B companies — targeting, infrastructure, messaging and campaigns — so your sales team spends its time in qualified conversations instead of building lists.",
+    eyebrow: "B2B GO-TO-MARKET & RevOps",
+    headlineLead: "Revenue growth engineered for the modern",
+    headlineAccent: "market.",
+    body: "We help ambitious companies build intelligent growth systems through strategy, automation, outbound execution and scalable infrastructure.",
     qualifiers: [
       "B2B SaaS & technology",
       "Series A–C",
@@ -51,7 +52,6 @@ export const en = {
 
   logos: {
     label: "Built for teams like these",
-    placeholder: "Placeholder brands",
   },
 
   commitments: {
@@ -66,31 +66,32 @@ export const en = {
 
   problem: {
     eyebrow: "The problem",
-    titleMuted: "Most outbound doesn't fail because of effort.",
-    titleRest: "It fails because of the system behind it.",
-    aside:
-      "Three problems account for most underperforming outbound. Each one is fixable, but only if it is treated as infrastructure rather than a copywriting problem.",
+    titleLead: "Most companies don't have a growth problem.",
+    titleTrail: "They have a systems problem.",
     items: [
       {
         index: "01",
-        title: "Volume without targeting",
+        title: "Growth feels random",
         description:
-          "A bought list of 40,000 contacts gets emailed because it exists. Reply rates collapse, the brand gets burned in exactly the accounts that mattered most.",
-        symptom: "Reach measured instead of relevance",
+          "Revenue arrives in unpredictable spikes. Without a system, every quarter starts from zero and scale becomes a guessing game.",
       },
       {
         index: "02",
-        title: "Messaging that reads like a template",
+        title: "Tools don't talk",
         description:
-          "A first name and a company name pasted into the same paragraph everyone else is sending. Buyers recognise the pattern in under a second and delete it.",
-        symptom: "Personalisation by merge tag",
+          "A dozen disconnected apps, manual handoffs, and data trapped in silos. Teams spend more time on operations than on customers.",
       },
       {
         index: "03",
-        title: "Deliverability failing silently",
+        title: "Outbound doesn't land",
         description:
-          "Campaigns look fine in the dashboard while the mail lands in spam. Nothing appears broken, because the metric that broke is the one nobody is watching.",
-        symptom: "Sent, but never seen",
+          "Generic sequences, low reply rates, and burned domains. The market is louder than ever and untargeted effort disappears.",
+      },
+      {
+        index: "04",
+        title: "AI stays a buzzword",
+        description:
+          "Everyone talks about automation and AI, but few translate it into compounding, measurable revenue infrastructure.",
       },
     ],
   },
