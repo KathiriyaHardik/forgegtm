@@ -6,7 +6,7 @@
  */
 export const en = {
   meta: {
-    title: "ForgeGTM — Qualified pipeline, built on outbound systems",
+    title: "ForgeGTM | Qualified pipeline, built on outbound systems",
     description:
       "ForgeGTM is a B2B go-to-market and outbound agency. We build and run targeting, email infrastructure, messaging and campaigns that generate qualified pipeline.",
   },
@@ -179,7 +179,7 @@ export const en = {
         number: "03",
         title: "Launch",
         description:
-          "Campaigns go live and are managed daily — replies routed, objections logged, volume paced to protect deliverability.",
+          "Campaigns go live and are managed daily: replies routed, objections logged, volume paced to protect deliverability.",
         output: "Booked meetings",
         duration: "Week 5",
       },
@@ -198,11 +198,11 @@ export const en = {
     eyebrow: "Case studies",
     title: "What a working outbound system looks like.",
     aside:
-      "Scenarios showing how the pieces come together in practice — the situation we typically walk into, what we change, and what moves as a result.",
+      "Scenarios showing how the pieces come together in practice: the situation we typically walk into, what we change, and what moves as a result.",
     indexTitle: "Case studies",
     indexHeadline: "Outbound systems, start to finish.",
     indexAside:
-      "Each case study walks through the situation, the strategy, the campaigns we ran and what moved — written the way we'd brief it internally.",
+      "Each case study walks through the situation, the strategy, the campaigns we ran and what moved, written the way we'd brief it internally.",
     disclosureLead: "About these case studies:",
     disclosure:
       "Every company shown is fictional and the figures are modelled to illustrate how the work fits together. They do not represent ForgeGTM clients or measured results.",
@@ -231,10 +231,10 @@ export const en = {
     eyebrow: "Testimonials",
     title: "What better outbound sounds like.",
     aside:
-      "The shift teams describe is rarely about volume — it is about talking to fewer, better-qualified companies, more often.",
+      "The shift teams describe is rarely about volume. It is about talking to fewer, better-qualified companies, more often.",
     placeholderBadge: "Placeholder testimonials",
     disclosure:
-      "Written for demonstration using fictional names and companies — not real customer quotes.",
+      "Written for demonstration using fictional names and companies, not real customer quotes.",
     items: [
       {
         quote:
@@ -274,7 +274,7 @@ export const en = {
       {
         question: "What does ForgeGTM do?",
         answer:
-          "We build and run outbound for B2B companies: ICP and targeting, email infrastructure and deliverability, messaging, and the campaigns themselves — then manage them daily and report on qualified pipeline.",
+          "We build and run outbound for B2B companies: ICP and targeting, email infrastructure and deliverability, messaging, and the campaigns themselves. We then manage them daily and report on qualified pipeline.",
       },
       {
         question: "Who do you work with?",
@@ -299,7 +299,7 @@ export const en = {
       {
         question: "How do you measure success?",
         answer:
-          "On qualified meetings, opportunities created and cost per qualified opportunity — agreed before we start. Reply rate and volume are diagnostics, not the goal.",
+          "On qualified meetings, opportunities created and cost per qualified opportunity, all agreed before we start. Reply rate and volume are diagnostics, not the goal.",
       },
       {
         question: "Do you work with startups?",
@@ -315,7 +315,7 @@ export const en = {
       "ForgeGTM is a B2B outbound agency that builds and runs the systems behind qualified pipeline. How we work, and what we believe about outbound.",
     eyebrow: "About",
     title: "We build outbound systems, not campaigns.",
-    lead: "ForgeGTM exists because most outbound underperforms for structural reasons — bad targeting, broken infrastructure, messaging written for nobody in particular. Those are engineering problems as much as creative ones, and they are the problems we take on.",
+    lead: "ForgeGTM exists because most outbound underperforms for structural reasons: bad targeting, broken infrastructure, messaging written for nobody in particular. Those are engineering problems as much as creative ones, and they are the problems we take on.",
     beliefsTitle: "What we believe",
     beliefs: [
       {
@@ -339,7 +339,7 @@ export const en = {
     how: [
       "One accountable team rather than a vendor per function, so nothing falls between briefs.",
       "A fixed five-week build, then a weekly operating rhythm with a standing review.",
-      "Your stack, not ours — we build on the CRM and tooling your team already uses.",
+      "Your stack, not ours. We build on the CRM and tooling your team already uses.",
       "Written documentation for every system we put live, handed over as we go.",
     ],
     teamTitle: "Who you would be working with.",
@@ -357,7 +357,7 @@ export const en = {
     eyebrow: "Insights",
     title: "Notes on outbound that actually works.",
     aside:
-      "Practical analysis from the work itself — what we test, what breaks, and what we would do differently. No growth-hacking listicles.",
+      "Practical analysis from the work itself: what we test, what breaks, and what we would do differently. No growth-hacking listicles.",
     allCategories: "All",
     readingTime: "min read",
     publishedOn: "Published",
@@ -373,7 +373,7 @@ export const en = {
     eyebrow: "Book a strategy call",
     titleLead: "Let's build your",
     titleAccent: "pipeline.",
-    body: "Tell us where you are today. We'll come back with a straight answer on whether outbound is the right lever — and what it would take to make it work.",
+    body: "Tell us where you are today. We'll come back with a straight answer on whether outbound is the right lever, and what it would take to make it work.",
     steps: [
       {
         step: "01",
@@ -418,7 +418,7 @@ export const en = {
       submitting: "Sending…",
       reassurance: "No obligation. We reply within one business day.",
       freeEmailNotice:
-        "A work address helps us prepare properly — personal ones are fine too.",
+        "A work address helps us prepare properly, though personal ones are fine too.",
       modalEyebrow: "Book a strategy call",
       triggerLead:
         "Tell us what you're trying to grow. We'll come back within one business day.",
@@ -426,7 +426,7 @@ export const en = {
       close: "Close",
       successTitle: "Request received.",
       successBody:
-        "Thanks — we've got your details. A member of the ForgeGTM team will reply within one business day to arrange your strategy call.",
+        "Thanks. We've got your details. A member of the ForgeGTM team will reply within one business day to arrange your strategy call.",
       successFallback: "Nothing in your inbox? Check spam, or email us directly at",
       // Shown instead of successFallback when the confirmation email did not
       // send. It must not imply one is on its way.

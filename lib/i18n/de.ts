@@ -11,7 +11,7 @@ import type { Dictionary } from "./en";
  */
 export const de: Dictionary = {
   meta: {
-    title: "ForgeGTM — Qualifizierte Pipeline durch Outbound-Systeme",
+    title: "ForgeGTM | Qualifizierte Pipeline durch Outbound-Systeme",
     description:
       "ForgeGTM ist eine B2B-Agentur für Go-to-Market und Outbound. Wir bauen und betreiben Zielgruppen-Targeting, E-Mail-Infrastruktur, Messaging und Kampagnen, die qualifizierte Vertriebspipeline erzeugen.",
   },
@@ -46,7 +46,7 @@ export const de: Dictionary = {
     eyebrow: "B2B GO-TO-MARKET & RevOps",
     headlineLead: "Umsatzwachstum, entwickelt für den modernen",
     headlineAccent: "Markt.",
-    body: "Wir unterstützen ambitionierte Unternehmen dabei, intelligente Growth-Systeme aufzubauen — mit Strategie, Automatisierung, Outbound-Execution und skalierbarer Infrastruktur.",
+    body: "Wir unterstützen ambitionierte Unternehmen dabei, intelligente Growth-Systeme aufzubauen: mit Strategie, Automatisierung, Outbound-Execution und skalierbarer Infrastruktur.",
     qualifiers: [
       "B2B-SaaS & Technologie",
       "Series A–C",
@@ -203,11 +203,11 @@ export const de: Dictionary = {
     eyebrow: "Case Studies",
     title: "So sieht ein funktionierendes Outbound-System aus.",
     aside:
-      "Szenarien, die zeigen, wie die Bausteine in der Praxis zusammenwirken — die Ausgangslage, die wir typischerweise vorfinden, was wir ändern und was sich dadurch bewegt.",
+      "Szenarien, die zeigen, wie die Bausteine in der Praxis zusammenwirken: die Ausgangslage, die wir typischerweise vorfinden, was wir ändern und was sich dadurch bewegt.",
     indexTitle: "Case Studies",
     indexHeadline: "Outbound-Systeme, von Anfang bis Ende.",
     indexAside:
-      "Jede Case Study beschreibt die Ausgangslage, die Strategie, die durchgeführten Kampagnen und das Ergebnis — so aufbereitet, wie wir intern briefen würden.",
+      "Jede Case Study beschreibt die Ausgangslage, die Strategie, die durchgeführten Kampagnen und das Ergebnis, so aufbereitet, wie wir intern briefen würden.",
     disclosureLead: "Hinweis zu diesen Case Studies:",
     disclosure:
       "Alle genannten Unternehmen sind fiktiv, die Zahlen sind modelliert und dienen ausschließlich der Veranschaulichung. Sie stehen weder für Kunden von ForgeGTM noch für gemessene Ergebnisse.",
@@ -236,10 +236,10 @@ export const de: Dictionary = {
     eyebrow: "Stimmen",
     title: "So klingt besseres Outbound.",
     aside:
-      "Die Veränderung, die Teams beschreiben, betrifft selten das Volumen — sondern häufigere Gespräche mit weniger, dafür besser qualifizierten Unternehmen.",
+      "Die Veränderung, die Teams beschreiben, betrifft selten das Volumen, sondern häufigere Gespräche mit weniger, dafür besser qualifizierten Unternehmen.",
     placeholderBadge: "Platzhalter-Referenzen",
     disclosure:
-      "Zu Demonstrationszwecken mit fiktiven Namen und Unternehmen verfasst — keine echten Kundenstimmen.",
+      "Zu Demonstrationszwecken mit fiktiven Namen und Unternehmen verfasst. Keine echten Kundenstimmen.",
     items: [
       {
         quote:
@@ -279,7 +279,7 @@ export const de: Dictionary = {
       {
         question: "Was macht ForgeGTM?",
         answer:
-          "Wir bauen und betreiben Outbound für B2B-Unternehmen: ICP und Targeting, E-Mail-Infrastruktur und Zustellbarkeit, Messaging sowie die Kampagnen selbst — anschließend steuern wir sie täglich und berichten über qualifizierte Pipeline.",
+          "Wir bauen und betreiben Outbound für B2B-Unternehmen: ICP und Targeting, E-Mail-Infrastruktur und Zustellbarkeit, Messaging sowie die Kampagnen selbst. Anschließend steuern wir sie täglich und berichten über qualifizierte Pipeline.",
       },
       {
         question: "Mit wem arbeiten Sie zusammen?",
@@ -289,7 +289,7 @@ export const de: Dictionary = {
       {
         question: "Übernehmen Sie die Umsetzung oder nur die Strategie?",
         answer:
-          "Die Umsetzung. Wir bauen die Infrastruktur, schreiben die Texte, betreiben die Kampagnen und routen die Antworten. Die Strategie steuert diese Arbeit — sie ist kein Foliensatz zur Übergabe.",
+          "Die Umsetzung. Wir bauen die Infrastruktur, schreiben die Texte, betreiben die Kampagnen und routen die Antworten. Die Strategie steuert diese Arbeit. Sie ist kein Foliensatz zur Übergabe.",
       },
       {
         question: "Auf welche Märkte sind Sie spezialisiert?",
@@ -299,12 +299,12 @@ export const de: Dictionary = {
       {
         question: "Wie lange dauert es bis zum Launch?",
         answer:
-          "Recherche und Aufbau dauern in der Regel vier Wochen, in Woche fünf gehen die Kampagnen live. Die ersten Termine folgen meist zwei bis drei Wochen nach dem Launch — abhängig von Listengröße und Markt.",
+          "Recherche und Aufbau dauern in der Regel vier Wochen, in Woche fünf gehen die Kampagnen live. Die ersten Termine folgen meist zwei bis drei Wochen nach dem Launch, abhängig von Listengröße und Markt.",
       },
       {
         question: "Woran messen Sie den Erfolg?",
         answer:
-          "An qualifizierten Terminen, erzeugten Opportunities und den Kosten pro qualifizierter Opportunity — vorab gemeinsam festgelegt. Antwortrate und Volumen sind Diagnosewerte, nicht das Ziel.",
+          "An qualifizierten Terminen, erzeugten Opportunities und den Kosten pro qualifizierter Opportunity, vorab gemeinsam festgelegt. Antwortrate und Volumen sind Diagnosewerte, nicht das Ziel.",
       },
       {
         question: "Arbeiten Sie mit Start-ups?",
@@ -320,16 +320,16 @@ export const de: Dictionary = {
       "ForgeGTM ist eine B2B-Outbound-Agentur, die die Systeme hinter qualifizierter Pipeline aufbaut und betreibt. Wie wir arbeiten und was wir über Outbound denken.",
     eyebrow: "Über uns",
     title: "Wir bauen Outbound-Systeme, keine Kampagnen.",
-    lead: "ForgeGTM ist entstanden, weil Outbound meist aus strukturellen Gründen unterperformt: schlechtes Targeting, defekte Infrastruktur, Messaging, das für niemanden konkret geschrieben ist. Das sind ebenso Engineering- wie Kreativprobleme — und genau die übernehmen wir.",
+    lead: "ForgeGTM ist entstanden, weil Outbound meist aus strukturellen Gründen unterperformt: schlechtes Targeting, defekte Infrastruktur, Messaging, das für niemanden konkret geschrieben ist. Das sind ebenso Engineering- wie Kreativprobleme, und genau die übernehmen wir.",
     beliefsTitle: "Wovon wir überzeugt sind",
     beliefs: [
       {
         title: "Relevanz schlägt Volumen",
-        body: "Mehr zu versenden ist der einfachste Hebel — und der schnellste Weg, Domain und Marke zu verbrennen. Wir kontaktieren lieber 800 sorgfältig ausgewählte Accounts als 40.000 beliebige.",
+        body: "Mehr zu versenden ist der einfachste Hebel und zugleich der schnellste Weg, Domain und Marke zu verbrennen. Wir kontaktieren lieber 800 sorgfältig ausgewählte Accounts als 40.000 beliebige.",
       },
       {
         title: "Infrastruktur ist kein Nebenschauplatz",
-        body: "Die Zustellbarkeit entscheidet, ob alles andere überhaupt zählt. Domains, Authentifizierung und Versanddisziplin behandeln wir als Kerninfrastruktur — laufend überwacht, nicht einmal geprüft.",
+        body: "Die Zustellbarkeit entscheidet, ob alles andere überhaupt zählt. Domains, Authentifizierung und Versanddisziplin behandeln wir als Kerninfrastruktur: laufend überwacht, nicht einmal geprüft.",
       },
       {
         title: "Das System soll das Projekt überdauern",
@@ -342,14 +342,14 @@ export const de: Dictionary = {
     ],
     howTitle: "Wie wir arbeiten",
     how: [
-      "Ein verantwortliches Team statt eines Dienstleisters je Funktion — so fällt nichts zwischen zwei Briefings.",
+      "Ein verantwortliches Team statt eines Dienstleisters je Funktion. So fällt nichts zwischen zwei Briefings.",
       "Ein fester fünfwöchiger Aufbau, danach ein wöchentlicher Betriebsrhythmus mit festem Review.",
-      "Ihr Stack, nicht unserer — wir bauen auf dem CRM und den Tools auf, die Ihr Team bereits nutzt.",
+      "Ihr Stack, nicht unserer. Wir bauen auf dem CRM und den Tools auf, die Ihr Team bereits nutzt.",
       "Schriftliche Dokumentation für jedes System, das wir live stellen, laufend übergeben.",
     ],
     teamTitle: "Mit wem Sie zusammenarbeiten würden.",
     teamLead:
-      "Outbound ist eine Zusammenarbeit im Tagesgeschäft — da lohnt es sich zu wissen, wer die Arbeit tatsächlich macht.",
+      "Outbound ist eine Zusammenarbeit im Tagesgeschäft, da lohnt es sich zu wissen, wer die Arbeit tatsächlich macht.",
     teamPlaceholder: "Profil noch nicht verfasst",
     teamLinkedin: "Auf LinkedIn vernetzen",
     ctaTitle: "Möchten Sie sehen, wie das für Ihr Team aussehen würde?",
@@ -362,7 +362,7 @@ export const de: Dictionary = {
     eyebrow: "Insights",
     title: "Notizen zu Outbound, das tatsächlich funktioniert.",
     aside:
-      "Praxisnahe Analysen aus der täglichen Arbeit — was wir testen, was bricht und was wir anders machen würden. Keine Growth-Hacking-Listen.",
+      "Praxisnahe Analysen aus der täglichen Arbeit: was wir testen, was bricht und was wir anders machen würden. Keine Growth-Hacking-Listen.",
     allCategories: "Alle",
     readingTime: "Min. Lesezeit",
     publishedOn: "Veröffentlicht",
@@ -378,7 +378,7 @@ export const de: Dictionary = {
     eyebrow: "Strategiegespräch buchen",
     titleLead: "Gemeinsam Ihre",
     titleAccent: "Pipeline aufbauen.",
-    body: "Schildern Sie uns Ihre aktuelle Situation. Sie erhalten von uns eine klare Einschätzung, ob Outbound der richtige Hebel ist — und was nötig wäre, damit es funktioniert.",
+    body: "Schildern Sie uns Ihre aktuelle Situation. Sie erhalten von uns eine klare Einschätzung, ob Outbound der richtige Hebel ist, und was nötig wäre, damit es funktioniert.",
     steps: [
       {
         step: "01",
@@ -423,7 +423,7 @@ export const de: Dictionary = {
       submitting: "Wird gesendet …",
       reassurance: "Unverbindlich. Wir antworten innerhalb eines Werktags.",
       freeEmailNotice:
-        "Mit einer geschäftlichen Adresse können wir uns besser vorbereiten — private Adressen sind aber ebenfalls in Ordnung.",
+        "Mit einer geschäftlichen Adresse können wir uns besser vorbereiten. Private Adressen sind aber ebenfalls in Ordnung.",
       modalEyebrow: "Strategiegespräch buchen",
       triggerLead:
         "Sagen Sie uns, was Sie wachsen lassen möchten. Wir melden uns innerhalb eines Werktags.",
@@ -431,11 +431,11 @@ export const de: Dictionary = {
       close: "Schließen",
       successTitle: "Anfrage erhalten.",
       successBody:
-        "Vielen Dank — Ihre Angaben sind bei uns eingegangen. Ein Mitglied des ForgeGTM-Teams meldet sich innerhalb eines Werktags zur Terminabstimmung.",
+        "Vielen Dank. Ihre Angaben sind bei uns eingegangen. Ein Mitglied des ForgeGTM-Teams meldet sich innerhalb eines Werktags zur Terminabstimmung.",
       successFallback:
         "Nichts im Posteingang? Prüfen Sie den Spam-Ordner oder schreiben Sie uns direkt an",
       successNoEmail:
-        "Die Bestätigungs-E-Mail konnte nicht versendet werden — Ihre Anfrage ist aber bei uns eingegangen und wir melden uns. Sie erreichen uns auch direkt unter",
+        "Die Bestätigungs-E-Mail konnte nicht versendet werden. Ihre Anfrage ist aber bei uns eingegangen und wir melden uns. Sie erreichen uns auch direkt unter",
       budgetOptions: ["< 10.000 €", "10.000 – 30.000 €", "30.000 – 75.000 €", "75.000 €+"],
       goalOptions: [
         "Outbound-System von Grund auf aufbauen",
@@ -463,7 +463,7 @@ export const de: Dictionary = {
         messageLong: "Bitte beschränken Sie sich auf 4.000 Zeichen.",
         summary: "Bitte prüfen Sie die markierten Felder und versuchen Sie es erneut.",
         notConfigured:
-          "Das Formular konnte gerade nicht übermittelt werden. Bitte schreiben Sie an {email} — wir kümmern uns umgehend darum.",
+          "Das Formular konnte gerade nicht übermittelt werden. Bitte schreiben Sie an {email}. Wir kümmern uns umgehend darum.",
         unexpected:
           "Auf unserer Seite ist etwas schiefgelaufen. Bitte versuchen Sie es erneut oder schreiben Sie an {email}.",
       },

@@ -7,10 +7,10 @@ import { CONTACT_EMAIL } from "@/lib/site";
  *
  * Two transports, chosen by whichever credentials are present:
  *
- *   1. SMTP (`SMTP_USER` + `SMTP_PASSWORD`) — works with a plain Gmail account
+ *   1. SMTP (`SMTP_USER` + `SMTP_PASSWORD`), works with a plain Gmail account
  *      and an App Password, so it needs no domain of your own. This is the
  *      path in use today.
- *   2. Resend (`RESEND_API_KEY` + `LEADS_EMAIL_FROM`) — preferred once a
+ *   2. Resend (`RESEND_API_KEY` + `LEADS_EMAIL_FROM`), preferred once a
  *      domain is registered and verified, since a sender on your own domain
  *      authenticates properly and is far less likely to be spam-foldered.
  *
@@ -156,14 +156,14 @@ function buildText(lead: LeadNotification) {
  */
 const CONFIRMATION_COPY = {
   en: {
-    subject: "We've received your strategy call request — ForgeGTM",
+    subject: "We've received your strategy call request, ForgeGTM",
     preheader: "Thanks for getting in touch. Here's what happens next.",
     greeting: (name: string) => `Hi ${name},`,
     thanks:
       "Thanks for reaching out to ForgeGTM. Your strategy call request has been received.",
     next: "What happens next",
     nextBody:
-      "A member of our team will review what you've told us and reply within one business day to arrange a time. We'll come to that call having already looked at your market — so it's a working session, not a pitch.",
+      "A member of our team will review what you've told us and reply within one business day to arrange a time. We'll come to that call having already looked at your market, so it's a working session, not a pitch.",
     summaryTitle: "What you sent us",
     labels: {
       company: "Company",
@@ -178,14 +178,14 @@ const CONFIRMATION_COPY = {
     footer: "You're receiving this because you requested a strategy call at forgegtm.com.",
   },
   de: {
-    subject: "Ihre Anfrage für ein Strategiegespräch ist eingegangen — ForgeGTM",
+    subject: "Ihre Anfrage für ein Strategiegespräch ist eingegangen, ForgeGTM",
     preheader: "Vielen Dank für Ihre Nachricht. So geht es weiter.",
     greeting: (name: string) => `Guten Tag ${name},`,
     thanks:
       "vielen Dank für Ihre Anfrage bei ForgeGTM. Ihre Anfrage für ein Strategiegespräch ist bei uns eingegangen.",
     next: "Wie es weitergeht",
     nextBody:
-      "Ein Mitglied unseres Teams sieht sich Ihre Angaben an und meldet sich innerhalb eines Werktags zur Terminabstimmung. Wir kommen vorbereitet in dieses Gespräch — es ist eine Arbeitssitzung, kein Verkaufstermin.",
+      "Ein Mitglied unseres Teams sieht sich Ihre Angaben an und meldet sich innerhalb eines Werktags zur Terminabstimmung. Wir kommen vorbereitet in dieses Gespräch, es ist eine Arbeitssitzung, kein Verkaufstermin.",
     summaryTitle: "Ihre Angaben",
     labels: {
       company: "Unternehmen",
@@ -295,7 +295,7 @@ function buildConfirmationText(lead: LeadNotification) {
  * Confirmation to the prospect, in the language they submitted in.
  *
  * Returns whether the provider accepted it. Like the internal alert this never
- * throws — the lead is already stored by the time it runs, and a confirmation
+ * throws, the lead is already stored by the time it runs, and a confirmation
  * that fails to send must not cost us the lead or show the visitor an error.
  * It does, however, have to be reported honestly rather than assumed: the
  * caller uses the result to decide what the success panel is allowed to claim.
@@ -323,7 +323,7 @@ export async function sendProspectConfirmation(
   }
 
   console.warn(
-    "[confirmation-email] No email transport configured — prospect " +
+    "[confirmation-email] No email transport configured, prospect " +
       "confirmation NOT sent. See README.md."
   );
   return false;
@@ -337,7 +337,7 @@ export async function sendLeadNotification(
   lead: LeadNotification
 ): Promise<boolean> {
   const to = process.env.LEADS_EMAIL_TO || CONTACT_EMAIL;
-  const subject = `New Strategy Call Request — ${lead.name}`;
+  const subject = `New Strategy Call Request, ${lead.name}`;
 
   const message = {
     to,
@@ -375,7 +375,7 @@ type OutgoingMessage = {
 /**
  * Gmail (or any SMTP host) via an App Password.
  *
- * The envelope sender has to be the authenticated mailbox — Gmail rewrites a
+ * The envelope sender has to be the authenticated mailbox, Gmail rewrites a
  * mismatched `From` anyway, and forging one is what gets mail rejected. So the
  * display name is ours while the address stays the account's own.
  */
@@ -414,7 +414,7 @@ async function sendViaSmtp(message: OutgoingMessage): Promise<boolean> {
   } catch (error) {
     const hint =
       error instanceof Error && /invalid login|username and password/i.test(error.message)
-        ? " — check SMTP_PASSWORD is a 16-character Google App Password, not the account password"
+        ? ", check SMTP_PASSWORD is a 16-character Google App Password, not the account password"
         : "";
     console.error(`[lead-email] SMTP send failed${hint}:`, error);
     return false;
