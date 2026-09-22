@@ -257,6 +257,7 @@ export const en = {
   },
 
   integrations: {
+    eyebrow: "Technology ecosystem",
     title: "We orchestrate the tools you already trust.",
     body: "No rip-and-replace. We build on the stack your team already knows, and connect the parts that were never talking.",
   },
