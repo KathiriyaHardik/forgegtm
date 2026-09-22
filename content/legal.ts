@@ -1,7 +1,7 @@
 import type { Locale } from "@/lib/i18n/config";
 
 /**
- * TEMPLATE LEGAL COPY — GDPR/DDG-shaped skeletons, not legal advice.
+ * TEMPLATE LEGAL COPY, GDPR/DDG-shaped skeletons, not legal advice.
  *
  * `fill` markers render as visible dashed badges so nothing ships
  * half-complete. Every one must be replaced with ForgeGTM's real details and
@@ -47,7 +47,7 @@ export const PRIVACY: Record<Locale, LegalSectionContent[]> = {
           "We process enquiry data to respond to you and to carry out pre-contractual steps at your request. We process technical data on the basis of our legitimate interest in operating a secure, working website.",
         ],
         [
-          "Where we rely on consent — for example non-essential cookies or marketing email — you may withdraw it at any time without affecting processing carried out beforehand.",
+          "Where we rely on consent, for example non-essential cookies or marketing email, you may withdraw it at any time without affecting processing carried out beforehand.",
         ],
       ],
     },
@@ -91,7 +91,7 @@ export const PRIVACY: Record<Locale, LegalSectionContent[]> = {
       heading: "Cookies",
       paragraphs: [
         [
-          "We use cookies that are strictly necessary to operate the site — including one that remembers your language choice — and, only with your consent, cookies that help us measure usage.",
+          "We use cookies that are strictly necessary to operate the site, including one that remembers your language choice, and, only with your consent, cookies that help us measure usage.",
         ],
       ],
     },
@@ -140,7 +140,7 @@ export const PRIVACY: Record<Locale, LegalSectionContent[]> = {
           "Anfragedaten verarbeiten wir, um Ihnen zu antworten und auf Ihren Wunsch vorvertragliche Maßnahmen durchzuführen (Art. 6 Abs. 1 lit. b DSGVO). Technische Daten verarbeiten wir auf Grundlage unseres berechtigten Interesses am sicheren und funktionsfähigen Betrieb der Website (Art. 6 Abs. 1 lit. f DSGVO).",
         ],
         [
-          "Soweit wir uns auf eine Einwilligung stützen — etwa bei nicht notwendigen Cookies oder E-Mail-Marketing — können Sie diese jederzeit mit Wirkung für die Zukunft widerrufen.",
+          "Soweit wir uns auf eine Einwilligung stützen, etwa bei nicht notwendigen Cookies oder E-Mail-Marketing, können Sie diese jederzeit mit Wirkung für die Zukunft widerrufen.",
         ],
       ],
     },
@@ -184,7 +184,7 @@ export const PRIVACY: Record<Locale, LegalSectionContent[]> = {
       heading: "Cookies",
       paragraphs: [
         [
-          "Wir setzen technisch notwendige Cookies ein — darunter eines, das Ihre Sprachauswahl speichert — sowie, ausschließlich mit Ihrer Einwilligung, Cookies zur Reichweitenmessung.",
+          "Wir setzen technisch notwendige Cookies ein (darunter eines, das Ihre Sprachauswahl speichert), sowie, ausschließlich mit Ihrer Einwilligung, Cookies zur Reichweitenmessung.",
         ],
       ],
     },

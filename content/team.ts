@@ -3,14 +3,14 @@ import type { Locale } from "@/lib/i18n/config";
 /**
  * Founder / team content.
  *
- * ⚠️ PLACEHOLDER CONTENT — every `role` and `bio` below is filler, and the
+ * ⚠️ PLACEHOLDER CONTENT, every `role` and `bio` below is filler, and the
  * `placeholder: true` flag makes the page say so on screen. Nothing here is a
  * claim about a real person's background.
  *
  * To make this real:
  *   1. Replace `role` and `bio` for each locale with true information.
  *   2. Add a photo to /public and set `photo` (e.g. "/team/hardik.jpg").
- *      Leave it null and an initials avatar is drawn instead — that is a
+ *      Leave it null and an initials avatar is drawn instead. That is a
  *      deliberate design, not a broken image.
  *   3. Set `linkedin` to a real profile URL, or leave it null to hide the link.
  *   4. Set `placeholder: false`. That removes the on-page notice.
@@ -37,15 +37,15 @@ export type TeamMember = {
 export const TEAM: TeamMember[] = [
   {
     id: "founder",
-    // Taken from the repository's git identity — replace if it should differ.
+    // Taken from the repository's git identity, replace if it should differ.
     name: "Hardik Kathiriya",
     role: {
       en: "Founder",
       de: "Gründer",
     },
     bio: {
-      en: "This paragraph is placeholder text. Replace it with a real background — where the outbound experience comes from, the kind of companies worked with, and why ForgeGTM exists. Two to four sentences is the right length: enough to establish credibility, short enough to be read.",
-      de: "Dieser Absatz ist ein Platzhalter. Ersetzen Sie ihn durch einen echten Werdegang — woher die Outbound-Erfahrung stammt, mit welchen Unternehmen gearbeitet wurde und warum es ForgeGTM gibt. Zwei bis vier Sätze sind die richtige Länge: genug für Glaubwürdigkeit, kurz genug, um gelesen zu werden.",
+      en: "This paragraph is placeholder text. Replace it with a real background, where the outbound experience comes from, the kind of companies worked with, and why ForgeGTM exists. Two to four sentences is the right length: enough to establish credibility, short enough to be read.",
+      de: "Dieser Absatz ist ein Platzhalter. Ersetzen Sie ihn durch einen echten Werdegang, woher die Outbound-Erfahrung stammt, mit welchen Unternehmen gearbeitet wurde und warum es ForgeGTM gibt. Zwei bis vier Sätze sind die richtige Länge: genug für Glaubwürdigkeit, kurz genug, um gelesen zu werden.",
     },
     photo: null,
     linkedin: null,
@@ -62,8 +62,8 @@ export const TEAM: TeamMember[] = [
       de: "Position",
     },
     bio: {
-      en: "Placeholder text for a second profile. Replace it with a real background, or delete this entry from TEAM if ForgeGTM is a one-person agency for now — the section renders any number of people, including one.",
-      de: "Platzhaltertext für ein zweites Profil. Ersetzen Sie ihn durch einen echten Werdegang — oder löschen Sie diesen Eintrag aus TEAM, falls ForgeGTM vorerst aus einer Person besteht. Der Abschnitt funktioniert mit beliebig vielen Personen, auch mit einer.",
+      en: "Placeholder text for a second profile. Replace it with a real background, or delete this entry from TEAM if ForgeGTM is a one-person agency for now, the section renders any number of people, including one.",
+      de: "Platzhaltertext für ein zweites Profil. Ersetzen Sie ihn durch einen echten Werdegang, oder löschen Sie diesen Eintrag aus TEAM, falls ForgeGTM vorerst aus einer Person besteht. Der Abschnitt funktioniert mit beliebig vielen Personen, auch mit einer.",
     },
     photo: null,
     linkedin: null,
