@@ -160,41 +160,37 @@ export const de: Dictionary = {
 
   process: {
     eyebrow: "So arbeiten wir",
-    title: "Von der Recherche zu gebuchten Terminen in rund fünf Wochen.",
-    aside:
-      "Ein fester Aufbau, danach ein kontinuierlicher Betriebsrhythmus. Sie wissen jederzeit, woran gearbeitet wird, was dabei entstanden ist und was es pro qualifizierter Opportunity gekostet hat.",
+    title: "Ein strukturierter Weg vom Anspruch zu nachhaltigem Wachstum.",
     steps: [
       {
         number: "01",
-        title: "Recherche",
+        title: "Analysieren",
         description:
-          "Wir definieren das ICP, kartieren das Buying Center und identifizieren die Accounts, die aktuell echte Kaufsignale zeigen.",
-        output: "ICP & Account-Liste",
-        duration: "Woche 1–2",
+          "Wir prüfen Funnel, Daten und Stack und zeigen, wo Umsatz verloren geht und wo Hebel verborgen liegen.",
       },
       {
         number: "02",
-        title: "Aufbau",
+        title: "Strategie",
         description:
-          "Targeting, Messaging, Versandinfrastruktur und Kampagnenarchitektur werden aufgebaut und aufgewärmt, bevor die erste Mail rausgeht.",
-        output: "Betriebsbereite Infrastruktur",
-        duration: "Woche 2–4",
+          "Eine priorisierte Wachstumsarchitektur: ICP, Kanäle und die Systeme, die die Zahl bewegen.",
       },
       {
         number: "03",
-        title: "Launch",
+        title: "Aufbauen",
         description:
-          "Die Kampagnen gehen live und werden täglich gesteuert: Antworten geroutet, Einwände dokumentiert, Volumen zum Schutz der Zustellbarkeit getaktet.",
-        output: "Gebuchte Termine",
-        duration: "Woche 5",
+          "Wir bauen die Infrastruktur: Automatisierungen, CRM, Outbound und KI, verzahnt zu einem System.",
       },
       {
         number: "04",
-        title: "Optimierung",
+        title: "Launch",
         description:
-          "Wir testen Messaging gegen echte Antwortdaten, stellen Schwaches ein und erweitern auf angrenzende Segmente, sobald sich Signale bestätigen.",
-        output: "Wachsende Pipeline",
-        duration: "Laufend",
+          "Die Systeme gehen mit Messbarkeit ab Tag eins live, sodass jeder Input auswertbar ist.",
+      },
+      {
+        number: "05",
+        title: "Skalieren",
+        description:
+          "Wir verstärken, was funktioniert, stellen ein, was nicht trägt, und erschließen neue Märkte mit Zuversicht.",
       },
     ],
   },

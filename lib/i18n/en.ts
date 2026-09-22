@@ -154,42 +154,38 @@ export const en = {
   },
 
   process: {
-    eyebrow: "How it works",
-    title: "From research to booked meetings in about five weeks.",
-    aside:
-      "A fixed build, then a continuous operating rhythm. You always know what is being worked on, what it produced, and what it cost per qualified opportunity.",
+    eyebrow: "How we work",
+    title: "A disciplined path from ambition to compounding growth.",
     steps: [
       {
         number: "01",
-        title: "Research",
+        title: "Discover",
         description:
-          "We define the ICP, map the buying committee, and identify the accounts showing real buying signals right now.",
-        output: "ICP & account list",
-        duration: "Week 1–2",
+          "We audit your funnel, data, and stack to map where revenue leaks and where leverage hides.",
       },
       {
         number: "02",
-        title: "Build",
+        title: "Strategize",
         description:
-          "Targeting, messaging, sending infrastructure and campaign architecture get built and warmed before anything goes out.",
-        output: "Live infrastructure",
-        duration: "Week 2–4",
+          "A prioritized growth architecture: ICP, channels, and the systems that will move the number.",
       },
       {
         number: "03",
-        title: "Launch",
+        title: "Build",
         description:
-          "Campaigns go live and are managed daily: replies routed, objections logged, volume paced to protect deliverability.",
-        output: "Booked meetings",
-        duration: "Week 5",
+          "We engineer the infrastructure: automations, CRM, outbound, and AI, wired to work as one.",
       },
       {
         number: "04",
-        title: "Optimize",
+        title: "Launch",
         description:
-          "We test messaging against real reply data, retire what underperforms, and expand into adjacent segments as signal proves out.",
-        output: "Compounding pipeline",
-        duration: "Ongoing",
+          "Systems go live with instrumentation from day one, so every input is measurable.",
+      },
+      {
+        number: "05",
+        title: "Scale",
+        description:
+          "We compound what works, retire what doesn't, and expand into new markets with confidence.",
       },
     ],
   },
