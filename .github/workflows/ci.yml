@@ -1,0 +1,45 @@
+name: CI
+
+# Runs on pull requests and on anything that lands on main, so a broken build
+# is caught before it is merged rather than after it is deployed.
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+# A new push to the same branch cancels the run already in flight; there is no
+# value in finishing a check against superseded code.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # Reads the pinned version from package.json's `packageManager` field,
+      # so CI and local stay on the same pnpm without a second place to update.
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Lint
+        run: pnpm lint
+
+      # Separate from the build: `next build` type-checks too, but a dedicated
+      # step names type errors as type errors instead of burying them in build
+      # output.
+      - name: Typecheck
+        run: pnpm exec tsc --noEmit
+
+      # No secrets needed. Every env read in the app happens at request time,
+      # and /admin is force-dynamic, so nothing touches the database here.
+      - name: Build
+        run: pnpm build
