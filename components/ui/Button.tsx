@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { ReactNode } from "react";
 
 type ButtonVariant = "primary" | "secondary" | "accent" | "outline-dark" | "link";
@@ -21,13 +21,14 @@ export function Button({
   href,
   children,
   variant = "primary",
-  icon = true,
+  icon = "arrow",
   className = "",
 }: {
   href: string;
   children: ReactNode;
   variant?: ButtonVariant;
-  icon?: boolean;
+  /** "up-right" marks a CTA that goes somewhere else rather than continuing. */
+  icon?: "arrow" | "up-right" | false;
   className?: string;
 }) {
   return (
@@ -36,10 +37,16 @@ export function Button({
       className={`group inline-flex items-center justify-center gap-2 text-[13.5px] font-medium whitespace-nowrap transition-all duration-300 ease-premium ${VARIANTS[variant]} ${className}`}
     >
       {children}
-      {icon && (
+      {icon === "arrow" && (
         <ArrowRight
           size={15}
           className="transition-transform duration-300 ease-premium group-hover:translate-x-1"
+        />
+      )}
+      {icon === "up-right" && (
+        <ArrowUpRight
+          size={15}
+          className="transition-transform duration-300 ease-premium group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
         />
       )}
     </Link>

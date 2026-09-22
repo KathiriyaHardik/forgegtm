@@ -26,7 +26,9 @@ export function Marquee({
   } as const;
 
   const trackClass =
-    "animate-marquee flex w-max shrink-0 items-center gap-3 pr-3 group-hover:[animation-play-state:paused]";
+    // Hover-pause is handled by `.marquee-group:hover` in globals.css — as a
+    // utility here it silently lost to the unlayered `animation` shorthand.
+    "animate-marquee flex w-max shrink-0 items-center gap-3 pr-3";
 
   const track = Array.from({ length: repeat }, (_, i) => (
     <Fragment key={i}>{children}</Fragment>
@@ -34,7 +36,7 @@ export function Marquee({
 
   return (
     <div
-      className={`group flex overflow-hidden [mask-image:linear-gradient(to_right,transparent,#000_6%,#000_94%,transparent)] ${className}`}
+      className={`marquee-group flex overflow-hidden [mask-image:linear-gradient(to_right,transparent,#000_6%,#000_94%,transparent)] ${className}`}
     >
       <div className={trackClass} style={trackStyle}>
         {track}
