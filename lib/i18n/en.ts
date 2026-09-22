@@ -97,78 +97,58 @@ export const en = {
   },
 
   services: {
-    eyebrow: "What we do",
-    title: "Everything an outbound motion needs, run as one system.",
+    eyebrow: "What we build",
+    title: "One partner for the entire revenue engine.",
     aside:
-      "Most teams buy these in pieces from different vendors, then spend their time integrating them. ForgeGTM owns the whole chain and is measured on what comes out of it.",
-    pillars: [
+      "Eight interlocking capabilities, delivered as one coherent system rather than a pile of disconnected tactics.",
+    items: [
       {
-        number: "01",
-        name: "Strategy & Targeting",
-        summary:
-          "Decide who is worth contacting before spending a euro reaching them.",
-        services: [
-          {
-            name: "Outbound Strategy",
-            value:
-              "A channel and sequencing plan tied to a revenue number, so outbound stops being a series of disconnected experiments.",
-          },
-          {
-            name: "ICP & Targeting",
-            value:
-              "A precise definition of who actually buys — and the account list that follows from it — so reps stop working accounts that were never going to close.",
-          },
-          {
-            name: "Buying-Signal Research",
-            value:
-              "Hiring, funding, tech-stack and trigger events surfaced continuously, so you reach accounts while the need is live rather than months after.",
-          },
-        ],
+        icon: "strategy",
+        name: "Go-to-market strategy",
+        value:
+          "Positioning, ICP and messaging built around a market that actually converts.",
       },
       {
-        number: "02",
-        name: "Infrastructure & Deliverability",
-        summary: "Make sure what you send actually reaches a human inbox.",
-        services: [
-          {
-            name: "Email Infrastructure",
-            value:
-              "Domains, inboxes, authentication and warm-up built as owned infrastructure — not rented from a tool you'd lose access to tomorrow.",
-          },
-          {
-            name: "Deliverability",
-            value:
-              "Monitoring, list hygiene and sending discipline that keep you out of spam, protecting both reply rates and your primary domain.",
-          },
-          {
-            name: "Campaign Strategy",
-            value:
-              "Sequence architecture, volume pacing and routing designed so campaigns scale without burning the domains underneath them.",
-          },
-        ],
+        icon: "revops",
+        name: "Revenue operations",
+        value:
+          "A single source of truth across marketing, sales and success, instrumented end to end.",
       },
       {
-        number: "03",
-        name: "Messaging & Pipeline",
-        summary:
-          "Turn attention into qualified conversations your team can close.",
-        services: [
-          {
-            name: "Personalized Copywriting",
-            value:
-              "Messaging written per segment and tested continuously, so relevance comes from research rather than a merge tag.",
-          },
-          {
-            name: "Lead Generation",
-            value:
-              "Consistent top-of-funnel volume with qualification built in, so your calendar fills with conversations worth having.",
-          },
-          {
-            name: "Pipeline Generation",
-            value:
-              "Meetings handed over with context, tracked through to opportunity, and reported against cost per qualified opportunity.",
-          },
-        ],
+        icon: "automation",
+        name: "Workflow automation",
+        value:
+          "Remove manual work with resilient, observable automations across your stack.",
+      },
+      {
+        icon: "outbound",
+        name: "Outbound systems",
+        value:
+          "Deliverable, personalized outbound engines that book qualified meetings at scale.",
+      },
+      {
+        icon: "crm",
+        name: "CRM implementation",
+        value:
+          "HubSpot and pipeline architecture designed for clean data and fast reporting.",
+      },
+      {
+        icon: "ai",
+        name: "AI implementation",
+        value:
+          "Applied AI agents and enrichment that compound leverage across the funnel.",
+      },
+      {
+        icon: "content",
+        name: "Content systems",
+        value:
+          "Editorial engines that turn expertise into a steady flow of demand.",
+      },
+      {
+        icon: "website",
+        name: "Website development",
+        value:
+          "Fast, accessible, conversion-focused sites engineered like a product.",
       },
     ],
   },

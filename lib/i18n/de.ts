@@ -102,79 +102,58 @@ export const de: Dictionary = {
   },
 
   services: {
-    eyebrow: "Unsere Leistungen",
-    title: "Alles, was Outbound braucht — als ein System betrieben.",
+    eyebrow: "Was wir aufbauen",
+    title: "Ein Partner für die gesamte Revenue-Engine.",
     aside:
-      "Die meisten Teams kaufen diese Leistungen in Einzelteilen bei verschiedenen Dienstleistern ein und verbringen ihre Zeit dann mit der Integration. ForgeGTM verantwortet die gesamte Kette und wird am Ergebnis gemessen.",
-    pillars: [
+      "Acht ineinandergreifende Leistungen, geliefert als ein zusammenhängendes System statt als Sammlung unverbundener Taktiken.",
+    items: [
       {
-        number: "01",
-        name: "Strategie & Targeting",
-        summary:
-          "Erst festlegen, wer den Kontakt wert ist — bevor Budget in die Ansprache fließt.",
-        services: [
-          {
-            name: "Outbound-Strategie",
-            value:
-              "Ein Kanal- und Sequenzplan, der an eine Umsatzzahl gekoppelt ist. Damit Outbound aufhört, eine Reihe unverbundener Experimente zu sein.",
-          },
-          {
-            name: "ICP & Zielgruppen-Targeting",
-            value:
-              "Eine präzise Definition, wer tatsächlich kauft, und die daraus abgeleitete Account-Liste. So bearbeitet der Vertrieb keine Accounts mehr, die nie abgeschlossen hätten.",
-          },
-          {
-            name: "Kaufsignal-Recherche",
-            value:
-              "Stellenausschreibungen, Finanzierungsrunden, Tech-Stack und Auslöser-Events werden laufend ausgewertet. So erreichen Sie Accounts, solange der Bedarf akut ist.",
-          },
-        ],
+        icon: "strategy",
+        name: "Go-to-Market-Strategie",
+        value:
+          "Positionierung, ICP und Messaging, aufgebaut auf einem Markt, der tatsächlich konvertiert.",
       },
       {
-        number: "02",
-        name: "Infrastruktur & Zustellbarkeit",
-        summary:
-          "Sicherstellen, dass Ihre Nachrichten tatsächlich im Posteingang ankommen.",
-        services: [
-          {
-            name: "E-Mail-Infrastruktur",
-            value:
-              "Domains, Postfächer, Authentifizierung und Warm-up als eigene Infrastruktur aufgebaut — nicht gemietet bei einem Tool, dessen Zugang morgen wegfallen kann.",
-          },
-          {
-            name: "Zustellbarkeit",
-            value:
-              "Monitoring, Listenhygiene und Versanddisziplin halten Sie aus dem Spam-Ordner und schützen sowohl Antwortraten als auch Ihre Hauptdomain.",
-          },
-          {
-            name: "Kampagnenstrategie",
-            value:
-              "Sequenzaufbau, Volumensteuerung und Routing so ausgelegt, dass Kampagnen skalieren, ohne die darunterliegenden Domains zu verbrennen.",
-          },
-        ],
+        icon: "revops",
+        name: "Revenue Operations",
+        value:
+          "Eine verlässliche Datenbasis über Marketing, Vertrieb und Customer Success hinweg, durchgängig messbar.",
       },
       {
-        number: "03",
-        name: "Messaging & Pipeline",
-        summary:
-          "Aufmerksamkeit in qualifizierte Gespräche überführen, die Ihr Team abschließen kann.",
-        services: [
-          {
-            name: "Personalisiertes Copywriting",
-            value:
-              "Messaging je Segment geschrieben und laufend getestet. Relevanz entsteht aus Recherche, nicht aus einem Platzhalter.",
-          },
-          {
-            name: "Leadgenerierung",
-            value:
-              "Konstantes Volumen am oberen Funnel-Ende mit eingebauter Qualifizierung. So füllt sich Ihr Kalender mit Gesprächen, die sich lohnen.",
-          },
-          {
-            name: "Pipeline-Generierung",
-            value:
-              "Termine werden mit Kontext übergeben, bis zur Opportunity nachverfolgt und gegen die Kosten pro qualifizierter Opportunity berichtet.",
-          },
-        ],
+        icon: "automation",
+        name: "Workflow-Automatisierung",
+        value:
+          "Manuelle Arbeit entfällt durch robuste, nachvollziehbare Automatisierungen über Ihren gesamten Stack.",
+      },
+      {
+        icon: "outbound",
+        name: "Outbound-Systeme",
+        value:
+          "Zustellbare, personalisierte Outbound-Engines, die qualifizierte Termine in der Breite erzeugen.",
+      },
+      {
+        icon: "crm",
+        name: "CRM-Implementierung",
+        value:
+          "HubSpot- und Pipeline-Architektur, ausgelegt auf saubere Daten und schnelles Reporting.",
+      },
+      {
+        icon: "ai",
+        name: "KI-Implementierung",
+        value:
+          "Angewandte KI-Agenten und Anreicherung, die Hebelwirkung über den gesamten Funnel aufbauen.",
+      },
+      {
+        icon: "content",
+        name: "Content-Systeme",
+        value:
+          "Redaktionelle Systeme, die Fachwissen in konstante Nachfrage übersetzen.",
+      },
+      {
+        icon: "website",
+        name: "Website-Entwicklung",
+        value:
+          "Schnelle, barrierefreie, conversion-orientierte Websites, entwickelt wie ein Produkt.",
       },
     ],
   },

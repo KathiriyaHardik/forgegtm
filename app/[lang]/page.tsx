@@ -32,7 +32,7 @@ export default async function Home({
         <LogoStrip t={t} />
         <Metrics t={t} />
         <ProblemSection t={t} />
-        <ServicesSection t={t} />
+        <ServicesSection t={t} lang={lang} />
         <ProcessSection t={t} />
         <CaseStudies t={t} lang={lang} />
         <Testimonials t={t} />
