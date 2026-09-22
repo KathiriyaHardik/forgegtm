@@ -262,6 +262,7 @@ export const de: Dictionary = {
   },
 
   integrations: {
+    eyebrow: "Technologie-Ökosystem",
     title: "Wir orchestrieren die Tools, die Sie bereits nutzen.",
     body: "Kein Systemwechsel. Wir bauen auf dem Stack auf, den Ihr Team kennt, und verbinden die Teile, die bisher nicht miteinander gesprochen haben.",
   },
