@@ -309,42 +309,43 @@ export const en = {
   about: {
     metaTitle: "About ForgeGTM",
     metaDescription:
-      "ForgeGTM is a B2B outbound agency that builds and runs the systems behind qualified pipeline. How we work, and what we believe about outbound.",
-    eyebrow: "About",
-    title: "We build outbound systems, not campaigns.",
-    lead: "ForgeGTM exists because most outbound underperforms for structural reasons: bad targeting, broken infrastructure, messaging written for nobody in particular. Those are engineering problems as much as creative ones, and they are the problems we take on.",
-    beliefsTitle: "What we believe",
-    beliefs: [
+      "ForgeGTM builds the systems behind sustainable growth: strategy, revenue operations, outbound and applied AI, delivered as one engine.",
+    eyebrow: "About ForgeGTM",
+    title: "Growth, engineered with German precision.",
+    lead: "ForgeGTM was founded on a simple conviction: sustainable growth is not luck or hustle. It is a system that can be designed, measured, and improved.",
+    // Figures are unverified until `statsConfirmed` is set true in the About
+    // page, which is what removes the on-page notice. Do not quietly flip it.
+    statsNote: "Figures to be confirmed",
+    stats: [
+      { value: "2021", label: "Founded in Berlin" },
+      { value: "7", label: "Markets served" },
+      { value: "120+", label: "Systems shipped" },
+      { value: "24", label: "Specialists" },
+    ],
+    story: [
+      "We started in Berlin after years spent inside fast-scaling B2B and SaaS companies, watching brilliant teams stall because their growth depended on heroics instead of infrastructure.",
+      "So we built the partner we wished we had: one that combines strategy, revenue operations, outbound, and applied AI into a single coherent engine, delivered with the rigour you would expect from German engineering.",
+      "Today we help ambitious companies across Germany, Austria, Switzerland, the Netherlands, the UK, Canada and Singapore turn growth from a guessing game into a system they own.",
+    ],
+    valuesEyebrow: "What we stand for",
+    values: [
       {
-        title: "Relevance beats volume",
-        body: "Sending more is the easiest lever to pull and the fastest way to burn a domain and a brand. We would rather contact 800 well-chosen accounts than 40,000 poorly chosen ones.",
+        title: "Systems over tactics",
+        body: "We build infrastructure that compounds, not one-off campaigns that fade.",
       },
       {
-        title: "Infrastructure is not an afterthought",
-        body: "Deliverability decides whether anything else matters. We treat domains, authentication and sending discipline as core infrastructure, monitored continuously rather than checked once.",
+        title: "Precision and clarity",
+        body: "Measured, instrumented, transparent. No vanity metrics, no black boxes.",
       },
       {
-        title: "The system should outlast the engagement",
-        body: "Everything we build is documented and owned by you. If we stopped tomorrow, your team would still have the targeting, the messaging and the infrastructure.",
-      },
-      {
-        title: "Report on pipeline, not activity",
-        body: "Emails sent is not a result. We agree on qualified meetings, opportunities and cost per opportunity before starting, and report against those.",
+        title: "Partnership",
+        body: "We embed like a senior team, aligned to your numbers, not billable hours.",
       },
     ],
-    howTitle: "How we work",
-    how: [
-      "One accountable team rather than a vendor per function, so nothing falls between briefs.",
-      "A fixed five-week build, then a weekly operating rhythm with a standing review.",
-      "Your stack, not ours. We build on the CRM and tooling your team already uses.",
-      "Written documentation for every system we put live, handed over as we go.",
-    ],
-    teamTitle: "Who you would be working with.",
-    teamLead:
-      "Outbound is a hands-on engagement, so it is worth knowing who is actually doing the work.",
+    teamEyebrow: "The people behind ForgeGTM",
     teamPlaceholder: "Profile not yet written",
     teamLinkedin: "Connect on LinkedIn",
-    ctaTitle: "Want to see what this would look like for your team?",
+    ctaTitle: "Let's build your next growth engine.",
   },
 
   insights: {

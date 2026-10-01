@@ -314,42 +314,41 @@ export const de: Dictionary = {
   about: {
     metaTitle: "Über ForgeGTM",
     metaDescription:
-      "ForgeGTM ist eine B2B-Outbound-Agentur, die die Systeme hinter qualifizierter Pipeline aufbaut und betreibt. Wie wir arbeiten und was wir über Outbound denken.",
-    eyebrow: "Über uns",
-    title: "Wir bauen Outbound-Systeme, keine Kampagnen.",
-    lead: "ForgeGTM ist entstanden, weil Outbound meist aus strukturellen Gründen unterperformt: schlechtes Targeting, defekte Infrastruktur, Messaging, das für niemanden konkret geschrieben ist. Das sind ebenso Engineering- wie Kreativprobleme, und genau die übernehmen wir.",
-    beliefsTitle: "Wovon wir überzeugt sind",
-    beliefs: [
+      "ForgeGTM baut die Systeme hinter nachhaltigem Wachstum: Strategie, Revenue Operations, Outbound und angewandte KI, geliefert als eine Engine.",
+    eyebrow: "Über ForgeGTM",
+    title: "Wachstum, mit deutscher Präzision gebaut.",
+    lead: "ForgeGTM ist aus einer einfachen Überzeugung entstanden: Nachhaltiges Wachstum ist weder Glück noch Kraftakt. Es ist ein System, das sich entwerfen, messen und verbessern lässt.",
+    statsNote: "Angaben noch zu bestätigen",
+    stats: [
+      { value: "2021", label: "Gegründet in Berlin" },
+      { value: "7", label: "Betreute Märkte" },
+      { value: "120+", label: "Ausgelieferte Systeme" },
+      { value: "24", label: "Spezialistinnen und Spezialisten" },
+    ],
+    story: [
+      "Wir haben in Berlin angefangen, nach Jahren in schnell wachsenden B2B- und SaaS-Unternehmen, in denen wir starke Teams stocken sahen, weil ihr Wachstum auf Kraftakten statt auf Infrastruktur beruhte.",
+      "Also haben wir den Partner gebaut, den wir uns damals gewünscht hätten: einen, der Strategie, Revenue Operations, Outbound und angewandte KI zu einer zusammenhängenden Engine verbindet, umgesetzt mit der Sorgfalt, die man von deutschem Engineering erwartet.",
+      "Heute unterstützen wir ambitionierte Unternehmen in Deutschland, Österreich, der Schweiz, den Niederlanden, dem Vereinigten Königreich, Kanada und Singapur dabei, Wachstum vom Ratespiel in ein eigenes System zu überführen.",
+    ],
+    valuesEyebrow: "Wofür wir stehen",
+    values: [
       {
-        title: "Relevanz schlägt Volumen",
-        body: "Mehr zu versenden ist der einfachste Hebel und zugleich der schnellste Weg, Domain und Marke zu verbrennen. Wir kontaktieren lieber 800 sorgfältig ausgewählte Accounts als 40.000 beliebige.",
+        title: "Systeme statt Taktiken",
+        body: "Wir bauen Infrastruktur, die sich verstärkt, keine einmaligen Kampagnen, die verpuffen.",
       },
       {
-        title: "Infrastruktur ist kein Nebenschauplatz",
-        body: "Die Zustellbarkeit entscheidet, ob alles andere überhaupt zählt. Domains, Authentifizierung und Versanddisziplin behandeln wir als Kerninfrastruktur: laufend überwacht, nicht einmal geprüft.",
+        title: "Präzision und Klarheit",
+        body: "Gemessen, instrumentiert, transparent. Keine Schaukennzahlen, keine Blackbox.",
       },
       {
-        title: "Das System soll das Projekt überdauern",
-        body: "Alles, was wir aufbauen, ist dokumentiert und gehört Ihnen. Würden wir morgen aufhören, hätte Ihr Team weiterhin Targeting, Messaging und Infrastruktur.",
-      },
-      {
-        title: "Berichtet wird über Pipeline, nicht über Aktivität",
-        body: "Versendete E-Mails sind kein Ergebnis. Wir legen vor dem Start qualifizierte Termine, Opportunities und Kosten pro Opportunity fest und berichten dagegen.",
+        title: "Partnerschaft",
+        body: "Wir arbeiten wie ein erfahrenes internes Team, ausgerichtet auf Ihre Zahlen, nicht auf abrechenbare Stunden.",
       },
     ],
-    howTitle: "Wie wir arbeiten",
-    how: [
-      "Ein verantwortliches Team statt eines Dienstleisters je Funktion. So fällt nichts zwischen zwei Briefings.",
-      "Ein fester fünfwöchiger Aufbau, danach ein wöchentlicher Betriebsrhythmus mit festem Review.",
-      "Ihr Stack, nicht unserer. Wir bauen auf dem CRM und den Tools auf, die Ihr Team bereits nutzt.",
-      "Schriftliche Dokumentation für jedes System, das wir live stellen, laufend übergeben.",
-    ],
-    teamTitle: "Mit wem Sie zusammenarbeiten würden.",
-    teamLead:
-      "Outbound ist eine Zusammenarbeit im Tagesgeschäft, da lohnt es sich zu wissen, wer die Arbeit tatsächlich macht.",
+    teamEyebrow: "Die Menschen hinter ForgeGTM",
     teamPlaceholder: "Profil noch nicht verfasst",
     teamLinkedin: "Auf LinkedIn vernetzen",
-    ctaTitle: "Möchten Sie sehen, wie das für Ihr Team aussehen würde?",
+    ctaTitle: "Bauen wir Ihre nächste Wachstums-Engine.",
   },
 
   insights: {
