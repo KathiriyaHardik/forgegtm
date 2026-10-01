@@ -469,13 +469,34 @@ export const en = {
   footer: {
     description:
       "Outbound systems that generate qualified pipeline for ambitious B2B companies.",
-    explore: "Explore",
-    connect: "Connect",
+    company: "Company",
+    services: "Services",
+    markets: "Markets",
     legal: "Legal",
     privacy: "Privacy",
     imprint: "Imprint",
+    bookCall: "Book a call",
     rights: "All rights reserved.",
     skipToContent: "Skip to content",
+    // Plain text, not links: there are no per-country pages, and inventing
+    // them would be a broken promise in the one place a visitor checks for
+    // whether you cover their region.
+    marketList: [
+      "Germany",
+      "United Kingdom",
+      "Canada",
+      "Singapore",
+      "Switzerland",
+      "Netherlands",
+      "Austria",
+    ],
+    serviceLinks: [
+      "Strategy",
+      "Revenue ops",
+      "Automation",
+      "Outbound",
+      "AI",
+    ],
   },
 
   legal: {
