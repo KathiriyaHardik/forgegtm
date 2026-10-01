@@ -367,30 +367,9 @@ export const en = {
   },
 
   contact: {
-    eyebrow: "Book a strategy call",
-    titleLead: "Let's build your",
-    titleAccent: "pipeline.",
-    body: "Tell us where you are today. We'll come back with a straight answer on whether outbound is the right lever, and what it would take to make it work.",
-    steps: [
-      {
-        step: "01",
-        title: "A 30-minute call",
-        description:
-          "We look at your current motion, your ICP and where pipeline is actually leaking.",
-      },
-      {
-        step: "02",
-        title: "A written plan",
-        description:
-          "Target accounts, channels, messaging angles and the infrastructure needed to run them.",
-      },
-      {
-        step: "03",
-        title: "You decide",
-        description:
-          "The plan is yours to keep and run in-house. If you want us to build it, we start.",
-      },
-    ],
+    titleLead: "Let's build your next",
+    titleAccent: "growth engine.",
+    body: "One conversation is enough to see where the leverage is. Book a strategy call and we'll map it out.",
     marquee: "Outbound systems that generate qualified pipeline",
     form: {
       name: "Name",
