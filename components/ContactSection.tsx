@@ -6,97 +6,67 @@ import { StrategyCallModal } from "./StrategyCallModal";
 import type { Dictionary } from "@/lib/i18n/en";
 import type { Locale } from "@/lib/i18n/config";
 
+/**
+ * Closing call to action.
+ *
+ * One centred message and one button. Everything that used to sit here
+ * (the three-step explainer, the side panel) competed with the only action
+ * the page wants at this point, which is to open the form.
+ *
+ * The button is a plain #contact link, so it behaves exactly like every other
+ * "Book a Strategy Call" on the site: the modal keys off the hash and nothing
+ * here needs to know it exists.
+ */
 export function ContactSection({ t, lang }: { t: Dictionary; lang: Locale }) {
   return (
-    <section id="contact" className="relative scroll-mt-20 overflow-hidden bg-dark">
+    <section
+      id="contact"
+      className="relative scroll-mt-20 overflow-hidden bg-[#070b16]"
+    >
+      {/* Navy wash behind the headline, so the section reads as a destination
+          rather than another dark band. */}
       <div
         aria-hidden
-        className="pointer-events-none absolute top-0 left-1/2 h-[560px] w-[900px] -translate-x-1/2 -translate-y-1/3"
+        className="pointer-events-none absolute top-0 left-1/2 h-[720px] w-[1100px] -translate-x-1/2 -translate-y-1/4"
         style={{
           background:
-            "radial-gradient(closest-side, rgba(45,94,245,0.2), rgba(45,94,245,0) 72%)",
+            "radial-gradient(closest-side, rgba(45,94,245,0.22), rgba(45,94,245,0) 70%)",
         }}
       />
 
-      <Container className="relative py-24 md:py-32">
-        <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
-          <div>
-            <Reveal>
-              <span className="text-eyebrow inline-flex items-center gap-2 text-accent">
-                <span className="h-1 w-1 rounded-full bg-current" />
-                {t.contact.eyebrow}
-              </span>
-            </Reveal>
+      <Container className="relative py-28 md:py-36">
+        <Reveal>
+          <h2 className="text-h2 mx-auto max-w-[16ch] text-center text-balance text-white">
+            {t.contact.titleLead}{" "}
+            <span className="text-accent">{t.contact.titleAccent}</span>
+          </h2>
+        </Reveal>
 
-            <Reveal delay={70}>
-              <h2 className="text-h2 mt-5 max-w-[14ch] text-balance text-white">
-                {t.contact.titleLead}{" "}
-                <span className="text-accent">{t.contact.titleAccent}</span>
-              </h2>
-            </Reveal>
+        <Reveal delay={80}>
+          <p className="text-lead mx-auto mt-6 max-w-xl text-center text-white/55">
+            {t.contact.body}
+          </p>
+        </Reveal>
 
-            <Reveal delay={140}>
-              <p className="text-body mt-5 max-w-sm text-white/55">
-                {t.contact.body}
-              </p>
-            </Reveal>
-
-            <Reveal delay={200}>
-              <ol className="mt-10 flex flex-col gap-6 border-t border-dark-border pt-8">
-                {t.contact.steps.map((item) => (
-                  <li key={item.step} className="flex gap-5">
-                    <span className="text-numeric text-[12px] font-semibold text-accent">
-                      {item.step}
-                    </span>
-                    <div>
-                      <h3 className="text-[15px] font-medium text-white">
-                        {item.title}
-                      </h3>
-                      <p className="text-meta mt-1.5 max-w-xs text-white/45">
-                        {item.description}
-                      </p>
-                    </div>
-                  </li>
-                ))}
-              </ol>
-            </Reveal>
+        <Reveal delay={150}>
+          <div className="mt-12 flex justify-center">
+            <a
+              href="#contact"
+              className="group ease-premium inline-flex items-center justify-center gap-2.5 rounded-full bg-white px-9 py-5 text-[16px] font-semibold whitespace-nowrap text-ink transition-all duration-300 hover:-translate-y-px hover:shadow-[0_18px_40px_-16px_rgba(255,255,255,0.45)] focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-dark focus-visible:outline-none"
+            >
+              <span>{t.cta.bookCall}</span>
+              <ArrowRight
+                size={18}
+                className="ease-premium transition-transform duration-300 group-hover:translate-x-1"
+              />
+            </a>
           </div>
-
-          {/*
-            The form itself lives in the modal. This panel is the trigger, and
-            it is a plain #contact link so it behaves exactly like every other
-            "Book a Strategy Call" call to action on the site — the modal keys
-            off the hash, so nothing here needs to know it exists.
-          */}
-          <Reveal delay={120}>
-            <div className="rounded-panel border border-dark-border bg-dark-2 p-8 md:p-10">
-              {/* Deliberately does not repeat the modal's headline — the panel
-                  is a door, not a second version of the page's message. */}
-              <p className="text-eyebrow text-accent">{t.contact.form.modalEyebrow}</p>
-              <p className="text-lead mt-4 max-w-sm text-white/70">
-                {t.contact.form.triggerLead}
-              </p>
-
-              <a
-                href="#contact"
-                className="group ease-premium mt-8 inline-flex items-center justify-center gap-2 rounded-full bg-white px-7 py-4 text-[14.5px] font-semibold whitespace-nowrap text-ink transition-all duration-300 hover:-translate-y-px hover:shadow-[0_16px_34px_-16px_rgba(255,255,255,0.45)] focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-dark focus-visible:outline-none"
-              >
-                <span>{t.cta.bookCall}</span>
-                <ArrowRight
-                  size={16}
-                  className="ease-premium transition-transform duration-300 group-hover:translate-x-1"
-                />
-              </a>
-
-              <p className="text-meta mt-5 text-white/35">{t.contact.form.reassurance}</p>
-            </div>
-          </Reveal>
-        </div>
+        </Reveal>
       </Container>
 
       <StrategyCallModal t={t} lang={lang} />
 
-      <div className="relative border-t border-dark-border py-6">
+      <div className="relative border-t border-white/[0.07] py-6">
         <Marquee durationSeconds={40} repeat={5}>
           <span className="flex shrink-0 items-center gap-6 pr-6 text-[15px] font-medium tracking-[-0.02em] whitespace-nowrap text-white/20">
             {t.contact.marquee}

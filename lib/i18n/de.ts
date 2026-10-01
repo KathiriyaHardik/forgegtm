@@ -372,30 +372,9 @@ export const de: Dictionary = {
   },
 
   contact: {
-    eyebrow: "Strategiegespräch buchen",
-    titleLead: "Gemeinsam Ihre",
-    titleAccent: "Pipeline aufbauen.",
-    body: "Schildern Sie uns Ihre aktuelle Situation. Sie erhalten von uns eine klare Einschätzung, ob Outbound der richtige Hebel ist, und was nötig wäre, damit es funktioniert.",
-    steps: [
-      {
-        step: "01",
-        title: "Ein 30-minütiges Gespräch",
-        description:
-          "Wir sehen uns Ihr aktuelles Vorgehen an, Ihr ICP und die Stellen, an denen Pipeline tatsächlich verloren geht.",
-      },
-      {
-        step: "02",
-        title: "Ein schriftlicher Plan",
-        description:
-          "Zielaccounts, Kanäle, Messaging-Ansätze und die Infrastruktur, die für den Betrieb nötig ist.",
-      },
-      {
-        step: "03",
-        title: "Sie entscheiden",
-        description:
-          "Der Plan gehört Ihnen und kann intern umgesetzt werden. Wenn wir ihn umsetzen sollen, legen wir los.",
-      },
-    ],
+    titleLead: "Bauen wir Ihre nächste",
+    titleAccent: "Wachstums-Engine.",
+    body: "Ein Gespräch genügt, um zu sehen, wo der Hebel liegt. Buchen Sie ein Strategiegespräch, und wir skizzieren es gemeinsam.",
     marquee: "Outbound-Systeme, die qualifizierte Pipeline erzeugen",
     form: {
       name: "Name",
