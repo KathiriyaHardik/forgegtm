@@ -449,13 +449,31 @@ export const de: Dictionary = {
   footer: {
     description:
       "Outbound-Systeme, die qualifizierte Pipeline für ambitionierte B2B-Unternehmen erzeugen.",
-    explore: "Entdecken",
-    connect: "Kontakt",
+    company: "Unternehmen",
+    services: "Leistungen",
+    markets: "Märkte",
     legal: "Rechtliches",
     privacy: "Datenschutz",
     imprint: "Impressum",
+    bookCall: "Gespräch buchen",
     rights: "Alle Rechte vorbehalten.",
     skipToContent: "Zum Inhalt springen",
+    marketList: [
+      "Deutschland",
+      "Vereinigtes Königreich",
+      "Kanada",
+      "Singapur",
+      "Schweiz",
+      "Niederlande",
+      "Österreich",
+    ],
+    serviceLinks: [
+      "Strategie",
+      "Revenue Ops",
+      "Automatisierung",
+      "Outbound",
+      "KI",
+    ],
   },
 
   legal: {
